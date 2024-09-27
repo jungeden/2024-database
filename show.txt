@@ -1,0 +1,16 @@
+$con = mysql_connect("localhost","root","024120");
+mysql_select_db("class",$con);
+$result = mysql_query("select * from addressbook", &con);
+$total = mysql_num_rows(&result);
+
+$i =0;
+while($i<$total):
+    $oname = mysql_result($result, $i, "name");
+    $ophone = mysql_result($result, $i, "phone");
+    $oaddress = mysql_result($result, $i, "address");
+    echo $oname, $ophone, $oaddress;
+    echo ("<br>");
+
+$i = $i +1;
+endwhile;
+mysql_close($con);

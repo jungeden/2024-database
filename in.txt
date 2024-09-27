@@ -1,0 +1,18 @@
+LoadModule php_module /opt/homebrew/opt/php/lib/httpd/modules/libphp.so
+
+/opt/homebrew/etc/php/8.3/php.ini
+
+/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/tensorflow/include/google/protobuf/compiler/php
+a
+/System/Library/Templates/Data/private/etc/apache2/original/httpd.conf
+
+/Users/jeongsejin/Documents/학교/2학년/2학기/db
+
+sudo nano /etc/apache2/httpd.conf
+
+/opt/homebrew/etc/nginx/nginx.conf
+
+
+
+socket          =/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock
+socket          =/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock
