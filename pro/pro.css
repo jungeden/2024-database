@@ -1,0 +1,306 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0%;
+  font-family: "Black Han Sans", sans-serif;
+  /* font-family: "Gowun Batang", serif; */
+}
+.container {
+  background-color: rgb(82, 82, 82);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+}
+.head-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+
+  height: 10%;
+  width: 100%;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  float: right;
+  width: 50%;
+}
+.left {
+  flex-direction: column;
+
+  display: flex;
+  float: left;
+  width: 50%;
+}
+.head {
+  display: flex;
+  flex-direction: row;
+
+  height: 10%;
+  width: 100%;
+}
+.top {
+  height: 25%;
+}
+.middle {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.middle.login {
+  flex-direction: row;
+  /* justify-content: center; */
+  /* align-content: center; */
+}
+
+.bottom {
+  width: 100%;
+
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+.title {
+  margin-bottom: 10px;
+  color: antiquewhite;
+  font-size: 80px;
+  font-family: "Black Han Sans", sans-serif;
+  /* margin: 0%; */
+}
+.title.top {
+  /* margin: 0% 90% 90% 10%; */
+  font-size: 50px;
+}
+.logo {
+  margin: 10px 10px 0px 15px;
+  font-size: 50px;
+  color: antiquewhite;
+}
+.button {
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  /* margin: 30px 168px; */
+
+  position: relative; /* 툴팁을 위치시키기 위해 relative 설정 */
+  overflow: hidden;
+}
+.button.first {
+  margin: 0px 20px 0px 20px;
+  border: 4px solid rgb(250, 235, 215);
+}
+
+.button:hover {
+  cursor: pointer;
+
+  transition: background-color 0.3s ease;
+}
+.button.first:hover {
+  height: 90px;
+  transition: height 0.5s ease;
+  background-color: rgb(250, 235, 215);
+  color: rgb(190, 190, 190);
+}
+.tooltip {
+  visibility: hidden; /* 기본적으로 숨김 */
+  opacity: 0; /* 투명도 0 */
+  transition: opacity 0.3s; /* 부드럽게 전환 */
+  position: absolute;
+  /* bottom: 100%; 버튼 위에 위치 */
+
+  transform: translateX(-50%); /* 가운데 정렬 */
+
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap; /* 한 줄로 표시 */
+  z-index: 1; /* 툴팁을 버튼 위에 보이게 함 */
+}
+.tooltip.first {
+  left: 56%;
+  top: 30px;
+  transform: translateX(-50%) rotate(-90deg);
+  background-color: antiquewhite;
+  color: rgb(82, 82, 82);
+}
+
+.button:hover .tooltip {
+  visibility: visible; /* 마우스 오버 시 나타남 */
+  opacity: 1; /* 불투명도 1 */
+}
+.button.second:hover {
+  width: 90px;
+  transition: width 0.5s ease;
+  background-color: rgb(82, 82, 82);
+  color: rgb(250, 235, 215);
+}
+
+.tooltip.second {
+  left: 50%;
+  background-color: rgb(82, 82, 82);
+  color: antiquewhite;
+}
+.button.second {
+  margin: 50px 0px 50px 0px;
+  border: 4px solid rgb(82, 82, 82);
+}
+.button.login {
+  margin: 20px 20px 0px 20px;
+  border: 4px solid rgb(250, 235, 215);
+}
+.button.login:hover {
+  width: 90px;
+  transition: width 0.5s ease;
+  background-color: rgb(250, 235, 215);
+  color: antiquewhite;
+}
+.tooltip.login {
+  left: 50%;
+  /* top: 30px; */
+
+  background-color: antiquewhite;
+  color: rgb(82, 82, 82);
+}
+.middleMain {
+  border-radius: 60px;
+  display: flex;
+  flex-direction: row;
+  background-color: antiquewhite;
+}
+.menu {
+  width: 160px;
+  float: left;
+  /* height: 100%;
+  width: 100%; */
+  padding: 10px;
+}
+
+.box {
+  height: 80vh;
+  width: 100vh;
+  float: right;
+  /* flex: 1; 남은 공간을 모두 차지 */
+  /* border: 4px solid rgb(82, 82, 82); */
+  /* background-color: antiquewhite; */
+  /* width: 129vh;
+  height: 90vh; */
+}
+.el {
+  border: 4px solid rgb(82, 82, 82);
+  background-color: antiquewhite;
+
+  margin: 10px 10px 10px 10px;
+
+  height: 100px;
+  width: 100px;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  /* margin: 30px 168px; */
+
+  position: relative; /* 툴팁을 위치시키기 위해 relative 설정 */
+  overflow: hidden;
+}
+.el:hover {
+}
+
+.el.third:hover {
+  width: 300px;
+  height: 200px;
+  transition: width 0.5s ease;
+  background-color: rgb(82, 82, 82);
+  color: rgb(250, 235, 215);
+}
+.input {
+  width: 300px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  border-radius: 40px;
+  background-color: antiquewhite;
+  border: 4px solid rgb(250, 235, 215);
+  color: rgb(209, 196, 179);
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 10px 10px 10px;
+  font-family: "Black Han Sans", sans-serif;
+}
+.input::placeholder {
+  color: rgb(209, 196, 179);
+  font-size: 20px;
+  font-family: "Black Han Sans", sans-serif;
+}
+.left.loginInput {
+  padding: 5px 0px 0px 300px;
+}
+.right.loginInput {
+  padding: 0px 300px 10px 0px;
+}
+.button.loginButton {
+  width: 150px;
+  height: 140px;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  border-radius: 40px;
+  background-color: antiquewhite;
+  border: 4px solid rgb(250, 235, 215);
+  color: rgb(209, 196, 179);
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 10px 10px 10px;
+}
+.button.loginButton:hover {
+  width: 160px;
+  height: 150px;
+  transition: width 0.5s ease;
+  transition: height 0.5s ease;
+  /* transition: background-color 0.5s ease; */
+
+  background-color: rgb(82, 82, 82);
+  color: antiquewhite;
+}
+.tooltip.button.loginButton {
+  left: 56%;
+  background-color: rgb(82, 82, 82);
+  /* color: rgb(82, 82, 82); */
+}
+.input:hover {
+  cursor: pointer;
+  background-color: rgb(209, 196, 179);
+  transition: background-color 0.3s ease;
+
+  color: antiquewhite;
+  /* width: 310px; */
+  height: 60px;
+  /* transition: width 0.3s ease; */
+  transition: height 0.3s ease;
+}
+.middle.join {
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.input.join {
+  margin: 20px 0px 0px 400px;
+  width: 200px;
+  height: 30px;
+}
