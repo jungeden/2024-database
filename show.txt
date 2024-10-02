@@ -14,3 +14,27 @@ while($i<$total):
 $i = $i +1;
 endwhile;
 mysql_close($con);
+
+
+
+
+-------------------
+<?
+$con = mysqli_connect("localhost", "root", "024120", "class");
+
+$sql = "SELECT * from addressbook";
+$result = mysqli_query($con,$sql);
+$total = mysqli_num_rows($result);
+
+echo ("<h1>Addressbook</h1>");
+$i = 0;
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $oname = $row['name'];
+    $ophone = $row['phone'];
+    $oaddress = $row['address'];
+    echo ("$oname - $ophone - $oaddress<br>");
+}
+mysqli_close($con);
+?>
+

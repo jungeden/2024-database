@@ -1,0 +1,146 @@
+<!-- <?php
+$con = mysqli_connect("localhost", "root", "024120", "class");
+
+// 연결 오류 확인
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// SQL 쿼리 작성
+$sql = "INSERT INTO addressbook (iname, iphone, iaddress) VALUES ('$_POST[iname]', '$_POST[iphone]', '$_POST[iaddress]')";
+
+// 쿼리 실행
+if (mysqli_query($con, $sql)) {
+    echo "새로운 레코드가 성공적으로 추가되었습니다.";
+} else {
+    echo "오류: " . $sql . "<br>" . mysqli_error($con);
+}
+
+// 연결 종료
+mysqli_close($con);
+
+// 리다이렉션
+echo ("<meta http-equiv='Refresh' content='0; url=show.php'>");
+?>
+   -->
+
+
+
+
+   <?
+    $con = mysql_connect("localhost","root","024120");
+    mysql_select_db("class",$con);
+    $sql = "insert into addressbook values('$_POST[iname]',$_POST[iphone]',$_POST[iaddress]')";
+    mysql_query($sql,$con);
+    mysql_close($con);
+    // echo ("<meta http-equiv='Refresh' content='0; url=show.php'>");
+    ?> 
+
+
+    
+<?php
+$con = mysqli_connect("localhost", "root", "024120", "class");
+
+// 연결 오류 확인
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// SQL 쿼리 작성
+// $sql = "INSERT INTO addressbook (iname, iphone, iaddress) VALUES ('$_POST[iname]', '$_POST[iphone]', '$_POST[iaddress]')";
+$sql = "INSERT INTO addressbook (name, phone, address) VALUES ('$_POST[iname]', '$_POST[iphone]', '$_POST[iaddress]')";
+
+// 쿼리 실행
+if (mysqli_query($con, $sql)) {
+    echo "새로운 레코드가 성공적으로 추가되었습니다.";
+} else {
+    echo "오류: " . mysqli_error($con);
+}
+
+// 연결 종료
+mysqli_close($con);
+
+// 리다이렉션
+echo ("<meta http-equiv='Refresh' content='0; url=process.php'>");
+?>
+
+
+    <?php
+    $host='localhost';
+    $user='root';
+    $passworld='024120';
+
+    $connection=mysqli_connect($host,$user,$passworld);
+
+    $name = $_POST['name'];
+    $phone= $_POST['phone'];
+    $address= $_POST['address'];
+
+    $dbconnect = @mysql_select_db('class',$connection);
+
+    <?
+
+// GET, POST, REQUEST 등에서 들어오는 값을 전역 변수로 설정
+foreach ($_REQUEST as $key => $value) {
+    $GLOBALS[$key] = $value;
+}
+
+//책이랑 달리 mysqli를 써야 함.
+$con = mysqli_connect("localhost", "root", "024120");
+mysqli_select_db($con,"class"); //책이랑 다르게 매개변수 순서가 바뀜.
+$sql = "insert into addressbook values ('$iname','$iphone','$iaddress')";
+mysqli_query($con,$sql);//책이랑 다르게 매개변수 순서가 바뀜.
+mysqli_close($con);
+echo ("<meta http-equiv='Refresh' content='0; url=show.php'>");
+?>
+
+
+된다
+<?php
+$con = mysqli_connect("localhost", "root", "024120", "class");
+
+
+
+// SQL 쿼리 작성
+// $sql = "INSERT INTO addressbook (iname, iphone, iaddress) VALUES ('$_POST[iname]', '$_POST[iphone]', '$_POST[iaddress]')";
+$sql = "INSERT INTO addressbook (name, phone, address) VALUES ('$_POST[iname]', '$_POST[iphone]', '$_POST[iaddress]')";
+
+// 쿼리 실행
+if (mysqli_query($con, $sql)) {
+    echo "새로운 레코드가 성공적으로 추가되었습니다.";
+} else {
+    echo "오류: " . mysqli_error($con);
+}
+
+// 연결 종료
+mysqli_close($con);
+
+// 리다이렉션
+echo ("<meta http-equiv='Refresh' content='0; url=show.php'>");
+?>
+
+
+
+
+
+show.php
+# ------------------------------------- - ------------------------------------ #
+<?
+$con = mysqli_connect("localhost", "root", "024120");
+mysqli_select_db("class", $con);
+$sql = "select * from addressbook";
+$result = mysqli_query($sql, $con);
+$total = mysqli_num_rows($result);
+echo ("<h1>Addressbook</h1>");
+$i = 0;
+while ($i < $total):
+$oname = mysqli_result($result, $i, "name");
+$ophone = mysqli_result($result, $i, "phone");
+$oaddress = mysqli_result($result, $i, "address");
+echo ("$oname - $ophone - $oaddress<br>");
+$i++;
+endwhile;
+mysqli_close($con);
+?>
+
+# ----------------------------------- ---- ----------------------------------- #

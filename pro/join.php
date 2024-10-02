@@ -21,11 +21,13 @@
 
       </div>
         <div class="middle join">
+            <div class="formBox">
             <form action="/submit" method="POST">
-                <input class="input join" type="text" name="useridJoin" id="useridJoin" placeholder="ID 입력">
+            <!-- <label for="id" style="font-size:20px;">이름:</label> -->
+                <input class="input join" type="text" name="useridJoin" id="useridJoin" placeholder="ID 입력"> 
                 <input class="input join" type="text" name="userpasswordJoin" id="userpasswordJoin" placeholder="PASSWORD 입력">
             </form>
-           
+            </div>
            
         </div>
             <div class="bottom">
