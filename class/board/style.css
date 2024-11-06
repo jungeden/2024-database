@@ -1,0 +1,131 @@
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0%;
+  font-family: "Gowun Batang", serif;
+  background-color: rgb(37, 37, 37);
+  color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.show {
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.search {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+
+  align-content: center;
+}
+.input-container {
+  display: flex;
+  margin: 0 0 0 5px;
+}
+.input {
+  background-color: antiquewhite;
+  height: 30px;
+  width: 100px;
+  border-radius: 20px 0 0 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Gowun Batang", serif;
+  color: rgb(37, 37, 37);
+  font-size: 14px;
+  text-align: center;
+}
+.select {
+  border: 0;
+  text-align: center;
+  height: 30px;
+  width: 70px;
+  border-radius: 20px;
+  background-color: antiquewhite;
+  color: rgb(37, 37, 37);
+  font-family: "Gowun Batang", serif;
+}
+
+.button {
+  border: 0;
+  height: 30px;
+  width: 40px;
+  border-radius: 0 20px 20px 0;
+  text-align: center;
+  padding: 0;
+  background-color: antiquewhite;
+  color: rgb(37, 37, 37);
+  position: relative;
+  overflow: hidden;
+  font-family: "Gowun Batang", serif;
+  cursor: pointer;
+}
+.button:hover {
+  cursor: pointer;
+  background-color: rgb(172, 155, 134);
+  color: antiquewhite;
+  transition: background-color 0.3s ease;
+}
+.table {
+  border-radius: 20px;
+  border: 4px solid rgb(196, 196, 196);
+  background-color: rgb(255, 255, 255);
+}
+.input1 {
+  background-color: rgb(37, 37, 37);
+  height: 40px;
+  width: 400px;
+  border: 1px solid antiquewhite;
+  border-radius: 20px;
+  margin: 0 0 10px 0;
+  padding: 0;
+
+  color: antiquewhite;
+  cursor: pointer;
+}
+.button1 {
+  width: 80px;
+  border-radius: 20px;
+  margin: 10px 10px 0 0;
+}
+.file {
+  font-size: 14px;
+  background-color: antiquewhite;
+  height: 39px;
+  width: 80px;
+  display: inline-block;
+  color: rgb(37, 37, 37);
+  text-align: center; /* 텍스트 가운데 정렬 */
+  line-height: 40px;
+}
+.file:hover {
+  background-color: rgb(172, 155, 134);
+  color: antiquewhite;
+  transition: background-color 0.3s ease;
+}
+
+.file-input {
+  z-index: -1;
+  position: absolute;
+  padding: 9px 0 0 9px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 40px;
+  width: 400px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.files {
+  position: relative;
+}
+.content {
+  height: 250px;
+  width: 400px;
+  text-align: center;
+}

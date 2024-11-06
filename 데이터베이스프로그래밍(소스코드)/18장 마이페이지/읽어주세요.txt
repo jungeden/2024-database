@@ -1,0 +1,9 @@
+[유의사항]
+
+1. 책 편집 과정에서 아래와 같이 공백이 삭제되어 오류가 발생하는 부분이 있어요.
+첨부된 소스 코드 파일은 정상적인 것이므로 책에서만 해당 부분 오류 내용을 수정해 주시면 됩니다.
+
+<input type=text size=50name=addr1 value='$addr1' readonly=readonly>... 부분을
+<input type=text size=50 name=addr1 value='$addr1' readonly=readonly>... 로 고쳐주세요.
+
+(숫자 50과 name 사이에 공백을 넣어주시면 됩니다)

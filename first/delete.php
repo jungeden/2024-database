@@ -1,12 +1,12 @@
 <?
-// $con = mysqli_connect("localhost", "root", "024120", "class");
+// $con = mysqli_connect("localhost", "root", "0000", "class");
 
 // $sql = "DELETE from addressbook where name = '$dname'";
 // $result = mysqli_query($con,$sql);
 
 // echo ("<meta http-equiv='Refresh' content='0; url=show.php'>");
 
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 // GET 요청에서 dname 값을 받아오기
 $dname = isset($_GET['dname']) ? $_GET['dname'] : '';

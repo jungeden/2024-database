@@ -1,4 +1,4 @@
-$con = mysql_connect("localhost","root","024120");
+$con = mysql_connect("localhost","root","0000");
 mysql_select_db("class",$con);
 $result = mysql_query("select * from addressbook", &con);
 $total = mysql_num_rows(&result);
@@ -20,7 +20,7 @@ mysql_close($con);
 
 -------------------
 <?
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 $sql = "SELECT * from addressbook";
 $result = mysqli_query($con,$sql);

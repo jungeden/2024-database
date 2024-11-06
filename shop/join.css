@@ -1,0 +1,112 @@
+.top.join {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  font-family: "Black Han Sans", sans-serif;
+}
+.middle.join {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Black Han Sans", sans-serif;
+}
+.bottom.join {
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  font-family: "Black Han Sans", sans-serif;
+}
+
+.inputelement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+  flex-wrap: wrap;
+}
+
+.element {
+  margin-bottom: 15px;
+  width: 270px;
+}
+.inputbirth {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.input.birth {
+  width: 80px;
+}
+
+/* ------------------ ------------------------------------ ------------------ */
+.birthday {
+  width: 80px;
+  height: 54px;
+  color: rgb(215, 233, 250);
+  border: 2px solid rgb(215, 233, 250);
+  border-radius: 15px;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(24, 25, 28);
+  font-family: "Black Han Sans", sans-serif;
+  margin: 0px 10px 0px 0px;
+  text-align: center;
+
+  position: relative;
+}
+
+.birthdayBoxOption {
+  list-style-type: none;
+  padding: 0;
+  margin: 0px 185px 0px 0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  position: absolute;
+  z-index: 1000;
+  width: auto;
+  height: 150px;
+  background-color: rgb(24, 25, 28);
+
+  border-radius: 15px;
+  border: 2px solid rgb(215, 233, 250);
+
+  /* max-height: 150px; */
+  overflow-y: auto;
+}
+.birthdayBoxOption.month {
+  position: absolute;
+  margin: 0px 0px 0px 0px;
+}
+
+.birthday:hover + .birthdayBoxOption,
+.birthdayBoxOption:hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+.option {
+  width: 80px;
+  height: 50px;
+  color: rgb(24, 25, 28);
+  font-size: 15px;
+  position: relative;
+  background-color: rgb(215, 233, 250);
+  /* border-radius: 15px; */
+  font-family: "Black Han Sans", sans-serif;
+  border: none; /* 테두리 제거 */
+  margin: 0px;
+  cursor: pointer; /* 마우스 커서 변경 */
+}
+
+.option:hover {
+  background-color: rgb(139, 164, 190);
+}
+/* ----------------------------------- --- ---------------------------------- */

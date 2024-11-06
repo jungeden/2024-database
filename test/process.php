@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 // SQL 쿼리 작성
 $sql = "INSERT INTO buy (name, price) VALUES ('$_POST[iname]', '$_POST[iprice]')";

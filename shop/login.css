@@ -1,0 +1,119 @@
+body {
+  height: 100%;
+  width: 100%;
+}
+.inputid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.input {
+  width: 270px;
+  height: 50px;
+  background-color: rgb(24, 25, 28);
+  color: rgb(215, 233, 250);
+  border: 2px solid rgb(215, 233, 250);
+  border-radius: 15px;
+  text-align: center;
+  /* font-family: "Gowun Batang", serif; */
+  font-family: "Black Han Sans", sans-serif;
+  font-size: 15px;
+  padding: 0;
+}
+
+.id {
+  border-radius: 15px 0 0 15px;
+  width: 200px;
+}
+.passwd {
+  margin-top: 15px;
+  width: 270px;
+}
+.button.check {
+  width: 70px;
+  height: 50px;
+  background-color: rgb(215, 233, 250);
+  color: rgb(24, 25, 28);
+  border: 2px solid rgb(215, 233, 250);
+  text-align: center;
+  border-radius: 0 15px 15px 0;
+  font-family: "Black Han Sans", sans-serif;
+  font-size: 20px;
+  padding: 0;
+}
+.button.check:hover {
+  background-color: rgb(139, 164, 190);
+  color: rgb(215, 233, 250);
+  border: 2px solid rgb(139, 164, 190);
+}
+.input::placeholder {
+  color: rgb(139, 164, 190);
+  /* font-family: "Gowun Batang", serif; */
+  font-family: "Black Han Sans", sans-serif;
+}
+.input.submit {
+  width: 115px;
+  height: 115px;
+  margin-left: 10px;
+  background-color: rgb(215, 233, 250);
+  color: rgb(24, 25, 28);
+  font-size: 20px;
+  border-radius: 20px;
+  font-family: "Black Han Sans", sans-serif;
+}
+.input.submit:hover {
+  background-color: rgb(139, 164, 190);
+  color: rgb(215, 233, 250);
+  border: 2px solid rgb(139, 164, 190);
+}
+.join {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  font-family: "Gowun Batang", serif;
+  color: rgb(215, 233, 250);
+  font-size: 14px;
+}
+.loginbutton.joinbutton {
+  height: 0;
+  width: 30px;
+  font-family: "Black Han Sans", sans-serif;
+  text-align: center;
+}
+.join:hover {
+  color: rgb(139, 164, 190);
+}
+.top.login {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+.middle.login {
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+}
+.bottom.login {
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+}
+.title.login {
+  font-size: 60px;
+}
+.title.login:hover {
+  cursor: pointer;
+}
+.inputform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10px;
+}

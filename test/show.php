@@ -17,7 +17,7 @@
         
     </form>
     <?
-    $con = mysqli_connect("localhost", "root", "024120", "class");
+    $con = mysqli_connect("localhost", "root", "0000", "class");
 
 
     $sql = "SELECT * from buy";
