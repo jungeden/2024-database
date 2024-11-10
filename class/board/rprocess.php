@@ -26,7 +26,7 @@ if (!$writer) {
 }
 
 // 데이터베이스 연결
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 
 // 답변 글의 깊이를 원본 글보다 1 증가시킴

@@ -37,6 +37,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: end;
+  margin-left: 20px;
 }
 .right {
   /* width: 50%; */

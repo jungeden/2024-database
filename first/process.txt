@@ -1,5 +1,5 @@
 <!-- <?php
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 // 연결 오류 확인
 if (!$con) {
@@ -28,7 +28,7 @@ echo ("<meta http-equiv='Refresh' content='0; url=show.php'>");
 
 
    <?
-    $con = mysql_connect("localhost","root","024120");
+    $con = mysql_connect("localhost","root","0000");
     mysql_select_db("class",$con);
     $sql = "insert into addressbook values('$_POST[iname]',$_POST[iphone]',$_POST[iaddress]')";
     mysql_query($sql,$con);
@@ -39,7 +39,7 @@ echo ("<meta http-equiv='Refresh' content='0; url=show.php'>");
 
     
 <?php
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 // 연결 오류 확인
 if (!$con) {
@@ -68,7 +68,7 @@ echo ("<meta http-equiv='Refresh' content='0; url=process.php'>");
     <?php
     $host='localhost';
     $user='root';
-    $passworld='024120';
+    $passworld='0000';
 
     $connection=mysqli_connect($host,$user,$passworld);
 
@@ -86,7 +86,7 @@ foreach ($_REQUEST as $key => $value) {
 }
 
 //책이랑 달리 mysqli를 써야 함.
-$con = mysqli_connect("localhost", "root", "024120");
+$con = mysqli_connect("localhost", "root", "0000");
 mysqli_select_db($con,"class"); //책이랑 다르게 매개변수 순서가 바뀜.
 $sql = "insert into addressbook values ('$iname','$iphone','$iaddress')";
 mysqli_query($con,$sql);//책이랑 다르게 매개변수 순서가 바뀜.
@@ -97,7 +97,7 @@ echo ("<meta http-equiv='Refresh' content='0; url=show.php'>");
 
 된다
 <?php
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 
 
@@ -126,7 +126,7 @@ echo ("<meta http-equiv='Refresh' content='0; url=show.php'>");
 show.php
 # ------------------------------------- - ------------------------------------ #
 <?
-$con = mysqli_connect("localhost", "root", "024120");
+$con = mysqli_connect("localhost", "root", "0000");
 mysqli_select_db("class", $con);
 $sql = "select * from addressbook";
 $result = mysqli_query($sql, $con);

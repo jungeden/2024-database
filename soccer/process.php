@@ -14,8 +14,8 @@ $ibscore = $_POST['ibscore'];
 
 
 $result = mysqli_query($con, "SELECT MAX(id) AS max_id FROM soccer");
-$row = mysqli_fetch_assoc($result);
-$id = $row['max_id'] + 1;  
+$_POST = mysqli_fetch_assoc($result);
+$id = $_POST['max_id'] + 1;  
 
 
 $insert = "INSERT INTO soccer (id, ateam, bteam, ascore, bscore, pdate)  

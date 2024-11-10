@@ -1,7 +1,7 @@
 <?php
 $con = mysqli_connect("localhost", "root", "0000", "shop");
 date_default_timezone_set('Asia/Seoul'); 
-$userjoindate = date('Y-m-d H:i:s');
+$userjoindate = date('Y년 m월 d일');
 $userid = $_GET['userid'];
 $userpasswd = $_POST['userpasswd'];
 $userpasswdcheck = $_POST['userpasswdcheck'];

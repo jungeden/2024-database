@@ -24,17 +24,17 @@ echo(" <h1 style='text-align:center;'>k-리그 순위</h1>");
             </tr>");
             $ranknum=0;
 
-            while ($row=mysqli_fetch_assoc($result)) {
+            while ($_POST=mysqli_fetch_assoc($result)) {
                 $ranknum = $ranknum+1;
-                $oname = $row['name'];
-                $owin = $row['win'];
-                $otie = $row["tie"];
-                $oloss = $row["loss"];
+                $oname = $_POST['name'];
+                $owin = $_POST['win'];
+                $otie = $_POST["tie"];
+                $oloss = $_POST["loss"];
                 $teamGame = $owin+$otie+$oloss;
-                $odeuk = $row["deuk"];
-                $osil = $row["sil"];
+                $odeuk = $_POST["deuk"];
+                $osil = $_POST["sil"];
                 $ds = $odeuk-$osil;
-                $opoint = $row["point"];
+                $opoint = $_POST["point"];
               
                 echo("<tr style='text-align:center;'><td>$ranknum</td><td>$oname</td> <td>$teamGame</td><td>$owin</td> <td>$otie</td> <td>$oloss</td> <td>$odeuk</td>  <td>$osil</td> <td>$ds</td> <td>$opoint</td> 
                  </tr>");

@@ -84,14 +84,14 @@ echo("<table border=1 width=700 align=center style='border-collapse:collapse'>
 
     $start = ($cpage - 1) * $pagesize;
     $counter = 0;
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($_POST = mysqli_fetch_assoc($result)) {
         if ($counter >= $start && $counter < $start + $pagesize) {
-            $oid = $row['id'];
-            $oateam = $row['ateam'];
-            $obteam = $row['bteam'];
-            $oascore = $row["ascore"];
-            $obscore = $row["bscore"];
-            $opdate = $row["pdate"];
+            $oid = $_POST['id'];
+            $oateam = $_POST['ateam'];
+            $obteam = $_POST['bteam'];
+            $oascore = $_POST["ascore"];
+            $obscore = $_POST["bscore"];
+            $opdate = $_POST["pdate"];
       
         echo("<tr style='text-align:center;'><td>$oid</td><td>$oateam</td> <td>$obteam</td> <td>$oascore</td> <td>$obscore</td> <td>$opdate</td>  
         <td><a href=modify.php?mid=$oid>O</a>/<a href=delete.php?did=$oid>X</a></td> </tr>");

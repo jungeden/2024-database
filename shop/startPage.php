@@ -3,7 +3,7 @@ echo("
 <head>
 <title> </title>
 <style>
-        @import url(shop.css);
+        @import url(start.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
         a {text-decoration: none;}
     </style>

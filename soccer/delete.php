@@ -6,12 +6,12 @@ $con = mysqli_connect("localhost", "root", "0000", "class");
 //team.php 삭제
 $result = mysqli_query($con,"SELECT * from soccer WHERE id = '$did'");
 
-while ($row=mysqli_fetch_assoc($result)) {
-    $oid = $row['id'];
-    $ateamName = $row['ateam'];
-    $bteamName = $row['bteam'];
-    $ateamScore = $row["ascore"];
-    $bteamScore = $row["bscore"];
+while ($_POST=mysqli_fetch_assoc($result)) {
+    $oid = $_POST['id'];
+    $ateamName = $_POST['ateam'];
+    $bteamName = $_POST['bteam'];
+    $ateamScore = $_POST["ascore"];
+    $bteamScore = $_POST["bscore"];
 }
 
 if ($ateamScore > $bteamScore) {
@@ -51,10 +51,10 @@ $bteamupdate = "UPDATE team
 mysqli_query($con, $bteamupdate);
 //ateam 경기 기록 없으면 아예 삭제
 $agame = mysqli_query($con, "SELECT win,loss,tie FROM team WHERE name='$ateamName'");
-$row = mysqli_fetch_assoc($agame);
-$awin = $row['win'];
-$atie = $row['tie'];
-$aloss = $row['loss'];
+$_POST = mysqli_fetch_assoc($agame);
+$awin = $_POST['win'];
+$atie = $_POST['tie'];
+$aloss = $_POST['loss'];
 
 if($awin+$atie+$aloss == 0) {
     $delete = "DELETE from team WHERE name = '$ateamName'";
@@ -62,10 +62,10 @@ if($awin+$atie+$aloss == 0) {
 } 
 //bteam 경기 기록 없으면 아예 삭제
 $bgame = mysqli_query($con, "SELECT win,loss,tie FROM team WHERE name='$bteamName'");
-$row = mysqli_fetch_assoc($bgame);
-$bwin = $row['win'];
-$btie = $row['tie'];
-$bloss = $row['loss'];
+$_POST = mysqli_fetch_assoc($bgame);
+$bwin = $_POST['win'];
+$btie = $_POST['tie'];
+$bloss = $_POST['loss'];
 
 if($bwin+$btie+$bloss == 0) {
     $delete = "DELETE from team WHERE name = '$bteamName'";
@@ -85,8 +85,8 @@ $idChangeQuery = "SELECT id FROM soccer ORDER BY id DESC";
 $idChangeResult = mysqli_query($con, $idChangeQuery);
 
 if ($idChangeResult && mysqli_num_rows($idChangeResult) > 0) {
-    $row = mysqli_fetch_assoc($idChangeResult);
-    $last = $row['id'];
+    $_POST = mysqli_fetch_assoc($idChangeResult);
+    $last = $_POST['id'];
 
     for ($i = $did + 1; $i <= $last; $i++) {
         $change = "UPDATE soccer SET id = id - 1 WHERE id = $i";

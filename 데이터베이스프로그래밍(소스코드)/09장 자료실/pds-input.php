@@ -2,27 +2,27 @@
 
 echo("
    <table border=0 width=600>
-   <tr><td align=center   colspan=2><h1>磊丰角</h1></td></tr>
+   <tr><td align=center   colspan=2><h1>脌脷路谩陆脟</h1></td></tr>
    <form method=post action=pds-process.php?board=$board enctype='multipart/form-data'>
    <tr>
-   <td align=right><font size=2>殿废磊</font></td>
+   <td align=right><font size=2>碌卯路脧脌脷</font></td>
    <td><input type=text name=writer size=15></td>
    </tr>
    <tr>
-   <td align=right><font size=2>鸥捞撇</font></td>
+   <td align=right><font size=2>脜赂脌脤脝虏</font></td>
    <td><input type=text name=title size=60 maxsize=100></td>
    </tr>
    <tr>
-   <td align=right><font size=2>梅何拳老</font></td>
+   <td align=right><font size=2>脙路潞脦脠颅脌脧</font></td>
    <td><input type=file name='userfile' size=45 maxlength=80></td>
    </tr>
    <tr>
-   <td align=right><font size=2>鞠 龋</font></td>
+   <td align=right><font size=2>戮脧 脠拢</font></td>
    <td><input type=password name=passwd size=15></td>
    </tr>
    <tr align=center>
-   <td colspan=2><input type=submit value=殿废>
-   <input type=reset value=瘤快扁></td>
+   <td colspan=2><input type=submit value=碌卯路脧>
+   <input type=reset value=脕枚驴矛卤芒></td>
    </tr>
    </table>
    </form>

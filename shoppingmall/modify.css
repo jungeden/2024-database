@@ -1,0 +1,16 @@
+.userinfomodify {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+.atext {
+  color: rgb(215, 233, 250);
+  margin-top: 10px;
+}
+.atext.id {
+  font-size: 30px;
+}
+.button {
+  margin-top: 30px;
+}

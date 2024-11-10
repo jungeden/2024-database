@@ -32,9 +32,9 @@
     </tr>
     ");
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $oname = $row['name'];
-        $oprice = $row['price'];
+    while ($_POST = mysqli_fetch_assoc($result)) {
+        $oname = $_POST['name'];
+        $oprice = $_POST['price'];
         echo ("
         <tr>
         <td align=center>$oname</td>  

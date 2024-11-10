@@ -10,12 +10,12 @@ $con = mysqli_connect("localhost", "root", "0000", "class");
 
 $result = mysqli_query($con,"SELECT * from soccer WHERE id = '$mid'");
 
-while ($row=mysqli_fetch_assoc($result)) {
-    $oid = $row['id'];
-    $ateamName = $row['ateam'];
-    $bteamName = $row['bteam'];
-    $ateamScore = $row["ascore"];
-    $bteamScore = $row["bscore"];
+while ($_POST=mysqli_fetch_assoc($result)) {
+    $oid = $_POST['id'];
+    $ateamName = $_POST['ateam'];
+    $bteamName = $_POST['bteam'];
+    $ateamScore = $_POST["ascore"];
+    $bteamScore = $_POST["bscore"];
 }
 $winscore = 0;
 $lossscore = 0;

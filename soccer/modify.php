@@ -3,13 +3,13 @@ $mid = $_GET['mid'];
 $con = mysqli_connect("localhost", "root", "0000", "class");
 
 $result = mysqli_query($con,"SELECT * from soccer WHERE id = '$mid'");
-$row = mysqli_fetch_assoc($result);
-$id = $row['id'];
-$ateam = $row['ateam'];
-$bteam = $row['bteam'];
-$ascore = $row["ascore"];
-$bscore = $row["bscore"];
-$pdate = $row["pdate"];
+$_POST = mysqli_fetch_assoc($result);
+$id = $_POST['id'];
+$ateam = $_POST['ateam'];
+$bteam = $_POST['bteam'];
+$ascore = $_POST["ascore"];
+$bscore = $_POST["bscore"];
+$pdate = $_POST["pdate"];
 
 echo(" <h1 style='text-align:center;'>k-리그 축구 기록 수정</h1>");
 echo(" <h2 style='text-align:center;'>$ateam : $bteam = $ascore : $bscore (경기일자: $pdate)</h2>");

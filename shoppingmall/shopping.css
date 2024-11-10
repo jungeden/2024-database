@@ -1,0 +1,173 @@
+.container.shopping {
+  /* background-color: rgb(215, 233, 250); */
+  /* color: rgb(24, 25, 28); */
+  width: 100%;
+
+  display: flex;
+}
+.title.shopping {
+  margin-left: 10px;
+  color: rgb(215, 233, 250);
+  font-size: 30px;
+}
+.top.shopping {
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  width: 100%;
+}
+.middle.shopping {
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.left.shopping {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 10%;
+  flex-wrap: nowrap;
+}
+.right.shopping {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 100%;
+  overflow-y: auto;
+  justify-content: center;
+  align-items: start;
+}
+
+.button.shopping {
+  transition-property: all;
+  transition-duration: 0.5s;
+  border: 10px solid rgb(215, 233, 250);
+  height: 50px;
+  width: 0px;
+  border-radius: 0 0 0 0;
+  position: relative;
+  background-color: rgb(215, 233, 250);
+  color: rgb(24, 25, 28);
+  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 100% 100%, 90% 50%, 100% 0%);
+}
+.button.shopping:hover {
+  width: 250px;
+  transition: width 0.5s ease;
+  /* background-color: rgb(24, 25, 28);
+  color: rgb(215, 233, 250); */
+  /* border-radius: 0 12px 12px 0; */
+  font-size: 40px;
+  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 100% 100%, 90% 50%, 100% 0%);
+}
+.tooltip.shopping {
+  background-color: rgb(215, 233, 250);
+  color: rgb(24, 25, 28);
+}
+.product {
+  width: 300px;
+  transition-property: all;
+  transition-duration: 0.8s;
+  height: 0px;
+  /* border: 2px solid rgb(24, 25, 28); */
+  margin: 0 0 20px 50px;
+  background-color: rgb(139, 164, 190);
+  border-radius: 15px;
+  color: rgb(139, 164, 190);
+  clip-path: polygon(0% 0%, 0% 80%, 50% 100%, 100% 80%, 100% 0%);
+
+  text-align: center;
+}
+.container.shopping:hover .product {
+  height: 500px;
+}
+.product:hover {
+  clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 100% 100%, 100% 0%);
+
+  transition-duration: 0.5s;
+
+  /* transition: width 0.8s ease;
+  transition: height 0.8s ease; */
+  width: 500px;
+  height: 550px;
+  background-color: rgb(215, 233, 250);
+  color: rgb(24, 25, 28);
+}
+.productphoto {
+  width: 100%;
+  height: 70%;
+}
+.producttext {
+  width: 100%;
+  height: 30%;
+  /* background-color: rgb(24, 25, 28); */
+  border-radius: 0 0 12px 12px;
+}
+.producttext:hover {
+  /* color: rgb(24, 25, 28); */
+}
+.ptexttitle {
+  color: rgb(24, 25, 28);
+  font-size: 40px;
+}
+.righttop {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 50%;
+}
+.lefttop {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  width: 50%;
+}
+.menu {
+  font-size: 20px;
+  color: rgb(215, 233, 250);
+}
+.menu.nim {
+  color: rgb(24, 25, 28);
+}
+.menu:hover {
+  color: rgb(139, 164, 190);
+}
+
+.mine {
+  margin-right: 10px;
+  width: 80px;
+  height: 30px;
+  color: rgb(24, 25, 28);
+  /* color: rgb(215, 233, 250); */
+  background-color: rgb(215, 233, 250);
+
+  transition-property: all;
+
+  transition-duration: 0.5s;
+  display: flex;
+  flex-direction: column;
+  clip-path: polygon(0% 0%, 0% 100%, 50% 80%, 100% 100%, 100% 0%);
+}
+.mine:hover {
+  transition-property: width, height;
+
+  transition-duration: 1s;
+  width: 80px;
+  height: 100px;
+  clip-path: polygon(0% 0%, 0% 100%, 50% 90%, 100% 100%, 100% 0%);
+}
+.logout {
+  color: rgb(24, 25, 28);
+  font-size: 15px;
+  visibility: hidden;
+  margin-top: 35px;
+}
+.mine:hover .logout {
+  visibility: visible;
+}
+.logout:hover {
+  color: rgb(139, 164, 190);
+}
