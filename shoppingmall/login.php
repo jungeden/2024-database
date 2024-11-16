@@ -27,7 +27,7 @@ if (!$useridExists) {
     exit;
 } 
 
-if($passwd != $userpasswd) {
+if($passwd !== $userpasswd) {
     echo ("<script>
         window.alert('아이디 혹은 비밀번호가 일치하지 않습니다.');
         window.location.href = 'loginPage.php?userid=" . urlencode($userid) . "&userpasswd=" . urlencode($userpasswd) .  "';
@@ -36,9 +36,9 @@ if($passwd != $userpasswd) {
 }
 
 if($my == 1){
-    echo ("<meta http-equiv='Refresh' content='0; url=myPage.php?userid=$userid&userpasswd=$userpasswd'>");
+    echo ("<meta http-equiv='Refresh' content='0; url=myPage.php?userid=$userid&userpasswd=$passwd'>");
 
 } else {
-    echo ("<meta http-equiv='Refresh' content='0; url=shoppingPage.php?userid=$userid&userpasswd=$userpasswd'>");
+    echo ("<meta http-equiv='Refresh' content='0; url=shoppingPage.php?userid=$userid&userpasswd=$passwd'>");
 }
 ?>

@@ -15,14 +15,16 @@ $userbirth = $_POST['userbirth'];
 if (empty($userpasswd) || empty($userpasswdcheck) || empty($username) || empty($userphone) ||empty($useremail) ||empty($userbirth)) {
     echo ("<script>
         window.alert('입력을 확인해주세요');
-        history.go(-1);
+                window.location.href = 'joinPage.php?userid=" . urlencode($userid) . "&userpasswd=" . urlencode($userpasswd) . "&userpasswdcheck=" . urlencode($userpasswdcheck) ."&username=" . urlencode($username) ."&userphone=" . urlencode($userphone) ."&useremail=" . urlencode($useremail) ."';
+
     </script>");
     exit;
 }
 if ($userid == '') {
     echo ("<script>
         window.alert('아이디 중복확인 해주세요');
-        history.go(-1);
+        window.location.href = 'joinPage.php?userid=" . urlencode($userid) . "&userpasswd=" . urlencode($userpasswd) . "&userpasswdcheck=" . urlencode($userpasswdcheck) ."&username=" . urlencode($username) ."&userphone=" . urlencode($userphone) ."&useremail=" . urlencode($useremail) ."';
+
     </script>");
     exit;
 }
@@ -30,7 +32,7 @@ if($userpasswd != $userpasswdcheck) {
     $comment2 = "일치하지 않는 비밀번호";
     echo ("<script>
         window.alert('비밀번호를 확인해주세요');
-        window.location.href = 'joinPage.php?userid=" . urlencode($userid) . "&userpasswd=" . urlencode($userpasswd) . "&comment2=" . urlencode($comment2) . "';
+        window.location.href = 'joinPage.php?userid=" . urlencode($userid) . "&userpasswd=" . urlencode($userpasswd) . "&comment2=" . urlencode($comment2) . "&userpasswdcheck=" . urlencode($userpasswdcheck) ."&username=" . urlencode($username) ."&userphone=" . urlencode($userphone) ."&useremail=" . urlencode($useremail) ."';
     </script>");
     exit;
 }

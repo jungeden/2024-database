@@ -1,10 +1,10 @@
 <?php
 
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 $board = $_GET['board'];
 // echo $board;
 
-// Query to fetch all records from the $board
+
 $sql = "SELECT * FROM $board ORDER BY id DESC";
 $result = mysqli_query($con, $sql);
 $total = mysqli_num_rows($result);
@@ -80,7 +80,7 @@ if ($total == 0) {
     
     $pageSize = 5;
 
-    // Total pages
+   
     $totalPage = ceil($total / $pageSize); 
 
     $counter = 0;

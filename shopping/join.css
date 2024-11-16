@@ -1,0 +1,192 @@
+html {
+  height: 100%;
+}
+.container {
+  height: 100%;
+  width: 100%;
+}
+.top {
+  height: 5%;
+}
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 87%;
+}
+.bottom {
+  height: 13%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 30px; */
+  text-align: center;
+}
+.inputbox {
+  margin-top: 20px;
+  text-align: start;
+  width: fit-content;
+}
+.inputid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* margin-bottom: 10px; */
+}
+.inputelement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: start;
+  flex-wrap: wrap;
+}
+.inputbirth {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.input.birth {
+  width: 80px;
+}
+.birthday {
+  width: 80px;
+  height: 44px;
+  color: rgb(28, 28, 28);
+  /* border: 1px solid rgb(28, 28, 28); */
+  border: 0;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(230, 230, 230);
+
+  margin: 0px 15px 0px 0px;
+  text-align: center;
+
+  font-family: "Gowun Batang", serif;
+  position: relative;
+}
+
+.birthdayBoxOption {
+  list-style-type: none;
+  padding: 0;
+  margin: 0px 195px 0px 0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  position: absolute;
+  z-index: 1000;
+  width: auto;
+  height: 150px;
+  background-color: rgb(230, 230, 230);
+
+  border-radius: 12px;
+  border: 1px solid rgb(230, 230, 230);
+
+  /* max-height: 150px; */
+  overflow-y: auto;
+}
+.birthdayBoxOption.month {
+  position: absolute;
+  margin: 0px 5px 0px 0px;
+}
+
+.birthday:hover + .birthdayBoxOption,
+.birthdayBoxOption:hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+.option {
+  width: 80px;
+  height: 40px;
+  color: rgb(28, 28, 28);
+  font-size: 15px;
+  position: relative;
+  background-color: whitesmoke;
+
+  /* border-radius: 15px; */
+  border: none;
+  margin: 0px;
+  cursor: pointer;
+  font-family: "Gowun Batang", serif;
+}
+
+.option:hover {
+  background-color: rgb(200, 200, 200);
+}
+.comment {
+  font-size: 14px;
+  margin-left: 90px;
+  color: rgb(200, 200, 200);
+}
+.commentpasswd {
+  font-size: 14px;
+  color: rgb(200, 200, 200);
+  margin-left: 55px;
+}
+
+.id {
+  border-radius: 12px 0 0 12px;
+  width: 200px;
+}
+.passwd {
+  margin-top: 10px;
+  width: 280px;
+}
+.button.check {
+  width: 80px;
+  height: 44px;
+  text-align: center;
+  border-radius: 0 12px 12px 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.input {
+  height: 40px;
+  border: 1px solid rgb(230, 230, 230);
+  /* border: 1px solid rgb(28, 28, 28); */
+}
+.button {
+  height: 40px;
+
+  border: 1px solid rgb(230, 230, 230);
+  background-color: rgb(239, 239, 239);
+  margin: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ajoin {
+  font-size: 14px;
+}
+.ajoin:hover {
+  color: rgb(28, 28, 28);
+}
+.inputaddress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input.element.addr {
+  margin: 5px 0 0 0;
+}
+.inputaddress1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 0;
+}
+.input.zip {
+  margin: 0;
+  border-radius: 12px 0 0 12px;
+  width: 200px;
+}
+.button.check.zipcode {
+  text-align: center;
+}

@@ -69,12 +69,17 @@ body {
 }
 .join {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: start;
   align-items: center;
+  color: rgb(215, 233, 250);
+  font-family: "Gowun Batang", serif;
+}
+.jointext {
   font-family: "Gowun Batang", serif;
   color: rgb(215, 233, 250);
   font-size: 14px;
+  margin: 0 10px 0 10px;
 }
 .loginbutton.joinbutton {
   height: 0;
@@ -82,7 +87,7 @@ body {
   font-family: "Black Han Sans", sans-serif;
   text-align: center;
 }
-.join:hover {
+.jointext:hover {
   color: rgb(139, 164, 190);
 }
 .top.login {

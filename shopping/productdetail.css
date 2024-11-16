@@ -1,0 +1,149 @@
+.middle.productdetail {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.left.middle {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.right.middle {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.photobox {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.reviewbox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.review {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.reviewuser {
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+}
+.reviewuserinfo {
+  display: flex;
+  flex-direction: column;
+}
+.productinfobox {
+  display: flex;
+  flex-direction: column;
+}
+.productcontentbox {
+  display: flex;
+  flex-direction: column;
+}
+.namelikebox {
+  display: flex;
+  flex-direction: row;
+}
+.buttonbox {
+  display: flex;
+  flex-direction: column;
+  /* margin: 10px; */
+}
+.photo {
+  width: 300px;
+  height: 100%;
+  /* max-width: 250px;
+  max-height: 500px; */
+  transition-property: all;
+  transition-duration: 1s;
+}
+.photobox:hover .photo {
+  width: auto;
+  height: auto;
+  max-width: 550px;
+  max-height: 550px;
+}
+.productname {
+  font-size: 24px;
+}
+
+.productcontentbox {
+  font-size: 17px;
+}
+.hitimg {
+  margin-right: 3px;
+}
+.producthit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.selectquantity {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.inputquantity {
+  width: 280px;
+  height: 30px;
+  color: rgb(28, 28, 28);
+  border: 1px solid rgb(28, 28, 28);
+  border-radius: 12px;
+  text-align: center;
+  font-family: "Gowun Batang", serif;
+  font-size: 15px;
+  margin: 10px 0 15px 0;
+  background-color: rgb(230, 230, 230);
+}
+.button {
+  margin: 0;
+}
+.numbuttonbox {
+  display: flex;
+  flex-direction: row;
+  margin: 0 20px 0 0;
+}
+
+.numbuttonupdown {
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+  height: 40px;
+  border-radius: 0 12px 12px 0;
+}
+.numbutton.up {
+  border-radius: 0 12px 0 0;
+  border-left: 0;
+  border-bottom: 0;
+}
+.numbutton.down {
+  border-radius: 0 0 12px 0;
+  border-top: 0;
+  border-left: 0;
+}
+.numbutton {
+  width: 30px;
+  height: 20px;
+  background-color: rgb(230, 230, 230);
+  border: 1px solid rgb(28, 28, 28);
+}
+.numbutton:hover {
+  background-color: rgb(200, 200, 200);
+}
+.input.num {
+  width: 80px;
+  height: 40px;
+  border-radius: 12px 0 0 12px;
+  /* border: 1px solid rgb(200, 200, 200); */
+}

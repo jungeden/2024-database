@@ -1,0 +1,228 @@
+.middle.shoppingcart {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.left.middle {
+  width: 1000px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.productbox.shoppingcart {
+  display: flex;
+  flex-direction: row;
+  width: 1000px;
+  margin: 30px 30px 30px 50px;
+  justify-content: start;
+  position: relative;
+}
+.product {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+}
+.photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+}
+.productinfo {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 30px;
+}
+.producttext {
+  display: flex;
+  flex-direction: column;
+}
+.ptext.n {
+  font-size: 15px;
+}
+.ptext {
+  font-size: 13px;
+  margin: 10px 0 10px 0;
+}
+.ptext:hover {
+  color: rgb(28, 28, 28);
+}
+.productquantitydelete {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 25px 0 0px;
+  justify-content: end;
+  align-items: end;
+}
+
+.button {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.line.productline {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 0 40px;
+}
+.numbuttonbox {
+  display: flex;
+  flex-direction: row;
+  margin: 0 20px 0 0;
+}
+
+.numbuttonupdown {
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+  height: 50px;
+  border-radius: 0 12px 12px 0;
+}
+
+/* ----------------------------------- v.3 ---------------------------------- */
+/* .input {
+  width: 80px;
+  height: 50px;
+  border-radius: 12px 0 0 12px;
+} */
+
+/* .numbutton.up {
+  border-radius: 0 12px 0 0;
+  border-left: 0;
+  border-bottom: 0;
+}
+.numbutton.down {
+  border-radius: 0 0 12px 0;
+  border-top: 0;
+  border-left: 0;
+} */
+/* .numbutton {
+  width: 30px;
+  height: 25px;
+  background-color: rgb(230, 230, 230);
+  border: 1px solid rgb(28, 28, 28);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 6px;
+} */
+/* ------------------------------------ - ----------------------------------- */
+.numbutton:hover {
+  background-color: rgb(200, 200, 200);
+}
+
+/* ------------------------------------ v.2----------------------------------- */
+/* .input {
+  width: 60px;
+  height: 40px;
+  border-radius: 0;
+  padding: 0;
+}
+.numbutton.up {
+  border-radius: 12px 0 0 12px;
+  border-right: 0;
+}
+.numbutton.down {
+  border-radius: 0 12px 12px 0;
+  border-left: 0;
+}
+.numbutton {
+  width: 30px;
+  height: 38px;
+  background-color: rgb(230, 230, 230);
+  border: 1px solid rgb(28, 28, 28);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+/* ------------------------------------ - ----------------------------------- */
+
+/* ------------------------------------ v.3----------------------------------- */
+.input {
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+  padding: 0;
+  background-color: whitesmoke;
+  border: 0;
+  margin: 0;
+}
+
+.numbutton {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(230, 230, 230);
+  /* border: 1px solid rgb(28, 28, 28); */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* ------------------------------------ - ----------------------------------- */
+.deletebutton {
+  position: absolute;
+  top: 5px;
+  right: 120px;
+}
+.sum {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(230, 230, 230);
+  width: 90%;
+  height: 50px;
+  border-radius: 12px;
+  margin: 5px 0 0 40px;
+}
+
+.right.middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.infobox {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  padding: 50px 0 0 0;
+  align-items: center;
+  width: 400px;
+  height: 0px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 12px;
+  margin: 10px 0 0 0;
+  text-align: start;
+  clip-path: polygon(0% 0%, 0% 100%, 50% 90%, 100% 100%, 100% 0%);
+  transition-property: all;
+  transition-duration: 1s;
+}
+.line.info {
+  width: 80%;
+}
+.infotext {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0 10px 0;
+}
+.buttonbox {
+  margin: 30px 0 0 0;
+}
+.button:hover {
+  color: rgb(28, 28, 28);
+}
+.container:hover .infobox {
+  height: 450px;
+}

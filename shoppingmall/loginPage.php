@@ -38,7 +38,15 @@ echo("
         </div>
         <div class='bottom login'>
             <div class=join>
-                <a class='join'  href='joinPage.php' > 
+                <a class='jointext'  href='finduseridPage.php' > 
+                    아이디 찾기
+                </a>
+                <a> | </a>
+                <a class='jointext'  href='finduserpasswdPage.php' > 
+                    비밀번호 찾기
+                </a>
+                <a> | </a>
+                <a class='jointext'  href='joinPage.php' > 
                     회원가입
                 </a>
             </div>

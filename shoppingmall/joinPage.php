@@ -2,6 +2,11 @@
 $userid = isset($_GET['userid']) ? $_GET['userid'] : '';
 $comment = isset($_GET['comment']) ? $_GET['comment'] : '';
 $comment2 = isset($_GET['comment2']) ? $_GET['comment2'] : '';
+$userpasswd = isset($_GET['userpasswd']) ? $_GET['userpasswd'] : '';
+$userpasswdcheck = isset($_GET['userpasswdcheck']) ? $_GET['userpasswdcheck'] : '';
+$username = isset($_GET['username']) ? $_GET['username'] : '';
+$userphone = isset($_GET['userphone']) ? $_GET['userphone'] : '';
+$useremail = isset($_GET['useremail']) ? $_GET['useremail'] : '';
 
 
 echo <<<HTML
@@ -37,20 +42,20 @@ echo <<<HTML
                 <form method='post' action='join.php?userid=$userid' id="joinForm">
                     <div class='inputelement'>
                     <a class='ajoin'>비밀번호</a>
-                        <input class='input element' type='password' name='userpasswd' placeholder='비밀번호 입력'>
+                        <input class='input element' type='password' name='userpasswd' placeholder='비밀번호 입력' value='$userpasswd'>
                             <div>
                                 <a class='ajoin'>비밀번호 확인</a>
                                 <a class='commentpasswd'>$comment2</a>
                             </div>
-                        <input class='input element' type='password' name='userpasswdcheck' placeholder='비밀번호 확인'>
+                        <input class='input element' type='password' name='userpasswdcheck' placeholder='비밀번호 확인' value='$userpasswdcheck'>
                         <a class='ajoin'>이름</a>
-                        <input class='input element' type='text' name='username' placeholder='이름 입력'>
+                        <input class='input element' type='text' name='username' placeholder='이름 입력' value='$username'>
                         <a class='ajoin'>전화번호</a>
-                        <input class='input element' type='text' name='userphone' placeholder='전화번호 입력 (-제외 11자리 입력)'>
+                        <input class='input element' type='text' name='userphone' placeholder='전화번호 입력 (-제외 11자리 입력)' value='$userphone'>
                         <a class='ajoin'>이메일</a>
-                        <input class='input element' type='text' name='useremail' placeholder='이메일 주소'>
+                        <input class='input element' type='text' name='useremail' placeholder='이메일 주소' value='$useremail'>
                         <a class='ajoin'>생년월일</a>
-                        <input type="hidden" name="userbirth" id="userbirth">
+                        <input type="hidden" name="userbirth" id="userbirth" >
                     </div>
                     <div class='inputbirth'>
                         <button class='birthday year' type='button' name='userbirthYear' id='userBirthYearJoin' onclick="showOption('year')">년</button>
