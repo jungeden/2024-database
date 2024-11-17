@@ -16,7 +16,7 @@ if (trim($comment) !== '') {
 
 // $userfile=$_GET['userfile'];
 $con = mysqli_connect("localhost","root", "0000", "shop");
-$getproductinfo=mysqli_query($con, "SELECT * from product WHERE code=$code");
+$getproductinfo=mysqli_query($con, "SELECT * from product WHERE code='$code'");
 
 $row = mysqli_fetch_assoc($getproductinfo);
 $code=$row['code'];
@@ -24,12 +24,12 @@ $name=$row['name'];
 $price1=$row['price1'];
 $price2=$row['price2'];
 $content=$row['content'];
-$hit=$row["hit"];
+$hit=$row['hit'];
 $userfile=$row['userfile'];
 $price1=number_format($price1);
 
 
-$hitupdate = mysqli_query($con, "UPDATE product SET hit=hit+1 WHERE code=$code");
+$hitupdate = mysqli_query($con, "UPDATE product SET hit=hit+1 WHERE code='$code'");
 echo("
 <head>
 <title> </title>

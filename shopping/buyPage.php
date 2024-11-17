@@ -2,13 +2,45 @@
 session_start();
 
 // $userid = isset($_GET['userid']) ? $_GET['userid'] : '';
+$page=isset($_GET['page']) ? $_GET['page'] : '';
+$code=isset($_GET['code']) ? $_GET['code'] : '';
+
 if (isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
   
 } else {
     $page='productdetail';
-    header("Location: loginPage.php?page=$page");
+    $code=$_GET['code'];
+    header("Location: loginPage.php?page=$page&code=$code");
     exit();
+}
+$userid=$_GET['userid'];
+
+$receiver = isset($_GET['receiver']) ? $_GET['receiver'] : '';
+$phone = isset($_GET['phone']) ? $_GET['phone'] : '';
+$zipcode = isset($_GET['zipcode']) ? $_GET['zipcode'] : '';
+$address1 = isset($_GET['address1']) ? $_GET['address1'] : '';
+$address2 = isset($_GET['address2']) ? $_GET['address2'] : '';
+$message = isset($_GET['message']) ? $_GET['message'] : '';
+
+
+$con = mysqli_connect("localhost", "root", "0000", "shop");
+
+$getuserinfo = mysqli_query($con, "SELECT * FROM user WHERE userid='$userid'");
+$row = mysqli_fetch_assoc($getuserinfo);
+if($zipcode=='') {
+    $zipcode=$row['zipcode'];
+    $address1=$row['address1'];
+    $address2=$row['address2'];
+}
+
+$username=$row['username'];
+
+
+if ($page == 'productdetail') {
+    $product=mysqli_query($con, "SELECT * FROM product WHERE code='$code'");
+} else if($page == 'shoppingcart') {
+    $product=mysqli_query($con, "SELECT * FROM shoppingcart WHERE userid='$userid'");
 }
 
 echo("
@@ -61,8 +93,141 @@ echo("
             <div class='line'></div>
 
         <div class='middle buy'>
+            <div class='left middle'>
+                <div class='userinfobox'>
+                    <a class='titletext'>배송 정보</a>
+                    <div>
+                        <a style='font-size:13px'>주문자<a/>
+                    </div>
+                    <div>
+                        <a style='font-size:20px; margin-bottom:5px;'>$username</a>
+                    </div>
+                    <form method='post' action='buy.php?userid=$userid' id='buyform' name='buyform'>
+                        <div class='inputreceiverinfobox'>
+                            <div>
+                                <a class='rtext'>받는 사람</a>
+                            </div>
+                            <input class='input element' type='text' name='receiver' placeholder='받는 사람 입력' value='$receiver'>
+                            <div>
+                                <a class='rtext'>전화번호</a>
+                            </div>
+                            <input class='input element' type='text' name='phone' placeholder='전화 번호 입력' value='$phone'>
+                            <div>
+                                <a class='rtext'>배송지</a>
+                            </div>
+                            <div class='inputaddress1'>
+                                <input class='input zip' type='text' name='zipcode' placeholder='우편번호 찾기' value='$zipcode'>
+                                <button class='button check zipcode' type='button' onclick=\"window.open('findreceiverzipcodePage.php','findreceiverzipcode','width=400,height=400,location=no,status=no,scrollbars=yes');\">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;우편번호
+                                </button>
+                            </div>
+                            <div class='inputaddress'>
+                                <input class='input element addr' name='address1' placeholder='주소' value='$address1'>
+                                <input class='input element addr' name='address2' type='text' placeholder='상세주소' value='$address2'>
+                            </div>
+                            <div style='margin-top:10px;'>
+                                <a class='rtext'>배송 메세지</a>
+                            </div>
+                            <input class='input element' type='text' name='message' placeholder='배송 메세지 (0~30자 입력)' value='$message'>
+                            <div>
+                                <a class='rtext'>결제 수단</a>
+                            </div>
+                            <div class='paymentbox'>
+                                <input style='display:none;' id='payment' name='payment' >
+                                <div class='paymentbuttonbox'>
+                                    <div class='paymentbutton' id='pay1' onclick=\"toggleFixed(this)\"></div>
+                                    <div class='paymenttext'>
+                                        <a >신용/체크 카드</a>
+                                    </div>
+                                </div>
+                                <div class='paymentbuttonbox'>
+                                    <div class='paymentbutton' id='pay2' onclick=\"toggleFixed(this)\"></div>
+                                    <div class='paymenttext'>
+                                        <a >간편결제</a>
+                                    </div>
+                                </div>
+                                <div class='paymentbuttonbox'>
+                                    <div class='paymentbutton' id='pay3' onclick=\"toggleFixed(this)\"></div>
+                                    <div class='paymenttext'>
+                                        <a >무통장입금</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input class='button b' type='submit' value='구매 하기'>
+                    </form>
+                </div>
+            </div>
+            <div class='right middle'>
+                <div class='productbox'>
+                    <a class='titletext'>주문 정보</a>");
+
+                    $counter = 0;
+                    $totalprice = 0; 
+                    while($row=mysqli_fetch_assoc($product)) {
+                        if($page=='shoppingcart') {
+                            $code=$row['pcode'];
+                            $quantity = $row['quantity'];
+                            $getproduct = mysqli_query($con, "SELECT * FROM product WHERE code=$code");
+                            $row=mysqli_fetch_assoc($getproduct);
+                            $price1 = $row['price1'];
+                            $totalprice += ($price1 * $quantity);
+                        }
+                        
+                        $name = $row['name'];
+                        $price1 = $row['price1'];
+                        $userfile = $row['userfile'];
+                        
+                        $quantity = isset($quantity) ? $quantity : 1; 
+                        $sumprice = number_format($price1 * $quantity);
+                        $price1 = number_format($price1);
+
+                        
+                        echo("
+                        <div class='productinfo'>
+                            <div class='productphoto'>
+                                <img class='photo' src='./photo/$userfile'>
+                            </div>
+                            <div class='productinfotext'>
+                                <a >$name</a>
+                                <a class='ptext'>$price1 / $quantity 개</a>
+                                <a class='ptext'>상품옵션</a>
+                                <a class='ptext'> 합계 : $sumprice</a>
+                            </div>
+                            
+                        </div>
+                        <div class='line p'></div>
+                        ");
+                        $counter++;
+                    }
+                    $totalprice = isset($totalprice) ? $totalprice : $sumprice; 
+                    $totalprice = number_format($totalprice);
+                    
+
+                    echo("
+                    <div class='total'>
+                        <a style='font-size:13px; margin-top:10px;'>총 결제 금액 </a>
+                        <a>$totalprice 원</a>
+                    </div>
+                </div>
+                
+            </div>
         </div>
     </div>
+    <script>
+    function toggleFixed(element) {
+        document.getElementById('pay1').classList.remove('fixed');
+        document.getElementById('pay2').classList.remove('fixed');
+        document.getElementById('pay3').classList.remove('fixed');
+        
+        element.classList.add('fixed');
+
+        document.getElementById('payment').value = element.id;
+    }
+
+
+
+    </script>
 </body>
 ");
 

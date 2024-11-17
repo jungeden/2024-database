@@ -2,6 +2,7 @@
 session_start();
 
 $page=$_GET['page'];
+$code=$_GET['code'];
 $con = mysqli_connect("localhost", "root", "0000", "shop");
 
 if (!$con) {
@@ -34,16 +35,31 @@ if ($passwd !== $userpasswd) {
     exit;
 }
 
-setcookie('userid', $userid, time() + 3600, "/");
-// setcookie('userpasswd', $userpasswd, time() + 3600, "/");
+
+
+$userid = $_POST['userid'];
+$userpasswd = $_POST['userpasswd'];
 
 // 세션 변수 설정
 $_SESSION['userid'] = $userid;
 $_SESSION['userpasswd'] = $userpasswd;
 
+// 사용자 식별을 위한 쿠키 설정 (1시간 동안 유효)
+setcookie('userid', $userid, time() + 3600, "/");
+// 비밀번호 쿠키는 일반적으로 보안 문제로 저장하지 않는 것이 좋음
+// setcookie('userpasswd', $userpasswd, time() + 3600, "/");
+
 // 세션 식별을 위한 임의의 값 생성 및 쿠키 설정
-$session = md5(uniqid(rand()));
-setcookie("session_id", $session, 0, "/");
+$session_id = md5(uniqid(rand()));
+setcookie("user_session", $session_id, 0, "/");
+
+// $Session 변수는 세션의 userid를 참조
+$Session = isset($_SESSION['userid']) ? $_SESSION['userid'] : null;
+
+// 세션 및 쿠키 확인용 디버깅 출력 (개발 시에만 사용)
+// echo "세션 ID: " . session_id() . "<br>";
+// echo "세션 변수: " . $Session . "<br>";
+// echo "쿠키(user_session): " . (isset($_COOKIE['user_session']) ? $_COOKIE['user_session'] : "설정되지 않음") . "<br>";
 
 // 사용자 장바구니 초기화
 mysqli_query($con, "DELETE FROM shoppingcart WHERE userid='$userid'");
@@ -60,7 +76,7 @@ switch($page) {
         echo ("<meta http-equiv='Refresh' content='0; url=shoppingPage.php?userid=" . urlencode($userid) . "'>");
         break;
     case 'productdetail':
-        echo ("<meta http-equiv='Refresh' content='0; url=productdetailPage.php?userid=" . urlencode($userid) . "'>");
+        echo ("<meta http-equiv='Refresh' content='0; url=productdetailPage.php?userid=" . urlencode($userid) . "&code=" . urlencode($code) . "'>");
         break;
     default:
         echo ("<meta http-equiv='Refresh' content='0; url=startPage.php?userid=" . urlencode($userid) . "'>");

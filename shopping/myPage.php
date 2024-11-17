@@ -75,7 +75,7 @@ echo("
                             <div class='mdiv'></div>
                         </div>
                         <div class='mbox'>
-                            <a class='m' href='userorderlistPage.php'>주문목록</a>
+                            <a class='m' href='orderlistPage.php'>주문목록</a>
                             <div class='mdiv'></div>
                         </div>
                         <div class='mbox'>

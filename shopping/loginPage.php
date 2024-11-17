@@ -9,6 +9,8 @@ if (isset($_COOKIE['userid'])) {
     $userid='';
 }
 $page = isset($_GET['page']) ? $_GET['page'] : '';
+$code = isset($_GET['code']) ? $_GET['code'] : '';
+$userid = isset($_GET['userid']) ? $_GET['userid'] : '';
 
 
 echo("
@@ -53,7 +55,7 @@ echo("
 
         <div class='middle'>
             <div class='label'>
-                <form method='post' action='login.php?page=$page'>
+                <form method='post' action='login.php?page=$page&code=$code'>
                     <div class='inputbox'>
                     
                         <div class='left login'>
