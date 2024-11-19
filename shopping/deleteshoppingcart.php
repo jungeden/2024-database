@@ -14,7 +14,7 @@ $pcode = $_GET['pcode'];
 $userid = $_GET['userid'];
 
 $delete = mysqli_query($con,"DELETE FROM shoppingcart WHERE pcode='$pcode' and userid='$userid'");
-
+mysqli_close($con);
 header("Location: shoppingcartPage.php?userid=" . urlencode($userid));
 
 ?>

@@ -117,7 +117,7 @@ echo("
                             </div>
                             <div class='inputaddress1'>
                                 <input class='input zip' type='text' name='zipcode' placeholder='우편번호 찾기' value='$zipcode'>
-                                <button class='button check zipcode' type='button' onclick=\"window.open('findreceiverzipcodePage.php','findreceiverzipcode','width=400,height=400,location=no,status=no,scrollbars=yes');\">
+                                <button class='button check zipcode' type='button' onclick=\"window.open('findzipcodePage.php?page=buy','findreceiverzipcode','width=400,height=400,location=no,status=no,scrollbars=yes');\">
                                     &nbsp;&nbsp;&nbsp;&nbsp;우편번호
                                 </button>
                             </div>
@@ -230,5 +230,6 @@ echo("
     </script>
 </body>
 ");
+mysqli_close($con);
 
 ?>

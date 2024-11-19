@@ -132,10 +132,11 @@ echo("
                             <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='input' d='M460-460H240v-40h220v-220h40v220h220v40H500v220h-40v-220Z'/></svg>
                         <a>
                     </div>
-                    <div class='productinfo'>
-                            <a class='productinfotext' href='productdetailPage.php?code=$code'>
-                                
-                            </a>
+                    <div class='infoelement'>
+                        <div class='productinfo'>
+                                <a class='productinfotext' href='productdetailPage.php?code=$code'>
+                                </a>
+                        </div>
                     </div>
                 </div >
             
@@ -207,16 +208,23 @@ echo("
                                     <img class='photo' src='./photo/$userfile'>
                                 </a>
                             </div>
-                            <div class='productinfo'>
-                                <a class='productinfotext' href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
-                                    $name
-                                </a>
-                                <a class='productinfotext'>
-                                    $price1
+                            <div class='infoelement'>
+                                <div class='productinfo'>
+                                    <a class='productinfotext' href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
+                                        $name
+                                    </a>
+                                    <a class='productinfotext'>
+                                        $price1
+                                    </a>
+                                    
+                                </div>
+                                <a class='button delete' href='modifyproduct.php'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='modify' d='M375.38-624.62v-40h329.24v40H375.38Zm0 110.77v-40h329.24v40H375.38ZM473.85-160H200h273.85Zm0 40H240q-33.85 0-56.92-23.08Q160-166.15 160-200v-110.77h120V-840h520v315.62q-10.77.3-20.5 2.26-9.73 1.97-19.5 5.58V-800H320v489.23h213.85l-40 40H200V-200q0 17 11.5 28.5T240-160h233.85v40Zm95.38 0v-88.38l213.31-212.31q5.92-5.93 12.31-8 6.38-2.08 12.77-2.08 6.61 0 13.38 2.58 6.77 2.57 11.92 7.73l37 37.77q4.93 5.92 7.5 12.31Q880-364 880-357.62q0 6.39-2.46 12.89-2.46 6.5-7.62 12.42L657.62-120h-88.39Zm275.39-237.62-37-37.76 37 37.76Zm-240 202.24h38l138.69-138.93-18.77-19-18.23-19.54-139.69 139.47v38Zm157.92-157.93-18.23-19.54 37 38.54-18.77-19Z'/></svg>
                                 </a>
                                  <a class='button delete' href='deleteproduct.php'>
-                                    <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path d='M304.62-160q-26.85 0-45.74-18.88Q240-197.77 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720ZM392.31-280h40v-360h-40v360Zm135.38 0h40v-360h-40v360ZM280-720v520-520Z'/></svg>
+                                    <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='delete' d='M304.62-160q-26.85 0-45.74-18.88Q240-197.77 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720ZM392.31-280h40v-360h-40v360Zm135.38 0h40v-360h-40v360ZM280-720v520-520Z'/></svg>
                                 </a>
+
                             </div>
                         </div>";
                         $counter++;
@@ -272,6 +280,7 @@ echo("
                 }
                 echo("
     </div>
-</body>");       
+</body>");    
+mysqli_close($con);   
 ?>
                 

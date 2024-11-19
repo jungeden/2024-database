@@ -6,23 +6,40 @@ if (isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
   
 } else {
-    $userid='';
+    header("Location: loginPage.php");
+    exit();
 }
 $con = mysqli_connect("localhost", "root", "0000", "shop");
+
+$getuserinfo=mysqli_query($con, "SELECT * FROM user WHERE userid='$userid'");
+$row=mysqli_fetch_assoc($getuserinfo);
+$username = $row['username'];
+$userphone = $row['userphone'];
+$useremail = $row['useremail'];
+$userbirth = $row['userbirth'];
+$userjoindate = $row['userjoindate'];
+$zipcode = $row['zipcode'];
+$address1 = $row['address1'];
+$address2 = $row['address2'];
+$approved = $row['approved'];
+
+$year = substr($userbirth, 0, 4);
+$month = substr($userbirth, 4, 2);
+$date = substr($userbirth, 6, 2);
 
 echo("
 <head>
 <title> </title>
 <style>
         @import url(shop.css);
-        @import url(orderlist.css);
+        @import url(modifyuser.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
 
     </style>
 </head>
 <body>
     <div class='container'>
-        <div class='top orderlist'>
+        <div class='top start'>
             <div class='left top'>
                 <a class='title'>
                     TITLE
@@ -59,81 +76,99 @@ echo("
         </div>
             <div class='line'></div>
 
-        <div class='middle orderlist'>
-            <div class='box'>
-                 <div class='product'>
-                    <div class='productphoto'>
-                       <a>상품</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>정보</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>수량</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>상품금액</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>진행상태</a>
-                    </div>
-                    <div class='productinfo'> 
-                        <a ></a>
-                    </div>
-                </div>");
-                
-            // $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code INNER JOIN receivers ON orderlist.userid=receivers.userid WHERE orderlist.userid='$userid'");
-            $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid'");
-            while($row=mysqli_fetch_assoc($getorderlist)) {
-                $getstatus = mysqli_query($con,"SELECT status FROM receivers WHERE userid='$userid'");
-                $rows=mysqli_fetch_assoc($getstatus);
-                $quantity=$row['quantity'];
-                $userfile=$row['userfile'];
-                $name=$row['name'];
-                $price1=$row['price1'];
-                $pcode=$row['pcode'];
 
-                $status=$rows['status'];
+        <div class='middle'>
+            <div class='left middle'>
+                <div class='usernamebox'>
+                    <div class=username>
+                        <div class='usernametext'>
+                            <a class='text name'>$userid</a>
+                            <a class='text nim'>님</a>
+                        </div>
+                        <div class='logouttext'>
+                            <a class='logouttext' href='logout.php' >LOGOUT<a>
+                        </div>
+                    </div>
 
-                $sumprice=number_format($quantity*$price1);
+                </div>
+                <div class='menubox'>
+                    <div class='menutext'>
+                        <div class='mbox'>
+                            <a class='m' href='passPage.php'>회원정보 수정</a>
+                            <div class='mdiv'></div>
+                        </div>
+                        <div class='mbox'>
+                            <a class='m' href='shoppingcartPage.php'>장바구니</a>
+                            <div class='mdiv'></div>
+                        </div>
+                        <div class='mbox'>
+                            <a class='m' href='likePage.php'>찜</a>
+                            <div class='mdiv'></div>
+                        </div>
+                        <div class='mbox'>
+                            <a class='m' href='orderlistPage.php'>주문목록</a>
+                            <div class='mdiv'></div>
+                        </div>
+                        <div class='mbox'>
+                            <a class='m' href='customersPage.php'>고객센터</a>
+                            <div class='mdiv'></div>
 
-                if($status == 1) {
-                    $statustext='결제완료';
-                } else if ($status == 2) {
-                    $statustext='배송중';
-                } else if ($status == 3) {
-                    $statustext='배송완료';
-                }
-                echo("
-                <div class='product'>
-                    <div class='productphoto'>
-                        <img class='photo' src='./photo/$userfile'>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$name</a>
-                        <a>옵션</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$quantity</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$sumprice</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$statustext</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a class='button' href='ordercencle.php'>취소 신청</a>
-                        <a class='button' href='reviewwritePage.php?pcode=$pcode'>리뷰 작성</a>
+                        </div>
                     </div>
                 </div>
-                ");
-            }
-            echo("
+            </div>
+            <div class='right middle'>
+                <form class='right middle' method='post' action='modifyuser.php' id='modifyForm' name='modifyform'>
+
+                    <div class='label'>
+                        <div class='inputbox'>
+                            <div class='aid'>    
+                                <a>$userid</a>
+                            </div>
+                            <a class='atext'>이름</a>
+                            <input class='input element' type='text' name='username' placeholder='이름 입력' value='$username'>
+                            <a class='atext'>전화번호</a>
+                            <input class='input element' type='text' name='userphone' placeholder='전화번호 입력 (-제외 11자리 입력)' value='$userphone'>
+                            <a class='atext'>이메일</a>
+                            <input class='input element' type='text' name='useremail' placeholder='이메일 주소' value='$useremail'>
+                            <a class='atext'>생년월일</a>
+                            <div class='inputbirth'>
+                                <input class='input element birth' type='text' name='year' placeholder='년' value='$year'>
+                                <input class='input element birth' type='text' name='month' placeholder='월' value='$month'>
+                                <input class='input element birth' type='text' name='date' placeholder='일' value='$date'>
+                            </div>
+                            <div>
+                                <a class='atext'>주소</a>
+                            </div>
+                            <div class='inputaddress1'>
+                                <input class='input zip' type='text' name='zipcode' placeholder='우편번호 찾기' value='$zipcode'>
+                                <button class='button check zipcode' type='button' onclick=\"window.open('findzipcodePage.php?page=modify','findzipcode','width=400,height=400,location=no,status=no,scrollbars=yes');\">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;우편번호
+                                </button>
+                            </div>
+                            <div class='inputaddress'>
+                                <input class='input element addr' name='address1' placeholder='주소'  value='$address1'>
+                                <input class='input element addr' name='address2' type='text' placeholder='상세주소'  value='$address2'>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    <div class='modifybuttonbox'>
+                        <div class='modifytext'>
+                            <button class='mtext' type='submit'>수정하기</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-</body>
+        <div class='bottom'>
+
+        </div>
+
+
+
+
 ");
 
 mysqli_close($con);

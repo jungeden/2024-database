@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 .left.middle {
   width: 70%;
@@ -145,4 +146,9 @@
   height: 40px;
   border-radius: 12px 0 0 12px;
   /* border: 1px solid rgb(200, 200, 200); */
+}
+.back {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }

@@ -21,7 +21,7 @@ if ($num=='up') {
     $down = mysqli_query($con, "UPDATE shoppingcart SET quantity=$quantity-1 WHERE userid='$userid' and pcode='$pcode'");
 }
 
-
+mysqli_close($con);
 header("Location: shoppingcartPage.php?userid=" . urlencode($userid));
 exit;
 

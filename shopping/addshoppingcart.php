@@ -40,6 +40,9 @@ if (mysqli_affected_rows($con) == 0) {
 }
 $comment='장바구니에 상품이 담겼습니다.';
 // echo ("<meta http-equiv='Refresh' content='0; url=productdetailPage.php?userid=" . urlencode($userid) ."'>");
+
+mysqli_close($con);
+
 header("Location: productdetailPage.php?userid=" . urlencode($userid). "&comment=" . urlencode($comment) ."&code=" . urlencode($code) );
 
 

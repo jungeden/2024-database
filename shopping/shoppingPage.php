@@ -223,5 +223,5 @@ if ($total == 0) {
 
 ");
 
-
+mysqli_close($con);
 ?>

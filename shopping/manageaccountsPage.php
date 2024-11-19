@@ -8,21 +8,25 @@ if (isset($_COOKIE['userid'])) {
 } else {
     $userid='';
 }
+
 $con = mysqli_connect("localhost", "root", "0000", "shop");
+
+
+
 
 echo("
 <head>
 <title> </title>
 <style>
         @import url(shop.css);
-        @import url(orderlist.css);
+        @import url(manageaccounts.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
 
     </style>
 </head>
 <body>
     <div class='container'>
-        <div class='top orderlist'>
+        <div class='top start'>
             <div class='left top'>
                 <a class='title'>
                     TITLE
@@ -57,84 +61,41 @@ echo("
             echo("</div>
             
         </div>
-            <div class='line'></div>
+        <div class='line'></div>
+        <div class='middle manageproducts'>");
+        $getuser=mysqli_query($con, "SELECT * FROM user ORDER BY userid DESC");
 
-        <div class='middle orderlist'>
-            <div class='box'>
-                 <div class='product'>
-                    <div class='productphoto'>
-                       <a>상품</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>정보</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>수량</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>상품금액</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>진행상태</a>
-                    </div>
-                    <div class='productinfo'> 
-                        <a ></a>
-                    </div>
-                </div>");
-                
-            // $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code INNER JOIN receivers ON orderlist.userid=receivers.userid WHERE orderlist.userid='$userid'");
-            $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid'");
-            while($row=mysqli_fetch_assoc($getorderlist)) {
-                $getstatus = mysqli_query($con,"SELECT status FROM receivers WHERE userid='$userid'");
-                $rows=mysqli_fetch_assoc($getstatus);
-                $quantity=$row['quantity'];
-                $userfile=$row['userfile'];
-                $name=$row['name'];
-                $price1=$row['price1'];
-                $pcode=$row['pcode'];
-
-                $status=$rows['status'];
-
-                $sumprice=number_format($quantity*$price1);
-
-                if($status == 1) {
-                    $statustext='결제완료';
-                } else if ($status == 2) {
-                    $statustext='배송중';
-                } else if ($status == 3) {
-                    $statustext='배송완료';
-                }
-                echo("
-                <div class='product'>
-                    <div class='productphoto'>
-                        <img class='photo' src='./photo/$userfile'>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$name</a>
-                        <a>옵션</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$quantity</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$sumprice</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$statustext</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a class='button' href='ordercencle.php'>취소 신청</a>
-                        <a class='button' href='reviewwritePage.php?pcode=$pcode'>리뷰 작성</a>
-                    </div>
-                </div>
-                ");
-            }
+        while ($row = mysqli_fetch_assoc($getuser)) {
+            $userid=$row['userid'];
+            $username=$row['username'];
+            $userphone=$row['userphone'];
+            $useremail=$row['useremail'];
+            $userbirth=$row['userbirth'];
+            $userjoindate=$row['userjoindate'];
+            $zipcode=$row['zipcode'];
+            $address1=$row['address1'];
+            $address2=$row['address2'];
+            $approved=$row['approved'];
             echo("
+            <div class='userbox'>
+                <a class='usertext'>$userid</a>
+                <a class='usertext'>$username</a>
+                <a class='usertext'>$userphone</a>
+                <a class='usertext'>$useremail</a>
+                <a class='usertext'>$userbirth</a>
+                <a class='usertext'>$zipcode</a>
+                <a class='usertext'>$address1</a>
+                <a class='usertext'>$address1</a>
+                <a class='usertext'>$userjoindate</a>
+                <input class='button' type='button' value='탈퇴'>
             </div>
+            ");
+        }
+            echo("
         </div>
-    </div>
-</body>
+
 ");
 
 mysqli_close($con);
+
 ?>

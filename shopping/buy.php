@@ -52,7 +52,7 @@ if (empty($zipcode)) {
 
 // 데이터베이스 연결
 $con = mysqli_connect("localhost", "root", "0000", "shop");
-
+date_default_timezone_set('Asia/Seoul'); 
 $buydate = date("Y.m.d H:i:s");
 $ordernum = substr($buydate, 5, 2) . substr($buydate, 8, 2) . " - " . strtoupper(substr($userid, 0, 2))
     . " - " . strtoupper(substr($Session, 0, 4)). " - " . rand(1000, 9999);

@@ -1,4 +1,5 @@
 <?
+$page=$_GET['page'];
 echo("
 <head>
     <style>
@@ -14,7 +15,7 @@ echo("
         <div class='text'>
             <a class='text'>주소를 입력해주세요.</a>
         </div>
-        <form method='post' action='findzipcode.php'>
+        <form method='post' action='findzipcode.php?page=$page'>
             <div class='inputid'>
                 <input class='input id' type='text' name='key' placeholder='주소 입력'>
                 <input class='button check'  type='submit' value='검색'>

@@ -1,5 +1,5 @@
 <?php
-
+$page=$_GET['page'];
 $con = mysqli_connect("localhost", "root", "0000", "shop");
 
 $con->set_charset("utf8");
@@ -59,15 +59,29 @@ echo("
 echo "<script>
 
 function okzip(zip, addr) {
-    if (opener && opener.document.joinform) {
-       
+    const urlParams = new URLSearchParams(window.location.search);
+    const page = urlParams.get('page'); 
+
+    if (opener && page === 'join' && opener.document.joinform) {
         opener.document.joinform.zipcode.value = zip;
         opener.document.joinform.address1.value = addr;
         opener.document.joinform.address2.value = '';
         opener.document.joinform.address2.focus();
+        self.close();
+    } else if (opener && page === 'modify' && opener.document.modifyform) {
+        opener.document.modifyform.zipcode.value = zip;
+        opener.document.modifyform.address1.value = addr;
+        opener.document.modifyform.address2.value = '';
+        opener.document.modifyform.address2.focus();
+        self.close();
+    } else if (opener && page === 'buy' && opener.document.buyform){
+        opener.document.buyform.zipcode.value = zip;
+        opener.document.buyform.address1.value = addr;
+        opener.document.buyform.address2.value = '';
+        opener.document.buyform.address2.focus();
         self.close(); 
     } else {
-        alert('부모 창을 찾을 수 없거나 폼이 존재하지 않습니다.');
+        alert('부모 창을 찾을 수 없거나 올바른 폼이 없습니다.');
     }
 }
 

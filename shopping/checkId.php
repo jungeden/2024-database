@@ -29,6 +29,7 @@ while ($row = mysqli_fetch_assoc($inuserid)) {
         break; 
     }
 }
+mysqli_close($con);
 
 if ($useridExists) {
     $comment = "사용할 수 없는 아이디";
@@ -47,7 +48,6 @@ if ($useridExists) {
     </script>");
     exit;
 }
-
 // echo ("<meta http-equiv='Refresh' content='0; url=joinPage.php?userid=$userid'>");
 
 

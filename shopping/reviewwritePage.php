@@ -9,20 +9,22 @@ if (isset($_COOKIE['userid'])) {
     $userid='';
 }
 $con = mysqli_connect("localhost", "root", "0000", "shop");
+$pcode=$_GET['pcode'];
+
 
 echo("
 <head>
 <title> </title>
 <style>
         @import url(shop.css);
-        @import url(orderlist.css);
+        @import url(reviewwrite.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
 
     </style>
 </head>
 <body>
     <div class='container'>
-        <div class='top orderlist'>
+        <div class='top'>
             <div class='left top'>
                 <a class='title'>
                     TITLE
@@ -57,84 +59,16 @@ echo("
             echo("</div>
             
         </div>
-            <div class='line'></div>
+        <div class='line'></div>
 
-        <div class='middle orderlist'>
-            <div class='box'>
-                 <div class='product'>
-                    <div class='productphoto'>
-                       <a>상품</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>정보</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>수량</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>상품금액</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>진행상태</a>
-                    </div>
-                    <div class='productinfo'> 
-                        <a ></a>
-                    </div>
-                </div>");
-                
-            // $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code INNER JOIN receivers ON orderlist.userid=receivers.userid WHERE orderlist.userid='$userid'");
-            $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid'");
-            while($row=mysqli_fetch_assoc($getorderlist)) {
-                $getstatus = mysqli_query($con,"SELECT status FROM receivers WHERE userid='$userid'");
-                $rows=mysqli_fetch_assoc($getstatus);
-                $quantity=$row['quantity'];
-                $userfile=$row['userfile'];
-                $name=$row['name'];
-                $price1=$row['price1'];
-                $pcode=$row['pcode'];
-
-                $status=$rows['status'];
-
-                $sumprice=number_format($quantity*$price1);
-
-                if($status == 1) {
-                    $statustext='결제완료';
-                } else if ($status == 2) {
-                    $statustext='배송중';
-                } else if ($status == 3) {
-                    $statustext='배송완료';
-                }
-                echo("
-                <div class='product'>
-                    <div class='productphoto'>
-                        <img class='photo' src='./photo/$userfile'>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$name</a>
-                        <a>옵션</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$quantity</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$sumprice</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$statustext</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a class='button' href='ordercencle.php'>취소 신청</a>
-                        <a class='button' href='reviewwritePage.php?pcode=$pcode'>리뷰 작성</a>
-                    </div>
-                </div>
-                ");
-            }
-            echo("
-            </div>
+        <div class='middle reviewwrite'>
+            <
+           
         </div>
     </div>
 </body>
 ");
+
 
 mysqli_close($con);
 ?>

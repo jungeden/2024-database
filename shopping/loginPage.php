@@ -1,7 +1,7 @@
 <?
 session_start();
 
-$userid = isset($_GET['userid']) ? $_GET['userid'] : '';
+// $userid = isset($_GET['userid']) ? $_GET['userid'] : '';
 if (isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
   
@@ -10,7 +10,6 @@ if (isset($_COOKIE['userid'])) {
 }
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 $code = isset($_GET['code']) ? $_GET['code'] : '';
-$userid = isset($_GET['userid']) ? $_GET['userid'] : '';
 
 
 echo("

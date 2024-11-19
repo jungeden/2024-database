@@ -190,6 +190,8 @@ echo("
 </body>
 
 ");
+
+mysqli_close($con);
 ?>
 
 

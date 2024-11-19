@@ -259,6 +259,6 @@ echo("
 
 
 
-
+mysqli_close($con);
 
 ?>

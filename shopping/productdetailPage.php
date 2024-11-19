@@ -83,6 +83,11 @@ echo("
 
         <div class='middle productdetail'>
             <div class='left middle'>
+                <div class='back'>
+                    <a href='shoppingPage.php'>
+                        <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='backbutton' d='m276.85-460 231.69 231.69L480-200 200-480l280-280 28.54 28.31L276.85-500H760v40H276.85Z'/></svg>
+                    </a>  
+                </div>
                 <div class='photobox'>
                     <div class='photo'>
                         <a href='#' onclick=\"window.open('./photo/$userfile','_new')\"><img class='photo' src='./photo/$userfile'></a>
@@ -215,5 +220,5 @@ document.getElementById('shoppingcartquantity').addEventListener('submit', funct
 
 ");
 
-
+mysqli_close($con);
 ?>
