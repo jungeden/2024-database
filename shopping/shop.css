@@ -110,6 +110,8 @@ a:hover {
   font-family: "Gowun Batang", serif;
   margin: 0 0 0 10px;
   cursor: pointer;
+  transition-property: all;
+  transition-duration: 0.5s;
 }
 .button:hover {
   background-color: rgb(200, 200, 200);
@@ -121,7 +123,8 @@ a svg:hover #afterpage,
 a svg:hover #manageaccounts,
 a svg:hover #manageproducts,
 a svg:hover #input,
-a svg:hover #backbutton {
+a svg:hover #backbutton,
+a svg:hover #shoppingcart {
   fill: #c8c8c8;
 }
 /* a svg:hover #modify */

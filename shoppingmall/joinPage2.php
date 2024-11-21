@@ -53,7 +53,6 @@ echo <<<HTML
                 </div>
                 <form method='post' action='checkId.php'>
                     <div class='inputid'>
-                        
                         <input class='input id' type='text' name='userid' placeholder='아이디 입력 (6-20자)' value='$userid'>
                         <input class='button check'  type='submit' value='확인'>
                     </div>

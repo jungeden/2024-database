@@ -36,6 +36,10 @@ if ($passwd !== $userpasswd) {
 }
 
 
+session_unset();
+session_destroy();
+session_start();
+session_regenerate_id(true);
 
 $userid = $_POST['userid'];
 $userpasswd = $_POST['userpasswd'];

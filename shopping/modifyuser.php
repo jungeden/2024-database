@@ -28,7 +28,7 @@ $oyear = substr($ouserbirth, 0, 4);
 $omonth = substr($ouserbirth, 4, 2);
 $odate = substr($ouserbirth, 6, 2);
 
-$username = isset($_POST['username']) ? $_POST['username'] : $ousername;;
+$username = isset($_POST['username']) ? $_POST['username'] : $ousername;
 $userphone = isset($_POST['userphone']) ? $_POST['userphone'] : $ouserphone;
 $useremail = isset($_POST['useremail']) ? $_POST['useremail'] : $ouseremail;
 $year = isset($_POST['year']) ? $_POST['year'] : $oyear;

@@ -1,0 +1,76 @@
+.userbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+.usertext {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  width: 100px;
+  height: 40px;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  margin: 0 5px 0 5px;
+}
+.utext:hover {
+  color: rgb(28, 28, 28);
+}
+.title.manage {
+  font-size: 20px;
+  margin: 135px 0 50px 10px;
+  width: 100%;
+  text-align: start;
+  display: flex;
+  flex-direction: row;
+}
+.usertext.s {
+  width: 50px;
+}
+.usertext.l {
+  width: 180px;
+}
+.usertext.xl {
+  width: 250px;
+}
+.button {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: rgb(230, 230, 230); */
+}
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.utext.t {
+  font-size: 15px;
+  /* color: rgb(200, 200, 200); */
+}
+.usertext.t {
+  /* border-bottom: 1px solid rgb(28, 28, 28); */
+  border: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.line {
+  margin-bottom: 10px;
+}
+.utext.titlet:hover {
+  color: rgb(200, 200, 200);
+}
+.utext.titlet {
+  cursor: pointer;
+}
+.box {
+  height: 100%;
+  width: 90%;
+}

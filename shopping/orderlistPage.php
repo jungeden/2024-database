@@ -6,7 +6,8 @@ if (isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
   
 } else {
-    $userid='';
+    header("Location: loginPage.php");
+    exit();
 }
 $con = mysqli_connect("localhost", "root", "0000", "shop");
 
@@ -47,6 +48,9 @@ echo("
                         
                     }
                     echo("
+                        <a href='shoppingcartPage.php'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='shoppingcart' d='M292.31-115.38q-25.31 0-42.66-17.35-17.34-17.35-17.34-42.65 0-25.31 17.34-42.66 17.35-17.34 42.66-17.34 25.31 0 42.65 17.34 17.35 17.35 17.35 42.66 0 25.3-17.35 42.65-17.34 17.35-42.65 17.35Zm375.38 0q-25.31 0-42.65-17.35-17.35-17.35-17.35-42.65 0-25.31 17.35-42.66 17.34-17.34 42.65-17.34t42.66 17.34q17.34 17.35 17.34 42.66 0 25.3-17.34 42.65-17.35 17.35-42.66 17.35ZM235.23-740 342-515.38h265.38q6.93 0 12.31-3.47 5.39-3.46 9.23-9.61l104.62-190q4.61-8.46.77-15-3.85-6.54-13.08-6.54h-486Zm-19.54-40h520.77q26.08 0 39.23 21.27 13.16 21.27 1.39 43.81l-114.31 208.3q-8.69 14.62-22.58 22.93-13.88 8.31-30.5 8.31H324l-48.62 89.23q-6.15 9.23-.38 20 5.77 10.77 17.31 10.77h435.38v40H292.31q-35 0-52.23-29.5-17.23-29.5-.85-59.27l60.15-107.23L152.31-820H80v-40h97.69l38 80ZM342-515.38h280-280Z'/></svg>
+                        </a>
                         <a href='searchPage.php?userid=$userid'>
                             <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='search'  d='M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-96.1 0-162.67-66.53-66.56-66.53-66.56-162.57 0-96.05 66.53-162.71 66.53-66.65 162.57-66.65 96.05 0 162.71 66.56Q610.77-676.1 610.77-580q0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z'/></svg>
                         </a>
@@ -57,80 +61,103 @@ echo("
             echo("</div>
             
         </div>
-            <div class='line'></div>
+        <div class='line'></div>
 
         <div class='middle orderlist'>
-            <div class='box'>
-                 <div class='product'>
-                    <div class='productphoto'>
-                       <a>상품</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>정보</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>수량</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>상품금액</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>진행상태</a>
-                    </div>
-                    <div class='productinfo'> 
-                        <a ></a>
-                    </div>
-                </div>");
-                
-            // $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code INNER JOIN receivers ON orderlist.userid=receivers.userid WHERE orderlist.userid='$userid'");
-            $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid'");
-            while($row=mysqli_fetch_assoc($getorderlist)) {
-                $getstatus = mysqli_query($con,"SELECT status FROM receivers WHERE userid='$userid'");
-                $rows=mysqli_fetch_assoc($getstatus);
-                $quantity=$row['quantity'];
-                $userfile=$row['userfile'];
-                $name=$row['name'];
-                $price1=$row['price1'];
-                $pcode=$row['pcode'];
+            ");
+            $getreceiver = mysqli_query($con, "SELECT * FROM receivers WHERE userid='$userid'");
+            while($row=mysqli_fetch_assoc($getreceiver)) {
+                $buydate=$row['buydate'];
+                $ordernum=$row['ordernum'];
+                $status=$row['status'];
+                $session=$row['session'];
 
-                $status=$rows['status'];
 
-                $sumprice=number_format($quantity*$price1);
-
-                if($status == 1) {
-                    $statustext='결제완료';
-                } else if ($status == 2) {
-                    $statustext='배송중';
-                } else if ($status == 3) {
-                    $statustext='배송완료';
-                }
+            echo("
+            
+            <div class='productbox'>
+                <div class='box'>");
+            
+            if($status==1){
                 echo("
-                <div class='product'>
+                <div class='boxbutton'>
+                    <a class='button' href='ordercencle.php'>구매 취소</a>
+                </div>");
+            } else if($status==3) {
+                echo("
+                <div class='buxbutton'>
+                    <a class='button' href='reviewwritePage.php?pcode=$pcode'>리뷰 작성</a>
+                </div>");
+            } else {
+                echo("
+                <div class='buxbutton'>
+                    <a class='button' ></a>
+                </div>");
+            }
+                echo("
+                <div class='auto'>
+                <div class='titlete'>
+                <a class='titletext'>주문 정보</a>
+                <a>$ordernum</a>
+                </div>
+                ");
+            
+                // $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code INNER JOIN receivers ON orderlist.userid=receivers.userid WHERE orderlist.userid='$userid'");
+                $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session'");
+                while($row=mysqli_fetch_assoc($getorderlist)) {
+                    // $getstatus = mysqli_query($con,"SELECT status FROM receivers WHERE userid='$userid'");
+                    // $rows=mysqli_fetch_assoc($getstatus);
+                    $quantity=$row['quantity'];
+                    $userfile=$row['userfile'];
+                    $name=$row['name'];
+                    $price1=$row['price1'];
+                    $pcode=$row['pcode'];
+
+                    $sumprice=number_format($quantity*$price1);
+
+                echo("
+                <div class='productinfo'>
                     <div class='productphoto'>
                         <img class='photo' src='./photo/$userfile'>
                     </div>
-                    <div class='productinfo'>
-                        <a>$name</a>
-                        <a>옵션</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$quantity</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$sumprice</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a>$statustext</a>
-                    </div>
-                    <div class='productinfo'>
-                        <a class='button' href='ordercencle.php'>취소 신청</a>
-                        <a class='button' href='reviewwritePage.php?pcode=$pcode'>리뷰 작성</a>
-                    </div>
+                    <div class='productinfotext'>
+                        <a >$name</a>
+                        <a class='ptext'>$quantity 개</a>
+                        <a class='ptext'>상품옵션</a>
+                        <a class='ptext'> 합계 : $sumprice</a>
+                    </div>          
                 </div>
-                ");
+                <div class='line p'></div>");
+                }
+                if($status == 1) {
+                    $statustext='결제완료';
+                    echo("  
+                <div class='total'>
+                    <a style='font-size:13px; margin-top:10px;'><svg xmlns='http://www.w3.org/2000/svg' height='18px' viewBox='0 -960 960 960' width='18px' fill='#181818'><path d='M840-695.38v430.76q0 27.62-18.5 46.12Q803-200 775.38-200H184.62q-27.62 0-46.12-18.5Q120-237 120-264.62v-430.76q0-27.62 18.5-46.12Q157-760 184.62-760h590.76q27.62 0 46.12 18.5Q840-723 840-695.38Zm-680 87.69h640v-87.69q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H184.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v87.69Zm0 95.38v247.69q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h590.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-247.69H160ZM160-240v-480 480Z'/></svg> </a>
+                    <a>$statustext</a>
+                </div> ");
+                } else if ($status == 2) {
+                    $statustext='배송중';
+                    echo("  
+                <div class='total'>
+                    <a style='font-size:13px; margin-top:10px;'><svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M227.51-227.38q-43.66 0-74.05-30.52-30.38-30.51-30.38-74.1H75.69v-363.38q0-24.32 16.15-40.47T132.31-752h521.23v128.62h92.31l138.46 194.15V-332h-56.62q0 43.59-30.56 74.1-30.57 30.52-74.23 30.52-43.67 0-74.05-30.52-30.39-30.51-30.39-74.1H332.31q0 43.85-30.57 74.23-30.56 30.39-74.23 30.39Zm.18-32q30.4 0 51.51-21.11T300.31-332q0-30.4-21.11-51.51t-51.51-21.11q-30.4 0-51.51 21.11-21.1 21.11-21.1 51.51t21.1 51.51q21.11 21.11 51.51 21.11ZM107.69-364h17.85q8.54-31.46 37.77-52.04 29.23-20.58 64.38-20.58 33.62 0 63.62 20.2 30 20.19 38.07 52.42h292.16v-356H132.31q-9.23 0-16.93 7.69-7.69 7.69-7.69 16.93V-364Zm615.39 104.62q30.4 0 51.5-21.11 21.11-21.11 21.11-51.51t-21.11-51.51q-21.1-21.11-51.5-21.11t-51.51 21.11Q650.46-362.4 650.46-332t21.11 51.51q21.11 21.11 51.51 21.11ZM653.54-436 840-437 727.31-591.38h-73.77V-436ZM366.62-539Z'/></svg></a>
+                    <a>$statustext</a>
+                </div> ");  
+                } else if ($status == 3) {
+                    $statustext='배송완료';
+                    echo("  
+                <div class='total'>
+                    <a style='font-size:13px; margin-top:10px;'><svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M464-177.46v-293.08L216-614.08v279.23q0 6.16 3.08 11.54 3.07 5.39 9.23 9.23L464-177.46Zm32 0 235.69-135.62q6.16-3.84 9.23-9.23 3.08-5.38 3.08-11.54v-279.23L496-470.54v293.08Zm-44.31 30.92L212.31-285.69q-13.26-7.58-20.78-20.68-7.53-13.09-7.53-28.25v-290.76q0-15.16 7.53-28.25 7.52-13.1 20.78-20.68l239.38-139.15q13.29-7.69 28.38-7.69 15.08 0 28.24 7.69l239.38 139.15q13.26 7.58 20.78 20.68 7.53 13.09 7.53 28.25v290.76q0 15.16-7.53 28.25-7.52 13.1-20.78 20.68L508.31-146.54q-13.29 7.69-28.38 7.69-15.08 0-28.24-7.69ZM620.46-580 735-645.46 491.31-785.08q-6.16-3.84-12.31-3.84t-12.31 3.84l-97.69 57L620.46-580ZM480-498.92l112-64.7-257-145.53-110 63.69 255 146.54Z'/></svg> </a>
+                    <a>$statustext</a>
+                </div> ");
+                }
+                
+                echo("</div>
+                </div>
+            </div>");
             }
+                    
             echo("
-            </div>
         </div>
     </div>
 </body>

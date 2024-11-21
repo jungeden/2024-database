@@ -6,7 +6,8 @@ if (isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
   
 } else {
-    $userid='';
+    header("Location: loginPage.php");
+    exit();
 }
 echo("
 <head>
@@ -52,6 +53,9 @@ echo("
                     
                 }
                 echo("
+                    <a href='shoppingcartPage.php'>
+                        <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='shoppingcart' d='M292.31-115.38q-25.31 0-42.66-17.35-17.34-17.35-17.34-42.65 0-25.31 17.34-42.66 17.35-17.34 42.66-17.34 25.31 0 42.65 17.34 17.35 17.35 17.35 42.66 0 25.3-17.35 42.65-17.34 17.35-42.65 17.35Zm375.38 0q-25.31 0-42.65-17.35-17.35-17.35-17.35-42.65 0-25.31 17.35-42.66 17.34-17.34 42.65-17.34t42.66 17.34q17.34 17.35 17.34 42.66 0 25.3-17.34 42.65-17.35 17.35-42.66 17.35ZM235.23-740 342-515.38h265.38q6.93 0 12.31-3.47 5.39-3.46 9.23-9.61l104.62-190q4.61-8.46.77-15-3.85-6.54-13.08-6.54h-486Zm-19.54-40h520.77q26.08 0 39.23 21.27 13.16 21.27 1.39 43.81l-114.31 208.3q-8.69 14.62-22.58 22.93-13.88 8.31-30.5 8.31H324l-48.62 89.23q-6.15 9.23-.38 20 5.77 10.77 17.31 10.77h435.38v40H292.31q-35 0-52.23-29.5-17.23-29.5-.85-59.27l60.15-107.23L152.31-820H80v-40h97.69l38 80ZM342-515.38h280-280Z'/></svg>
+                    </a>
                     <a href='searchPage.php?userid=$userid'>
                         <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='search'  d='M779.38-153.85 528.92-404.31q-30 25.54-69 39.54t-78.38 14q-96.1 0-162.67-66.53-66.56-66.53-66.56-162.57 0-96.05 66.53-162.71 66.53-66.65 162.57-66.65 96.05 0 162.71 66.56Q610.77-676.1 610.77-580q0 41.69-14.77 80.69t-38.77 66.69l250.46 250.47-28.31 28.3ZM381.54-390.77q79.61 0 134.42-54.81 54.81-54.8 54.81-134.42 0-79.62-54.81-134.42-54.81-54.81-134.42-54.81-79.62 0-134.42 54.81-54.81 54.8-54.81 134.42 0 79.62 54.81 134.42 54.8 54.81 134.42 54.81Z'/></svg>
                     </a>
@@ -65,7 +69,6 @@ echo("
         <div class='line'></div>
         <div class='middle manageproducts'>
             <form class='form manageproducts' method='post' action='manageinput.php?userid=$userid' enctype='multipart/form-data'>
-
                 <div class='left middle'>
                     <div class='productphoto'>
                         <a class='phototext'>
@@ -76,16 +79,16 @@ echo("
                         <img id='preview' alt='Image Preview'>
                     </div>
                 </div>
-                    <div class='right middle'>
-                        <div class='productinfo'>
-                            <input class='input' type='text' name='code' placeholder='상품코드'>
-                            <input class='input' type='text' name='class' placeholder='상품분류'>
-                            <input class='input' type='text' name='name' placeholder='상품이름'>
-                            <input class='input' type='text' name='price1' placeholder='상품가격'>
-                            <textarea class='input content'name='content' rows='12' cols='50'></textarea>
-                            <input class='button' type='submit' value='등록'>
-                        </div>
+                <div class='right middle'>
+                    <div class='productinfo'>
+                        <input class='input' type='text' name='code' placeholder='상품코드'>
+                        <input class='input' type='text' name='class' placeholder='상품분류'>
+                        <input class='input' type='text' name='name' placeholder='상품이름'>
+                        <input class='input' type='text' name='price1' placeholder='상품가격'>
+                        <textarea class='input content'name='content' rows='12' cols='50'></textarea>
+                        <input class='button' type='submit' value='등록'>
                     </div>
+                </div>
             </form>
 
         </div>

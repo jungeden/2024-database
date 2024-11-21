@@ -10,9 +10,16 @@ if (isset($_COOKIE['userid'])) {
     exit();
 }
 
+$code=$_GET['code'];
 $con = mysqli_connect("localhost", "root", "0000", "shop");
 
-
+$getproduct=mysqli_query($con, "SELECT * FROM product WHERE code='$code'");
+$row=mysqli_fetch_assoc($getproduct);
+$name = $row['name'];
+$class = $row['class'];
+$price1 = $row['price1'];
+$content = $row['content'];
+$userfile=$row['userfile'];
 
 
 echo("
@@ -20,11 +27,18 @@ echo("
 <title> </title>
 <style>
         @import url(shop.css);
-        @import url(manageaccounts.css);
+        @import url(manageinput.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
 
     </style>
 </head>
+<script>
+    function previewImage(event) {
+        const preview2 = document.getElementById('preview2');
+        preview2.src = URL.createObjectURL(event.target.files[0]);
+        preview2.style.display = 'block';  
+    }
+</script>
 <body>
     <div class='container'>
         <div class='top start'>
@@ -61,109 +75,45 @@ echo("
                         <a href='myPage.php?userid=$userid'>
                             <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='my'  d='M247.85-260.62q51-36.69 108.23-58.03Q413.31-340 480-340t123.92 21.35q57.23 21.34 108.23 58.03 39.62-41 63.73-96.84Q800-413.31 800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 66.69 24.12 122.54 24.11 55.84 63.73 96.84ZM480.02-460q-50.56 0-85.29-34.71Q360-529.42 360-579.98q0-50.56 34.71-85.29Q429.42-700 479.98-700q50.56 0 85.29 34.71Q600-630.58 600-580.02q0 50.56-34.71 85.29Q530.58-460 480.02-460ZM480-120q-75.31 0-141-28.04t-114.31-76.65Q176.08-273.31 148.04-339 120-404.69 120-480t28.04-141q28.04-65.69 76.65-114.31 48.62-48.61 114.31-76.65Q404.69-840 480-840t141 28.04q65.69 28.04 114.31 76.65 48.61 48.62 76.65 114.31Q840-555.31 840-480t-28.04 141q-28.04 65.69-76.65 114.31-48.62 48.61-114.31 76.65Q555.31-120 480-120Zm0-40q55.31 0 108.85-19.35 53.53-19.34 92.53-52.96-39-31.31-90.23-49.5Q539.92-300 480-300q-59.92 0-111.54 17.81-51.61 17.81-89.84 49.88 39 33.62 92.53 52.96Q424.69-160 480-160Zm0-340q33.69 0 56.85-23.15Q560-546.31 560-580t-23.15-56.85Q513.69-660 480-660t-56.85 23.15Q400-613.69 400-580t23.15 56.85Q446.31-500 480-500Zm0-80Zm0 350Z'/></svg>
                         </a> 
-                    </div>");
-            echo("</div>
-            
-        </div>
-        <div class='line'></div>
-        <div class='middle'>
-            
-            <div class='box'>
-                <div class='title manage'>
-                    <a class='utext titlet' href='manageaccountsPage.php'>회원 관리</a>
-                    &nbsp;<a class='utext'>| </a>&nbsp;
-                    <a class='utext titlet' href='manageorderlistPage.php'>주문 내역 관리</a>
-                </div>
-                <div class='userbox'>
-
-                    <div class='usertext s t'>               
-                        <a class='utext t'>아이디</a>
-                    </div>
-                    <div class='usertext s t'>
-                        <a class='utext t'>이름</a>
-                    </div>
-                    <div class='usertext t'>
-                        <a class='utext t'>전화번호</a>
-                    </div>
-                    <div class='usertext l t'>
-                        <a class='utext t'>이메일</a>
-                    </div>
-                    <div class='usertext t'>
-                        <a class='utext t'>생년월일</a>
-                    </div>
-                    <div class='usertext t'>
-                        <a class='utext t'>우편번호</a>
-                    </div>
-                    <div class='usertext xl t'>
-                        <a class='utext t'>주소</a>
-                    </div>
-                    
-                    <div class='usertext l t' >
-                        <a class='utext t'>가입일</a>
-                    </div>
-                    <div class='usertext s t'>
-                        <a class='utext t'>관리</a>
-                    </div>
-                </div>
-                <div class='line'></div> ");
-                
-                $getuser=mysqli_query($con, "SELECT * FROM user ORDER BY userid");
-
-                while ($row = mysqli_fetch_assoc($getuser)) {
-                    $userid=$row['userid'];
-                    $username=$row['username'];
-                    $userphone=$row['userphone'];
-                    $useremail=$row['useremail'];
-                    $userbirth=$row['userbirth'];
-                    $userjoindate=$row['userjoindate'];
-                    $zipcode=$row['zipcode'];
-                    $address1=$row['address1'];
-                    $address2=$row['address2'];
-                    $approved=$row['approved'];
-
-                    $address = $address1."&nbsp;".$address2;
-                    echo("
-                <div class='userbox'>
-                    <div class='usertext s'>               
-                        <a class='utext '>$userid</a>
-                    </div>
-                    <div class='usertext s'>
-                        <a class='utext '>$username</a>
-                    </div>
-                    <div class='usertext'>
-                        <a class='utext'>$userphone</a>
-                    </div>
-                    <div class='usertext l'>
-                        <a class='utext'>$useremail</a>
-                    </div>
-                    <div class='usertext'>
-                        <a class='utext'>$userbirth</a>
-                    </div>
-                    <div class='usertext'>
-                        <a class='utext'>$zipcode</a>
-                    </div>
-                    <div class='usertext xl'>
-                        <a class='utext '>$address</a>
-                    </div>
-                
-                    <div class='usertext l'>
-                        <a class='utext '>$userjoindate</a>
-                    </div>
-                    <div class='usertext s t'>
-                         <a class='button' href='manageaccounts.php?duserid=$userid'>
-                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path d='m376-327.69 104-104 104 104L612.31-356l-104-104 104-104L584-592.31l-104 104-104-104L347.69-564l104 104-104 104L376-327.69ZM304.62-160q-27.62 0-46.12-18.5Q240-197 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720Zm-400 0v520-520Z'/></svg>
-                        </a>
-                    </div>
-               
-                </div>
-                ");
-                }
-                echo("
+                </div>");
+            echo("
             </div>
         </div>
+        <div class='line'></div>
+        <div class='middle manageproducts'>
+            <form class='form manageproducts' method='post' action='manageproductmodify.php?code=$code' enctype='multipart/form-data'>
+                <div class='left middle'>
+                    <div class='productphoto'>
+                        <a class='phototext'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#C8C8C8'><path id='input' d='M460-460H240v-40h220v-220h40v220h220v40H500v220h-40v-220Z'/></svg>
+                        </a>
+                        <a class='phototext'>사진추가</a>
+                        <input class='file' type='file' name='userfile' accept='image/*' onchange='previewImage(event)'>
+                        <img id='preview2' alt='Image Preview' class='photo' src='./photo/$userfile'>
+                    </div>
+                </div>
+                <div class='right middle'>
+                    <div class='productinfo'>
+                        <div class='input a'>
+                            <a class='atext'  name='code' >$code</a>
+                        </div>
+                        <input class='input' type='text' name='class' placeholder='상품분류' value='$class'>
+                        <input class='input' type='text' name='name' placeholder='상품이름' value='$name'>
+                        <input class='input' type='text' name='price1' placeholder='상품가격' value='$price1'>
+                        <textarea class='input content'name='content' rows='12' cols='50'>$content</textarea>
+                        <input class='button' type='submit' value='등록'>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class='bottom'>
+
+        </div>
+
+
+
 
 ");
 
 mysqli_close($con);
-
 ?>

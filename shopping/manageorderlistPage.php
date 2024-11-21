@@ -12,7 +12,8 @@ if (isset($_COOKIE['userid'])) {
 
 $con = mysqli_connect("localhost", "root", "0000", "shop");
 
-
+// $userid = $_SESSION['userid'];
+// $Session = session_id();
 
 
 echo("
@@ -20,7 +21,7 @@ echo("
 <title> </title>
 <style>
         @import url(shop.css);
-        @import url(manageaccounts.css);
+        @import url(manageorderlist.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
 
     </style>
@@ -73,91 +74,115 @@ echo("
                     <a class='utext titlet' href='manageaccountsPage.php'>회원 관리</a>
                     &nbsp;<a class='utext'>| </a>&nbsp;
                     <a class='utext titlet' href='manageorderlistPage.php'>주문 내역 관리</a>
-                </div>
-                <div class='userbox'>
+                </div>");
+            $getreceiver = mysqli_query($con, "SELECT * FROM receivers");
+            while($row=mysqli_fetch_assoc($getreceiver)) {
+                $userid=$row['userid'];
+                $receiver=$row['receiver'];
+                $phone=$row['phone'];
+                $address=$row['address'];
+                $message=$row['message'];
+                $buydate=$row['buydate'];
+                $ordernum=$row['ordernum'];
+                $status=$row['status'];
+                $payment=$row['payment'];
+                $session=$row['session'];
 
-                    <div class='usertext s t'>               
-                        <a class='utext t'>아이디</a>
-                    </div>
-                    <div class='usertext s t'>
-                        <a class='utext t'>이름</a>
-                    </div>
-                    <div class='usertext t'>
-                        <a class='utext t'>전화번호</a>
-                    </div>
-                    <div class='usertext l t'>
-                        <a class='utext t'>이메일</a>
-                    </div>
-                    <div class='usertext t'>
-                        <a class='utext t'>생년월일</a>
-                    </div>
-                    <div class='usertext t'>
-                        <a class='utext t'>우편번호</a>
-                    </div>
-                    <div class='usertext xl t'>
-                        <a class='utext t'>주소</a>
-                    </div>
-                    
-                    <div class='usertext l t' >
-                        <a class='utext t'>가입일</a>
-                    </div>
-                    <div class='usertext s t'>
-                        <a class='utext t'>관리</a>
-                    </div>
-                </div>
-                <div class='line'></div> ");
+                $num1=substr($phone,0,3);
+                $num2=substr($phone,3,4);
+                $num3=substr($phone,7,4);
                 
-                $getuser=mysqli_query($con, "SELECT * FROM user ORDER BY userid");
+                
+                echo("
+                <div class='totalbox'>
+                    <div class='usertextbutton'>
+                            <a class='button' href='managestatus.php?userid=$userid&status=$status&session=$session'>");
+                            if($status == 1) {
+                                $statustext='결제완료';
+                                echo("   <svg xmlns='http://www.w3.org/2000/svg' height='18px' viewBox='0 -960 960 960' width='18px' fill='#181818'><path d='M840-695.38v430.76q0 27.62-18.5 46.12Q803-200 775.38-200H184.62q-27.62 0-46.12-18.5Q120-237 120-264.62v-430.76q0-27.62 18.5-46.12Q157-760 184.62-760h590.76q27.62 0 46.12 18.5Q840-723 840-695.38Zm-680 87.69h640v-87.69q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H184.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v87.69Zm0 95.38v247.69q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h590.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-247.69H160ZM160-240v-480 480Z'/></svg>");
+                            } else if ($status == 2) {
+                                $statustext='배송중';
+                                echo("<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M227.51-227.38q-43.66 0-74.05-30.52-30.38-30.51-30.38-74.1H75.69v-363.38q0-24.32 16.15-40.47T132.31-752h521.23v128.62h92.31l138.46 194.15V-332h-56.62q0 43.59-30.56 74.1-30.57 30.52-74.23 30.52-43.67 0-74.05-30.52-30.39-30.51-30.39-74.1H332.31q0 43.85-30.57 74.23-30.56 30.39-74.23 30.39Zm.18-32q30.4 0 51.51-21.11T300.31-332q0-30.4-21.11-51.51t-51.51-21.11q-30.4 0-51.51 21.11-21.1 21.11-21.1 51.51t21.1 51.51q21.11 21.11 51.51 21.11ZM107.69-364h17.85q8.54-31.46 37.77-52.04 29.23-20.58 64.38-20.58 33.62 0 63.62 20.2 30 20.19 38.07 52.42h292.16v-356H132.31q-9.23 0-16.93 7.69-7.69 7.69-7.69 16.93V-364Zm615.39 104.62q30.4 0 51.5-21.11 21.11-21.11 21.11-51.51t-21.11-51.51q-21.1-21.11-51.5-21.11t-51.51 21.11Q650.46-362.4 650.46-332t21.11 51.51q21.11 21.11 51.51 21.11ZM653.54-436 840-437 727.31-591.38h-73.77V-436ZM366.62-539Z'/></svg>");
+                            } else if ($status == 3) {
+                                $statustext='배송완료';
+                                echo("<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M464-177.46v-293.08L216-614.08v279.23q0 6.16 3.08 11.54 3.07 5.39 9.23 9.23L464-177.46Zm32 0 235.69-135.62q6.16-3.84 9.23-9.23 3.08-5.38 3.08-11.54v-279.23L496-470.54v293.08Zm-44.31 30.92L212.31-285.69q-13.26-7.58-20.78-20.68-7.53-13.09-7.53-28.25v-290.76q0-15.16 7.53-28.25 7.52-13.1 20.78-20.68l239.38-139.15q13.29-7.69 28.38-7.69 15.08 0 28.24 7.69l239.38 139.15q13.26 7.58 20.78 20.68 7.53 13.09 7.53 28.25v290.76q0 15.16-7.53 28.25-7.52 13.1-20.78 20.68L508.31-146.54q-13.29 7.69-28.38 7.69-15.08 0-28.24-7.69ZM620.46-580 735-645.46 491.31-785.08q-6.16-3.84-12.31-3.84t-12.31 3.84l-97.69 57L620.46-580ZM480-498.92l112-64.7-257-145.53-110 63.69 255 146.54Z'/></svg>");
+                            }
+                            echo("
+                            </a>
+                        </div>
+                    <div class='totaluserbox'>
+                        <div class='userboxbox'>
+                            <div class='userbox tm'>
+                                <div class='usertextbox'>
+                                    <a class='utext t'>$ordernum</a>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <a class='utext t'>$userid</a>
+                                </div>
+                                <div class='usertextbox'>
+                                    <a class='utext t'>$receiver</a>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <a class='utext t'>$num1-$num2-$num3</a>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <a class='utext t'>$address</a>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <a class='utext t'>$message</a>
+                                </div>
+                            </div>
+                            <div class='userbox tm b'>
+                                <div class='usertextbox'>
+                                    <a class='utext t'>$buydate</a>
+                                </div>
+                                <div class='usertextbox'>
+                                    <a class='utext t'>$payment</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class='line'></div> ");
 
-                while ($row = mysqli_fetch_assoc($getuser)) {
-                    $userid=$row['userid'];
-                    $username=$row['username'];
-                    $userphone=$row['userphone'];
-                    $useremail=$row['useremail'];
-                    $userbirth=$row['userbirth'];
-                    $userjoindate=$row['userjoindate'];
-                    $zipcode=$row['zipcode'];
-                    $address1=$row['address1'];
-                    $address2=$row['address2'];
-                    $approved=$row['approved'];
+                    $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session'");
+                    while($row=mysqli_fetch_assoc($getorderlist)) {
+                        $quantity=$row['quantity'];
+                        $userfile=$row['userfile'];
+                        $name=$row['name'];
+                        $price1=$row['price1'];
+                        $pcode=$row['pcode'];
+                        
 
-                    $address = $address1."&nbsp;".$address2;
+                        $sumprice=number_format($quantity*$price1);
+                        $price1=number_format($price1);
+
+                        
+                        
+                        echo("
+                    <div class='userbox bott'>
+                        <div class='productphoto'>
+                            <img class='photo' src='./photo/$userfile'>
+                        </div>
+                        <div class='productinfo'>
+                            <a class='utext '>$name</a>
+                            <a class='utext '>옵션</a>
+                        </div>
+                        <div class='usertext '>               
+                            <a class='utext '>$price1</a>
+                        </div>
+                        <div class='usertext '>
+                            <a class='utext '>$quantity</a>
+                        </div>
+                        <div class='usertext'>
+                            <a class='utext'>$sumprice</a>
+                        </div>
+                         <div class='usertext'>
+                            <a class='utext t'>$statustext</a>
+                        </div>
+                
+                    </div>
+                    ");
+                    }
                     echo("
-                <div class='userbox'>
-                    <div class='usertext s'>               
-                        <a class='utext '>$userid</a>
-                    </div>
-                    <div class='usertext s'>
-                        <a class='utext '>$username</a>
-                    </div>
-                    <div class='usertext'>
-                        <a class='utext'>$userphone</a>
-                    </div>
-                    <div class='usertext l'>
-                        <a class='utext'>$useremail</a>
-                    </div>
-                    <div class='usertext'>
-                        <a class='utext'>$userbirth</a>
-                    </div>
-                    <div class='usertext'>
-                        <a class='utext'>$zipcode</a>
-                    </div>
-                    <div class='usertext xl'>
-                        <a class='utext '>$address</a>
-                    </div>
-                
-                    <div class='usertext l'>
-                        <a class='utext '>$userjoindate</a>
-                    </div>
-                    <div class='usertext s t'>
-                         <a class='button' href='manageaccounts.php?duserid=$userid'>
-                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path d='m376-327.69 104-104 104 104L612.31-356l-104-104 104-104L584-592.31l-104 104-104-104L347.69-564l104 104-104 104L376-327.69ZM304.62-160q-27.62 0-46.12-18.5Q240-197 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720Zm-400 0v520-520Z'/></svg>
-                        </a>
-                    </div>
-               
-                </div>
-                ");
-                }
+                </div>");
+            }
                 echo("
             </div>
         </div>
