@@ -129,3 +129,16 @@ body {
   width: 400px;
   text-align: center;
 }
+.commentinput {
+  background-color: rgb(37, 37, 37);
+  border: 0;
+}
+.commentbutton {
+  background-color: antiquewhite;
+  width: auto;
+  height: auto;
+  font-family: "Gowun Batang", serif;
+}
+.commentbutton:hover {
+  background-color: rgb(172, 155, 134);
+}

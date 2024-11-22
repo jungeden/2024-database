@@ -1,5 +1,5 @@
 <?
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 // 요청된 ID를 가져옴
 $id = $_GET['id']; 

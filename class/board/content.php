@@ -1,6 +1,6 @@
 <?php
 // 데이터베이스 연결
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 // 요청된 ID를 가져옴
 $id = $_GET['id']; // 기본값은 0
@@ -135,11 +135,11 @@ if ($row) {
             <td colspan=2>댓글 쓰기</td>
         </tr>
         <tr>
-            <td> 이름 : <input type='text' name='commentwriter'> </td>
-            <td align='right' width=10> <input type=submit value=등록 ></td>
+            <td> 이름 : <input class='commentinput' type='text' name='commentwriter'> </td>
+            <td align='right' width=10> <input class='commentbutton' type=submit value=등록 ></td>
         </tr>
         <tr>
-            <td colspan=2><textarea name='commentmessage' rows='4' cols='84'></textarea></td>
+            <td colspan=2><textarea class='commentinput' name='commentmessage' rows='4' cols='84'></textarea></td>
         </tr>
     </table>
     </form>
@@ -147,7 +147,23 @@ if ($row) {
 } else {
     echo "<p>해당 게시글이 존재하지 않습니다.</p>";
 }
+$beforeid=$sid-1;
+$afterid=$sid+1;
+$getboard = mysqli_query($con, "SELECT * from $board WHERE id='$beforeid' AND id='$afterid'");
+while($row=mysqli_fetch_assoc($getboard)) {
 
+    echo("
+    <table border=1 width=700 style=border-collapse:collapse; align=center>
+        <tr>
+            <td align='center'>$id</td>
+                <td align='center'>$writer</td>
+        </tr>
+    
+    
+    
+    </table>
+    ");
+}
 
 echo("
 <style type='text/css'>

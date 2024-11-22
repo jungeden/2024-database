@@ -6,8 +6,31 @@ echo ("
     <link rel='stylesheet' href='style.css'>
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+<link href='https://cdn.quilljs.com/1.3.6/quill.snow.css' rel='stylesheet'>
+
 
 </style>
+<script>
+        
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'align': [] }],
+            ['clean', 'image'],    // remove formatting button
+            [{ 'size': ['small', false, 'large', 'huge'] }],// custom dropdown => class로 적용되기에 다른 파일이 더 필요함. 따라서 지금은 적용 안 됨.
+            [{ 'font': [] }]
+        ];
+
+        var quill = new Quill('#editor', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'snow'
+        });
+        
+</script>
 </head>
 <body>
 <center><h1>게시판</h1></center>

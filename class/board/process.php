@@ -37,7 +37,7 @@ if (empty($content)) {
 }
 
 // 데이터베이스에 연결
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 
 // 글에 대한 ID 부여

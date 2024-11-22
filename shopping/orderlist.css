@@ -239,6 +239,8 @@
 }
 .box {
   height: 100%;
+  /* width: 100%; */
+  width: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -259,6 +261,24 @@
   color: rgb(28, 28, 28);
   margin: 0 0 50px 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+  width: 100px;
+  height: 10%;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(0% 0%, 0% 85%, 50% 100%, 100% 85%, 100% 0%);
+
+  background-color: rgb(200, 200, 200);
+  position: absolute;
+  top: 0px;
+  transition: all;
+  transition-duration: 1s;
+}
+
+.productbox:hover .boxbutton {
+  top: 50px;
 }
 .button {
   width: 100px;
@@ -266,12 +286,13 @@
   margin: 5px 0 5px 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  border: 0;
 }
 .auto {
   /* overflow: auto; */
   height: 400px;
   display: flex;
+  margin: 100px 0 0 0;
   flex-direction: column;
   align-items: center;
   transition: all;
@@ -285,4 +306,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.titlete:hover {
+  color: rgb(28, 28, 28);
+}
+.boxbutton:hover {
+  padding: 10px 0 10px 0;
+}
+.boxbutton.em {
+  background-color: rgb(230, 230, 230);
 }

@@ -65,7 +65,29 @@ echo("
 
         <div class='middle orderlist'>
             ");
-            $getreceiver = mysqli_query($con, "SELECT * FROM receivers WHERE userid='$userid'");
+
+            if (!isset($_GET['cpage']) || $_GET['cpage'] == '') {
+                $cpage = 1;  // 기본값을 1로 설정
+            } else {
+                $cpage = (int)$_GET['cpage'];  // 전달된 값은 정수로 변환
+            }
+
+            $pageSize = 4;  // 한 페이지에 출력할 데이터 수
+    
+            // 전체 페이지 수 계산
+            $sqlTotal = "SELECT COUNT(*) FROM receivers WHERE userid='$userid'";
+            $resultTotal = mysqli_query($con, $sqlTotal);
+            $rowTotal = mysqli_fetch_row($resultTotal);
+            $total = $rowTotal[0];
+            
+            // 전체 페이지 수 계산
+            $totalPage = ceil($total / $pageSize);
+            // echo "Total pages: " . $totalPage . "<br>"; // 페이지 수 확인
+            
+            // 현재 페이지의 시작 위치 계산
+            $start = ($cpage - 1) * $pageSize;
+
+            $getreceiver = mysqli_query($con, "SELECT * FROM receivers WHERE userid='$userid' LIMIT $start, $pageSize");
             while($row=mysqli_fetch_assoc($getreceiver)) {
                 $buydate=$row['buydate'];
                 $ordernum=$row['ordernum'];
@@ -81,16 +103,16 @@ echo("
             if($status==1){
                 echo("
                 <div class='boxbutton'>
-                    <a class='button' href='ordercencle.php'>구매 취소</a>
+                    <a class='button' href='ordercancel.php'>구매 취소</a>
                 </div>");
             } else if($status==3) {
                 echo("
-                <div class='buxbutton'>
+                <div class='boxbutton'>
                     <a class='button' href='reviewwritePage.php?pcode=$pcode'>리뷰 작성</a>
                 </div>");
             } else {
                 echo("
-                <div class='buxbutton'>
+                <div class='boxbutton em'>
                     <a class='button' ></a>
                 </div>");
             }
@@ -156,6 +178,47 @@ echo("
                 </div>
             </div>");
             }
+
+
+            echo "<div class='nextpage'>";
+            if (!isset($cblock) || $cblock == '') {
+                $cblock = 1;
+            }
+
+            $blockSize = 5;  // 한 블록에 표시할 페이지 수
+            $pblock = $cblock - 1;
+            $nblock = $cblock + 1;
+
+            $startPage = ($cblock - 1) * $blockSize + 1;
+            $pStartPage = $startPage - 1;
+            $nStartPage = $startPage + $blockSize;
+            echo("
+            <div class='pagechange'>");
+            // 이전 블록 링크
+            if ($pblock > 0) {
+                echo "<a href='orderlistPage.php?cblock=$pblock&cpage=$pStartPage&userid=$userid'>
+                    <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'>
+                        <path id='beforepage' d='M560-267.69 347.69-480 560-692.31 588.31-664l-184 184 184 184L560-267.69Z'/>
+                    </svg>
+                </a>";
+            }
+
+            // 페이지 번호 출력
+            for ($i = $startPage; $i < $nStartPage && $i <= $totalPage; $i++) {
+                $class = ($i == $cpage) ? 'class="current"' : '';  // 현재 페이지는 스타일링
+                echo "<div class='pagenum'><a href='orderlistPage.php?cblock=$cblock&cpage=$i' $class>$i</a></div>";
+            }
+
+            // 다음 블록 링크
+            if ($nStartPage <= $totalPage) {
+                echo "<a href='orderlistPage.php?cblock=$nblock&cpage=$nStartPage&userid=$userid'>
+                    <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'>
+                        <path id='afterpage' d='m531.69-480-184-184L376-692.31 588.31-480 376-267.69 347.69-296l184-184Z'/>
+                    </svg>
+                </a>";
+            }
+            echo "</div>
+            </div>";
                     
             echo("
         </div>
