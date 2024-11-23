@@ -8,8 +8,8 @@ $userid = $_SESSION['userid'];
 $Session = session_id();
 
 $code=$_GET['code'];  
-$quantity = $_POST['quantity'];
-// $userid = isset($_GET['userid']) ? $_GET['userid'] : '';
+// $quantity = $_POST['quantity'];
+$quantity = isset($_GET['quantity']) ? $_GET['quantity'] : 1;
 // $session = isset($_SESSION['session']) ? $_SESSION['session'] : null;
 
 if (isset($_COOKIE['userid'])) {
@@ -38,12 +38,17 @@ if (mysqli_affected_rows($con) == 0) {
     $insertshoppingcart = mysqli_query($con, "INSERT INTO shoppingcart(userid, session, pcode, quantity) VALUES ('$userid', '$Session', '$code', $quantity)");
 
 }
-$comment='장바구니에 상품이 담겼습니다.';
+
+echo "<script>
+                localStorage.setItem('cartMessage', '장바구니에 상품이 담겼습니다.');
+                window.location.href = 'productdetailPage.php?&code=" . urlencode($code) ."';
+              </script>";
+// $comment='장바구니에 상품이 담겼습니다.';
 // echo ("<meta http-equiv='Refresh' content='0; url=productdetailPage.php?userid=" . urlencode($userid) ."'>");
 
 mysqli_close($con);
 
-header("Location: productdetailPage.php?userid=" . urlencode($userid). "&comment=" . urlencode($comment) ."&code=" . urlencode($code) );
+// header("Location: productdetailPage.php?userid=" . urlencode($userid). "&comment=" . urlencode($comment) ."&code=" . urlencode($code) );
 
 
 

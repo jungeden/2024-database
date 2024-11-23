@@ -152,3 +152,28 @@
   top: 10px;
   left: 10px;
 }
+.messagebox {
+  width: 0px;
+  height: 30px;
+  font-size: 15px;
+  background-color: rgb(200, 200, 200);
+  color: rgb(28, 28, 28);
+  position: fixed;
+  bottom: 60px;
+  left: 40%;
+  /* border-radius: 12px; */
+  display: none;
+  transition: all;
+  transition-duration: 0.5s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 100% 100%, 90% 50%, 100% 0%);
+  padding-top: 5px;
+}
+.container:hover .messagebox {
+  width: 300px;
+  height: 30px;
+  display: none;
+}

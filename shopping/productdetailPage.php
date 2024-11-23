@@ -9,10 +9,10 @@ if (isset($_COOKIE['userid'])) {
 } else {
     $userid='';
 }
-if (trim($comment) !== '') {
-    echo "<script>showMessage('" . addslashes($comment) . "');</script>";
-    // showMessage($comment);
-}
+// if ($comment == '장바구니에 상품이 담겼습니다.') {
+//     echo "<script>showMessage('" . addslashes($comment) . "');</script>";
+//     // showMessage($comment);
+// }
 
 // $userfile=$_GET['userfile'];
 $con = mysqli_connect("localhost","root", "0000", "shop");
@@ -162,7 +162,7 @@ echo("
                     </div>
                     <div class='buttonbox'>
                         <form id='shoppingcartquantity' method='post' action='addshoppingcart.php?code=$code&userid=$userid'>
-                            <input class='button' type='submit' name='shoppingcart' value='장바구니'>
+                            <input id='addshoppingcart' class='button' type='submit' name='shoppingcart' value='장바구니'>
                         </form>
                         <form method='post' action='buyPage.php?code=$code&userid=$userid&page=productdetail'>
                             <input class='button' type='submit' name='tobuy' value='구매하기'>
@@ -172,15 +172,37 @@ echo("
             </div>
 
         </div>
-        <div id='messageBox' style='position: fixed; display='none'; bottom: 50px; right: 600px; background-color: rgb(230,230,230); color: rgb(28,28,28); padding: 10px; border-radius: 12px; width:300px; height:50px;'>
-</div>
-
+        <div id='messageBox' class='messagebox'></div>
         <div class='bottom start'>
 
         </div>
+    </div>
+
+        
 <script>
-document.getElementById('shoppingcartquantity').addEventListener('submit', function(event) {
+    document.addEventListener('DOMContentLoaded', function () {
+    const messagebox = document.getElementById('messageBox');
+    const message = localStorage.getItem('cartMessage');
+
+    if (message) {
+        messagebox.style.display = 'block';
+      
+                    messagebox.innerHTML = message;
+
+      
+
+        setTimeout(() => {
+            messagebox.style.display = 'none';
+        }, 1300);
+
+        localStorage.removeItem('cartMessage');
+    }
+});
+
  
+
+    document.getElementById('shoppingcartquantity').addEventListener('submit', function(event) {
+    
     const outsideValue = document.getElementById('choosequantity').value;
 
    
@@ -194,17 +216,7 @@ document.getElementById('shoppingcartquantity').addEventListener('submit', funct
   });
 
 
-   document.addEventListener('DOMContentLoaded', function() {
-      function showMessage(message) {
-          const messageBox = document.getElementById('messageBox');
-          messageBox.innerText = message;
-          messageBox.style.display = 'block';
-
-          setTimeout(() => {
-              messageBox.style.display = 'none';
-          }, 3000);
-      }
-  });
+   
 
   function numchange(updown) {
     const quantityInput = document.getElementById('choosequantity');
@@ -222,6 +234,9 @@ document.getElementById('shoppingcartquantity').addEventListener('submit', funct
 
 
 ");
+echo ("<script>
+    console.log('PHP 실행 확인: 장바구니 메시지 저장');
+    localStorage.setItem('cartMessage', '장바구니에 상품이 담겼습니다.'");
 
 mysqli_close($con);
 ?>

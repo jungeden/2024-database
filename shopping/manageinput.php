@@ -45,7 +45,7 @@ if ($row[0] > 0) {
 
 
 
-$inputproducts  = mysqli_query($con, "INSERT INTO product(class, code, name, content, price1, price2, userfile, hit) VALUES ($class, '$code', '$name', '$content', '$price1', '$price2', '$userfile_name', 0)");
+$inputproducts  = mysqli_query($con, "INSERT INTO product(class, code, name, content, price1, price2, userfile, hit) VALUES ($class, '$code', '$name', '$content', '$price1', '$price2', '$userfile_name', 1)");
 
 
 echo ("<meta http-equiv='Refresh' content='0; url=manageproductsPage.php?userid=" . urlencode($userid) . "'>");

@@ -1,0 +1,167 @@
+.productbox {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  margin: 30px 30px 30px 50px;
+  justify-content: start;
+  position: relative;
+}
+.product {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100px;
+  height: auto;
+  background-color: white;
+}
+.photo {
+  width: 100px;
+  height: auto;
+  border-radius: 12px;
+}
+.productinfo {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 30px;
+}
+.producttext {
+  display: flex;
+  flex-direction: column;
+}
+.ptext.n {
+  font-size: 15px;
+}
+.ptext {
+  font-size: 13px;
+  margin: 10px 0 10px 0;
+}
+.ptext:hover {
+  color: rgb(28, 28, 28);
+}
+/* .star {
+  margin: 50px 0;
+  position: relative;
+  display: block;
+  color: pink;
+  width: 0px;
+  height: 0px;
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid pink;
+  border-left: 100px solid transparent;
+  transform: rotate(35deg);
+  border-radius: 12px;
+}
+.star:before {
+  border-bottom: 80px solid pink;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: -45px;
+  left: -65px;
+  display: block;
+  content: "";
+  transform: rotate(-35deg);
+}
+.star:after {
+  position: absolute;
+  display: block;
+  color: pink;
+  top: 3px;
+  left: -105px;
+  width: 0px;
+  height: 0px;
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid pink;
+  border-left: 100px solid transparent;
+  transform: rotate(-70deg);
+  content: "";
+} */
+/* .star {
+  padding: 1px;
+}
+
+.star::after {
+  content: "☆";
+  color: rgb(28, 28, 28);
+  font-size: 50px;
+} */
+.reviewstar {
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+}
+.starbox {
+  display: flex;
+  flex-direction: row;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+.star {
+  width: 40px;
+  height: 40px;
+  clip-path: polygon(
+    30% 27%,
+    50% 0%,
+
+    70% 27%,
+    100% 35%,
+
+    80% 60%,
+    85% 95%,
+
+    50% 80%,
+    15% 95%,
+
+    20% 60%,
+    0% 35%
+  );
+  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(28, 28, 28); */
+  position: absolute;
+  /* transition-property: all;
+  transition-duration: 0.5s; */
+  border: 0;
+}
+.star.left {
+  clip-path: polygon(
+    30% 27%,
+    50% 0%,
+
+    50% 27%,
+    50% 35%,
+
+    50% 60%,
+    50% 95%,
+
+    50% 80%,
+    15% 95%,
+
+    20% 60%,
+    0% 35%
+  );
+}
+.star.right {
+  clip-path: polygon(
+    50% 27%,
+    50% 0%,
+
+    70% 27%,
+    100% 35%,
+
+    80% 60%,
+    85% 95%,
+
+    50% 80%,
+    50% 95%,
+
+    50% 60%,
+    50% 35%
+  );
+}
+.star:hover {
+  background-color: rgb(200, 200, 200);
+}

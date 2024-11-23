@@ -124,7 +124,8 @@ a svg:hover #manageaccounts,
 a svg:hover #manageproducts,
 a svg:hover #input,
 a svg:hover #backbutton,
-a svg:hover #shoppingcart {
+a svg:hover #shoppingcart,
+a svg:hover #review {
   fill: #c8c8c8;
 }
 /* a svg:hover #modify */

@@ -11,7 +11,16 @@ if (isset($_COOKIE['userid'])) {
 }
 $con = mysqli_connect("localhost", "root", "0000", "shop");
 $pcode=$_GET['pcode'];
+$buydate=$_GET['buydate'];
 
+$getproduct = mysqli_query($con, "SELECT * FROM product WHERE code='$pcode'");
+$row=mysqli_fetch_assoc($getproduct);
+$name=$row['name'];
+$price1=$row['price1'];
+$price2=$row['price2'];
+$userfile=$row['userfile'];
+
+$price=number_format($price1);
 
 echo("
 <head>
@@ -68,13 +77,90 @@ echo("
         <div class='middle reviewwrite'>
             <div class='box'>
                 <div class='productbox'>
+                    <div class='product'>
+                        <div class='photo'>
+                            <img class='photo' src='./photo/$userfile'>
+                        </div>
+                    </div>
+                    <div class='productinfo'>
+                        <div class='producttext'>
+                            <a class='ptext n'>$name</a>
+                            <a class='ptext'>$price</a>
+                            <a class='ptext'>상품옵션</a>
+                            <a class='ptext'>$buydate</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class='reviewstar'>
+                    
+                    <div class='starbox'>
+                        <div id='1' class='star left'></div>
+                        <div id='2' class='star right'></div>
+                    </div>
+                    <div class='starbox'>
+                        <div id='3' class='star left'></div>
+                        <div id='4' class='star right'></div>
+                    </div>
+                    <div class='starbox'>
+                        <div id='5' class='star left'></div>
+                        <div id='6' class='star right'></div>
+                    </div>
+                    <div class='starbox'>
+                        <div id='7' class='star left'></div>
+                        <div id='8' class='star right'></div>
+                    </div>
+                    <div class='starbox'>
+                        <div id='9' class='star left'></div>
+                        <div id='10' class='star right'></div>
+                    </div>
                 </div>
                 <div class='writebox'>
+                    <form method='post' action='reviewwrite.php?pcode=$pcode' id='reviewstar' enctype='multipart/form-data'>
+                        <input type='hidden' id='star' name='star'>
+                        <textarea class='input content'name='content' rows='12' cols='50'></textarea>
+                        <div class='productphoto'>
+                            <a class='phototext'>
+                                <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#C8C8C8'><path id='input' d='M460-460H240v-40h220v-220h40v220h220v40H500v220h-40v-220Z'/></svg>
+                            <a>
+                            <a class='phototext'>사진추가</a>
+                            <input class='file' type='file' name='userfile' accept='image/*' onchange='previewImage(event)'>
+                            <img class='photo' id='preview' alt='Image Preview'>
+                        </div>
+                         <input class='button' type='submit' value='등록'>
+                    </form>
                 </div>
             </div>
            
         </div>
     </div>
+    <script>
+        const stars = document.querySelectorAll('.star');
+
+        stars.forEach((star) => {
+            star.onclick = function () {
+                let id = this.id; 
+                id = Number(id);
+                console.log('Clicked star ID:', id); 
+                for(let i=1; i<=10; i++) {
+                    if(i<=id) {
+                    document.getElementById(i).style.backgroundColor='rgb(28,28,28)';
+                    } else {
+                    document.getElementById(i).style.backgroundColor='rgb(230,230,230)';
+                    }
+                }
+                document.getElementById('star').value = id;
+                        console.log('Hidden input value:', document.getElementById('star').value);
+            };
+        });
+        
+        function previewImage(event) {
+            const preview = document.getElementById('preview');
+            preview.src = URL.createObjectURL(event.target.files[0]);
+            preview.style.display = 'block';  
+        }
+    
+    </script>
 </body>
 ");
 

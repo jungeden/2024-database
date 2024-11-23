@@ -94,7 +94,9 @@ echo("
                 $status=$row['status'];
                 $session=$row['session'];
 
-
+                $getorderlist=mysqli_query($con,"SELECT pcode FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session'");
+                $rows=mysqli_fetch_assoc($getorderlist);
+                $pcode=$rows['pcode'];
             echo("
             
             <div class='productbox'>
@@ -103,17 +105,19 @@ echo("
             if($status==1){
                 echo("
                 <div class='boxbutton'>
-                    <a class='button' href='ordercancel.php'>구매 취소</a>
+                    <a class='button' href='ordercancel.php?session=$session'>구매 취소</a>
                 </div>");
-            } else if($status==3) {
-                echo("
-                <div class='boxbutton'>
-                    <a class='button' href='reviewwritePage.php?pcode=$pcode'>리뷰 작성</a>
-                </div>");
-            } else {
+            } 
+            // else if($status==3) {
+            //     echo("
+            //     <div class='boxbutton'>
+            //         <a class='button' href='reviewwritePage.php?pcode=$pcode'>리뷰 작성</a>
+            //     </div>");
+            // } 
+            else {
                 echo("
                 <div class='boxbutton em'>
-                    <a class='button' ></a>
+                    <a  ></a>
                 </div>");
             }
                 echo("
@@ -123,10 +127,9 @@ echo("
                 <a>$ordernum</a>
                 </div>
                 ");
-            
-                // $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code INNER JOIN receivers ON orderlist.userid=receivers.userid WHERE orderlist.userid='$userid'");
                 $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session'");
-                while($row=mysqli_fetch_assoc($getorderlist)) {
+                // $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code INNER JOIN receivers ON orderlist.userid=receivers.userid WHERE orderlist.userid='$userid'");
+                 while($row=mysqli_fetch_assoc($getorderlist)) {
                     // $getstatus = mysqli_query($con,"SELECT status FROM receivers WHERE userid='$userid'");
                     // $rows=mysqli_fetch_assoc($getstatus);
                     $quantity=$row['quantity'];
@@ -143,11 +146,22 @@ echo("
                         <img class='photo' src='./photo/$userfile'>
                     </div>
                     <div class='productinfotext'>
-                        <a >$name</a>
+                        <a class='ptextt'>$name</a>
                         <a class='ptext'>$quantity 개</a>
                         <a class='ptext'>상품옵션</a>
                         <a class='ptext'> 합계 : $sumprice</a>
-                    </div>          
+                    </div> ");
+
+                    if($status==3) {
+                        echo(" 
+                    <div class='reviewbuttonbox'>
+                        <a href='reviewwritePage.php?pcode=$pcode&buydate=$buydate'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='review' d='M255.38-399.38h79.16l219.77-219.77q3.15-4.09 4.73-8.25 1.58-4.16 1.58-8.3 0-4.15-1.59-8.32-1.58-4.16-4.72-8.29l-45.77-45q-2.16-3.15-6.72-5.23-4.57-2.08-8.79-2.08-4.18 0-8.53 1.58-4.34 1.58-8.58 4.73L255.38-477.54v78.16Zm281.85-236.08-45-45.77 45 45.77ZM278.77-422.77v-45l166.92-165.92 19.46 22.54 23.77 23.23-165.15 165.15h-45Zm186.38-188.38 23.77 23.23-43.23-45.77 19.46 22.54Zm-19.77 211.77h259.24v-32H477.38l-32 32ZM136-172.92v-594.46q0-24.32 16.15-40.47T192.62-824h574.76q24.32 0 40.47 16.15T824-767.38v430.76q0 24.32-16.15 40.47T767.38-280h-524.3L136-172.92ZM230-312h537.38q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-430.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H192.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v518.15L230-312Zm-62 0v-480 480Z'/></svg>
+                        </a>
+                     
+                    </div>  ");
+                    }
+                    echo("      
                 </div>
                 <div class='line p'></div>");
                 }

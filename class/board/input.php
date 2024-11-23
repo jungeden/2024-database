@@ -109,4 +109,4 @@ const fileNameSpan = document.querySelector('.file-name');
 fileInput.addEventListener('change', function () {
   fileNameSpan.textContent = this.files[0] ? this.files[0].name : '선택된 파일 없음';
 });
-<script>
+</script>
