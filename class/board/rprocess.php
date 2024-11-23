@@ -12,7 +12,7 @@ $email = $_POST['email'];
 echo("
 <link rel='stylesheet' href='style.css'>
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
     </style>");
 
 

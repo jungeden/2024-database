@@ -2,6 +2,7 @@
 // POST 요청으로부터 값 가져오기
 $writer = $_POST['writer'];
 $topic = $_POST['topic'];
+// $content = htmlspecialchars($_POST['content']);
 $content = $_POST['content'];
 $email = $_POST['email'];
 $passwd = $_POST['passwd'];  
@@ -9,7 +10,7 @@ $board = $_GET['board'];
 echo("
 <link rel='stylesheet' href='style.css'>
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
     </style>");
 // 입력 값 유효성 검사
 if (empty($writer)) {
@@ -41,16 +42,16 @@ $con = mysqli_connect("localhost", "root", "0000", "class");
 
 
 // 글에 대한 ID 부여
-$result = mysqli_query($con, "SELECT id FROM $board");
-$total = mysqli_num_rows($result);
+// $result = mysqli_query($con, "SELECT id FROM $board");
+// $total = mysqli_num_rows($result);
 
-$id = ($total == 0) ? 1 : $total + 1;  // ID 부여
+// $id = ($total == 0) ? 1 : $total + 1;  // ID 부여
 
 $wdate = date("Y-m-d");
 
 // 데이터 삽입
-$sql = "INSERT INTO $board (id, writer, email, passwd, topic, content, hit, wdate, space) 
-        VALUES ('$id', '$writer', '$email', '$passwd', '$topic', '$content', 0, '$wdate', 0)";
+$sql = "INSERT INTO $board (writer, email, passwd, topic, content, hit, wdate, space) 
+        VALUES ('$writer', '$email', '$passwd', '$topic', '$content', 0, '$wdate', 0)";
 
 if (!mysqli_query($con, $sql)) {
     echo "Error: " . mysqli_error($con);
@@ -74,14 +75,19 @@ $userfile_size = $_FILES['userfile']['size'];
 $filepath = "$savedir/$userfile_name";
 
 // 업로드 중 오류 발생 여부 확인
-
-// 파일 업로드 시도
-if (move_uploaded_file($_FILES['userfile']['tmp_name'], $filepath)) {
-    echo "파일이 성공적으로 업로드되었습니다.";
+if(!empty($userfile_name)) {
+    move_uploaded_file($_FILES['userfile']['tmp_name'], $filepath);
 } else {
-    echo "파일 업로드에 실패했습니다. 경로와 권한을 확인하세요.";
-    exit;
+    // $userfile_name='';
+    // $userfile_size='';
 }
+// 파일 업로드 시도
+// if () {
+//     echo "파일이 성공적으로 업로드되었습니다.";
+// } else {
+//     // echo "파일 업로드에 실패했습니다. 경로와 권한을 확인하세요.";
+//     // exit;
+// }
 
 // 데이터베이스에 삽입
 $insert_query = "INSERT INTO boardfile (id, writer, passwd, title, wdate, fileName, fileSize) 

@@ -1,5 +1,5 @@
 <?
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 
 $id = $_GET['id'];
 $board = $_GET['board'];

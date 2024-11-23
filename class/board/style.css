@@ -2,18 +2,43 @@ body {
   height: 100%;
   width: 100%;
   margin: 0%;
-  font-family: "Gowun Batang", serif;
+  font-family: "Do Hyeon", sans-serif;
   background-color: rgb(37, 37, 37);
   color: antiquewhite;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-content: center;
+  overflow-y: auto;
+  /* padding-top: 100px; */
+}
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-bottom: 600px; */
+  overflow-y: auto;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.contentfont {
+  font-family: "Do Hyeon", sans-serif;
+}
+.do-hyeon-regular {
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.container.show {
+  justify-content: center;
 }
 .show {
   margin-bottom: 100px;
   display: flex;
   flex-direction: column;
+  justify-self: center;
 }
 .search {
   width: auto;
@@ -28,59 +53,76 @@ body {
 }
 .input {
   background-color: antiquewhite;
-  height: 30px;
+  height: 40px;
   width: 100px;
-  border-radius: 20px 0 0 20px;
+  border-radius: 15px 0 0 15px;
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: "Gowun Batang", serif;
+  font-family: "Do Hyeon", sans-serif;
   color: rgb(37, 37, 37);
   font-size: 14px;
   text-align: center;
+  border: 1px solid antiquewhite;
+  border-right: 0;
 }
 .select {
   border: 0;
   text-align: center;
-  height: 30px;
+  height: 40px;
   width: 70px;
-  border-radius: 20px;
+  border-radius: 15px;
   background-color: antiquewhite;
   color: rgb(37, 37, 37);
-  font-family: "Gowun Batang", serif;
+  font-family: "Do Hyeon", sans-serif;
+  border: 1px solid antiquewhite;
 }
 
 .button {
   border: 0;
-  height: 30px;
+  height: 40px;
   width: 40px;
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 15px 15px 0;
   text-align: center;
   padding: 0;
-  background-color: antiquewhite;
+  background-color: rgb(211, 198, 182);
   color: rgb(37, 37, 37);
   position: relative;
   overflow: hidden;
-  font-family: "Gowun Batang", serif;
+  font-family: "Do Hyeon", sans-serif;
   cursor: pointer;
+  border: 1px solid antiquewhite;
 }
 .button:hover {
   cursor: pointer;
   background-color: rgb(172, 155, 134);
   color: antiquewhite;
   transition: background-color 0.3s ease;
+  border: 1px solid antiquewhite;
 }
 .table {
-  border-radius: 20px;
+  border-radius: 15px;
   border: 4px solid rgb(196, 196, 196);
   background-color: rgb(255, 255, 255);
 }
 .input1 {
   background-color: rgb(37, 37, 37);
   height: 40px;
+  width: 300px;
+  border: 1px solid antiquewhite;
+  border-radius: 15px;
+  margin: 0 0 10px 0;
+  padding: 0;
+
+  color: antiquewhite;
+  cursor: pointer;
+}
+.input2 {
+  background-color: rgb(37, 37, 37);
+  height: 40px;
   width: 400px;
   border: 1px solid antiquewhite;
-  border-radius: 20px;
+  border-radius: 15px;
   margin: 0 0 10px 0;
   padding: 0;
 
@@ -89,18 +131,22 @@ body {
 }
 .button1 {
   width: 80px;
-  border-radius: 20px;
-  margin: 10px 10px 0 0;
+  height: 35px;
+  border-radius: 15px;
+  margin: 50px 10px 0 0;
+  border: 1px solid antiquewhite;
 }
 .file {
   font-size: 14px;
   background-color: antiquewhite;
-  height: 39px;
-  width: 80px;
+  height: 35px;
+  width: 75px;
   display: inline-block;
   color: rgb(37, 37, 37);
   text-align: center; /* 텍스트 가운데 정렬 */
-  line-height: 40px;
+  line-height: 35px;
+  position: absolute;
+  left: 2px;
 }
 .file:hover {
   background-color: rgb(172, 155, 134);
@@ -119,6 +165,7 @@ body {
   width: 400px;
   font-size: 14px;
   cursor: pointer;
+  border: 0;
 }
 
 .files {
@@ -129,16 +176,254 @@ body {
   width: 400px;
   text-align: center;
 }
+
+.ql-toolbar.ql-snow {
+  border-radius: 15px 15px 0 0px;
+  border: 1px solid #faebd7;
+  width: auto;
+}
+.ql-container.ql-snow {
+  border-radius: 0 0 15px 15px;
+  height: 250px;
+  font-family: "Do Hyeon", sans-serif;
+  font-size: 15px;
+}
+.left {
+  /* margin: 0 5px 0 0; */
+}
+.right {
+  /* margin: 5px 0 0 5px; */
+}
+a svg:hover .icon {
+  fill: rgb(172, 155, 134);
+}
+.ql-editor {
+  font-family: "Do Hyeon", sans-serif !important;
+}
+.commentbox {
+  position: fixed;
+  bottom: 30px;
+  left: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+}
+.commenttext {
+  background-color: rgb(56, 56, 56);
+
+  height: 40px;
+  border: 1px solid antiquewhite;
+  border-radius: 0 0 15px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10px;
+}
+.commentname {
+  height: 30px;
+
+  margin: 10px 0 0 0;
+  border: 1px solid antiquewhite;
+  border-radius: 15px 15px 0 0;
+  border-bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px;
+}
 .commentinput {
   background-color: rgb(37, 37, 37);
   border: 0;
+  border: 1px solid antiquewhite;
+  border-radius: 15px 0 0 0;
+  height: 40px;
+  width: 70%;
+  border-right: 0;
+  padding-left: 10px;
+  color: antiquewhite;
+  font-size: 17px;
+}
+.commentinput::placeholder {
+  color: rgb(211, 198, 182);
+  font-family: "Do Hyeon", sans-serif;
+}
+.commentinput.co {
+  border-radius: 0 0 0 15px;
+  height: 70px;
+  border-top: 0;
 }
 .commentbutton {
   background-color: antiquewhite;
-  width: auto;
-  height: auto;
-  font-family: "Gowun Batang", serif;
+  width: 90px;
+  height: 110px;
+  font-family: "Do Hyeon", sans-serif;
+  border: 1px solid antiquewhite;
+  border-radius: 0 15px 15px 0;
+  font-size: 20px;
 }
 .commentbutton:hover {
   background-color: rgb(172, 155, 134);
+}
+.pagechangebox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+p {
+  margin: 5px;
+}
+.line {
+  border: 0.5px solid antiquewhite;
+  /* width: 50%; */
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin: 20px;
+  margin-top: 0px;
+}
+.box {
+  display: flex;
+  width: auto;
+}
+.infobox {
+  border: 1px solid antiquewhite;
+  border-radius: 15px;
+  width: 700px;
+  display: flex;
+  /* padding: 10px; */
+}
+.element {
+  height: 40px;
+  border: 1px solid antiquewhite;
+  text-align: center;
+}
+.element.num {
+  border-radius: 15px 0 0 0;
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+  width: 50px;
+  background-color: rgb(56, 56, 56);
+}
+.element.wri {
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+  width: 80px;
+  background-color: rgb(56, 56, 56);
+}
+.element.dat {
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+  width: 200px;
+  background-color: rgb(56, 56, 56);
+}
+.element.hit {
+  border-radius: 0 15px 0 0;
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+  border-right: 0;
+  width: 70px;
+  background-color: rgb(56, 56, 56);
+}
+.element.top {
+  border-left: 0;
+  border-right: 0;
+  height: 40px;
+  text-align: start;
+  padding-left: 15px;
+}
+.element.con {
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 0;
+  border-right: 0;
+  height: 300px;
+}
+.element.wd {
+  border-top: 0;
+  border-bottom: 0;
+  background-color: rgb(56, 56, 56);
+}
+.element.text {
+  /* border-top: 0; */
+  border-right: 0;
+  /* border-left: 0; */
+  border-bottom: 0;
+  width: 80px;
+}
+.element.text.l {
+  width: 400px;
+  text-align: left;
+  padding-left: 20px;
+}
+.element.text.e {
+  border-left: 0;
+}
+.element.text2 {
+  /* border-top: 0; */
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 0;
+  /* width: 80px; */
+  /* height: 40px; */
+}
+.icons {
+  width: 690px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+.line2 {
+  border: 0.5px solid rgb(172, 155, 134);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  /* margin: 2px; */
+}
+.atext {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+}
+.atext.h:hover {
+  color: antiquewhite;
+  text-decoration: none;
+}
+.container.pass {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.filebox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 40px;
+  border: 1px solid antiquewhite;
+  border-radius: 15px;
+}
+.pagenum {
+  background-color: antiquewhite;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid antiquewhite;
+}
+.pagenumbox {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.pagenum:hover {
+  background-color: rgb(211, 198, 182);
 }

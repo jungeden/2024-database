@@ -2,7 +2,7 @@
 echo("
 <link rel='stylesheet' href='style.css'>
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
     </style>");
 $board = $_GET['board'];  
 $id = $_GET['id'];
@@ -28,7 +28,7 @@ if(!$content) {
     history.go(-1);</script>");
     exit;
 }
-$con = mysqli_connect("localhost", "root", "024120", "class");
+$con = mysqli_connect("localhost", "root", "0000", "class");
 $sql = "SELECT * from $board WHERE id=$id";
 $result = mysqli_query($con, $sql);
 
