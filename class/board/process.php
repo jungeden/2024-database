@@ -1,4 +1,4 @@
-<?php
+<? //process.php
 // POST 요청으로부터 값 가져오기
 $writer = $_POST['writer'];
 $topic = $_POST['topic'];
@@ -7,6 +7,7 @@ $content = $_POST['content'];
 $email = $_POST['email'];
 $passwd = $_POST['passwd'];  
 $board = $_GET['board'];
+
 echo("
 <link rel='stylesheet' href='style.css'>
     <style>
@@ -41,22 +42,26 @@ if (empty($content)) {
 $con = mysqli_connect("localhost", "root", "0000", "class");
 
 
-// 글에 대한 ID 부여
-// $result = mysqli_query($con, "SELECT id FROM $board");
-// $total = mysqli_num_rows($result);
+// 글에 대한 num 부여
+$result = mysqli_query($con, "SELECT num FROM $board");
+$total = mysqli_num_rows($result);
 
-// $id = ($total == 0) ? 1 : $total + 1;  // ID 부여
+$num = ($total == 0) ? 1 : $total + 1;  // num 부여
 
 $wdate = date("Y-m-d");
 
+
 // 데이터 삽입
-$sql = "INSERT INTO $board (writer, email, passwd, topic, content, hit, wdate, space) 
-        VALUES ('$writer', '$email', '$passwd', '$topic', '$content', 0, '$wdate', 0)";
+$sql = "INSERT INTO $board (num, writer, email, passwd, topic, content, hit, wdate, space, parentid) 
+        VALUES ('$num', '$writer', '$email', '$passwd', '$topic', '$content', 0, '$wdate', 0, NULL)";
 
 if (!mysqli_query($con, $sql)) {
     echo "Error: " . mysqli_error($con);
 }
 
+$getid=mysqli_query($con,"SELECT id FROM $board WHERE num=$num");
+$row=mysqli_fetch_assoc($getid);
+$id=$row['id'];
 //-----------------------------------------
 
 
@@ -77,6 +82,11 @@ $filepath = "$savedir/$userfile_name";
 // 업로드 중 오류 발생 여부 확인
 if(!empty($userfile_name)) {
     move_uploaded_file($_FILES['userfile']['tmp_name'], $filepath);
+
+    $insert_query = "INSERT INTO boardfile (id, writer, passwd, title, wdate, fileName, fileSize) 
+                 VALUES ('$id','$writer', '$passwd', '$topic', '$wdate', '$userfile_name', '$userfile_size')";
+
+mysqli_query($con, $insert_query);
 } else {
     // $userfile_name='';
     // $userfile_size='';
@@ -90,10 +100,7 @@ if(!empty($userfile_name)) {
 // }
 
 // 데이터베이스에 삽입
-$insert_query = "INSERT INTO boardfile (id, writer, passwd, title, wdate, fileName, fileSize) 
-                 VALUES ('$id','$writer', '$passwd', '$title', '$wdate', '$userfile_name', '$userfile_size')";
 
-mysqli_query($con, $insert_query);
 
 // 데이터베이스 연결 종료
 mysqli_close($con);

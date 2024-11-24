@@ -1,11 +1,11 @@
-<?php
+<? //show.php
 
 $con = mysqli_connect("localhost", "root", "0000", "class");
 $board = $_GET['board'];
 // echo $board;
 
 
-$sql = "SELECT * FROM $board ORDER BY id DESC";
+$sql = "SELECT * FROM $board ORDER BY num DESC";
 $result = mysqli_query($con, $sql);
 $total = mysqli_num_rows($result);
 
@@ -62,13 +62,7 @@ echo("
 <div class='infobox'>
 <table  border=0 style=border-collapse:collapse; align=center>
 
-    <tr>
-        <td class='element num' width=100><b>번호</b></td>
-        <td class='element wri' width=200><b>글쓴이</b></a></td>
-        <td align=center colspan=2 class='element wri' width=400><b>제목</b></a></td>
-        <td class='element wd' width=200><b>날짜</b></td>
-        <td  class='element hit' width=100><b>조회</b></td>
-    </tr>
+    
   
 ");
 
@@ -78,8 +72,21 @@ if ($total == 0) {
         <tr>
             <td colspan='5' align='center'>등록된 글이 없습니다.</td>
         </tr>
+        </table>
+        </div>
     ");
 } else {
+    echo("
+    <tr>
+        <td class='element num' width=100><b>번호</b></td>
+        <td class='element wri' width=200><b>글쓴이</b></a></td>
+        <td align=center colspan=2 class='element wri' width=400><b>제목</b></a></td>
+        <td class='element wd' width=200><b>날짜</b></td>
+        <td  class='element hit' width=100><b>조회</b></td>
+    </tr>
+    
+    
+    ");
     if (!isset($_GET['cpage']) || $_GET['cpage'] == '') {
         $cpage = 1;  // 기본값을 1로 설정
     } else {
@@ -98,7 +105,7 @@ if ($total == 0) {
 
     $start = ($cpage - 1) * $pageSize;
 
-    $sql = "SELECT * FROM $board ORDER BY id DESC LIMIT $start, $pageSize";
+    $sql = "SELECT * FROM $board ORDER BY num DESC LIMIT $start, $pageSize";
     $result = mysqli_query($con, $sql);
 
     $counter = 0;
@@ -110,6 +117,7 @@ if ($total == 0) {
         $hit = $row['hit'];
         $wdate = $row['wdate'];
         $space = $row['space'];
+        $num=$row['num'];
 
         // $files=[];
 
@@ -117,6 +125,8 @@ if ($total == 0) {
         $rows = mysqli_fetch_assoc($commentcount);
         $idcommentcount = $rows['count'];
         
+
+        $fileName = ''; 
         $fileupload = mysqli_query($con, "SELECT * FROM boardfile WHERE id='$id'");
         while ($filerow = mysqli_fetch_assoc($fileupload)) {
             $fileName = htmlspecialchars($filerow['fileName']);
@@ -130,7 +140,7 @@ if ($total == 0) {
         }
         echo ("
             <tr>
-                <td class='element text e' align='center'>$id</td>
+                <td class='element text e' align='center'>$num</td>
                 <td class='element text ' align='center'>$writer</td>
                 <td class='element text l' align='left' style='border-right:0;'>$t<a href='content.php?board=$board&id=$id'>$topic</a>");
                 if ($idcommentcount!=0) {

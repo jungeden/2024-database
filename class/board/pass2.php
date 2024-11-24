@@ -1,4 +1,4 @@
-<?
+<? //pass2.php
 echo("
 <link rel='stylesheet' href='style.css'>
     <style>

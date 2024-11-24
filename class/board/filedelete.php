@@ -1,4 +1,4 @@
-<?
+<? //filedelete.php
 $con = mysqli_connect("localhost", "root", "0000", "class");
 
 $id = $_GET['id'];

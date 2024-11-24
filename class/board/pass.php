@@ -1,4 +1,4 @@
-<?php
+<? //pass.php
 $mode = $_GET['mode'];  
 $board = $_GET['board']; 
 $id = $_GET['id']; 

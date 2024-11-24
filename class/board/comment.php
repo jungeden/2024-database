@@ -1,4 +1,4 @@
-<?
+<? //comment.php
 $con = mysqli_connect("localhost", "root", "0000", "class");
 
 // 요청된 ID를 가져옴

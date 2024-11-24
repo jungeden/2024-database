@@ -1,4 +1,4 @@
-<?php
+<? //content.php
 // 데이터베이스 연결
 $con = mysqli_connect("localhost", "root", "0000", "class");
 
@@ -19,7 +19,12 @@ if ($row) {
     $hit = $row["hit"] + 1; // 조회 수 증가
     $content = $row["content"];
     $wdate = $row["wdate"];
+    $num=$row["num"];
+    $parentid = $row['parentid'];
 
+    if(!empty($parentid)) {
+        $fileupload = mysqli_query($con, "SELECT * FROM boardfile WHERE id = $parentid");
+    }
     $files = [];
     while ($filerow = mysqli_fetch_assoc($fileupload)) {
         $fileName = htmlspecialchars($filerow['fileName']);
@@ -48,8 +53,8 @@ if ($row) {
 
         $comments[] = ["commentname" => $name, "commentmessage" => $message, "date" => $wdate];
     }
-    // HTML 출력
-
+    
+    // var_dump(htmlspecialchars($content));
     echo("
     
     <head>
@@ -101,7 +106,7 @@ if ($row) {
         
         <table border=0 width=700 style=border-collapse:collapse; align='center'>
             <tr>
-                <td class='element num' width=100>번호 : $sid</td>
+                <td class='element num' width=100>번호 : $num</td>
                 <td class='element wri' width=250>글쓴이 : <a href='mailto:$writer'>$writer</a></td>
                 <td class='element dat' width=250>작성일 : $wdate</td>
                 <td  class='element hit' width=100>조회수 : $hit</td>
@@ -110,9 +115,34 @@ if ($row) {
                 <td class='element top' colspan=4>제목 : $topic</td>
             </tr>
             <tr>
-                <td colspan=4>
+                <td colspan=4>");
+            if(!empty($files)) {
+                if(!empty($parentid)) {
+                    $delimiter = "<p>----------&lt;원본글&gt;----------</p>";
+                    list($content1, $content2) = explode($delimiter, $content, 2);
+
+
+                    echo(" 
+                        <style>
+                        .element.con{height:150px;}
+                        </style>
+                    <div class='ql-editor element con'>$content1</div>
+                    <div>\n- - - - - - - - - - - - - - - - - - - - <원본글> - - - - - - - - - - - - - - - - - - - -\n\n\n\n</div>
+                    <div  class='photobox'><img class='photo' src='./files/$fileName'></div>
+                    <div class='ql-editor element con'> $content2</div>
+
+                    ");
+                } else {
+                   echo(" 
+                    <div  class='photobox'><img class='photo' src='./files/$fileName'></div>
                     <div class='ql-editor element con'>$content</div>
-                </td>
+
+                    ");
+                }
+            } else {
+                   echo(" <div class='ql-editor element con'>$content</div>");
+            }
+                echo("</td>
             </tr>
         </table>
         </div>
@@ -139,12 +169,12 @@ if ($row) {
         <br><br>
     ");
    // 이전 글 찾기
-$beforeQuery = "SELECT * FROM $board WHERE id < $sid ORDER BY id DESC LIMIT 1";
+$beforeQuery = "SELECT * FROM $board WHERE num < $num ORDER BY num DESC LIMIT 1";
 $beforeResult = mysqli_query($con, $beforeQuery);
 $beforeRow = mysqli_fetch_assoc($beforeResult);
 
 // 다음 글 찾기
-$afterQuery = "SELECT * FROM $board WHERE id > $sid ORDER BY id ASC LIMIT 1";
+$afterQuery = "SELECT * FROM $board WHERE num > $num ORDER BY num ASC LIMIT 1";
 $afterResult = mysqli_query($con, $afterQuery);
 $afterRow = mysqli_fetch_assoc($afterResult);
 
@@ -199,7 +229,21 @@ echo("
         foreach ($comments as $pcomment) {
             echo ("
             
-            <tr><td style='vertical-align: bottom;' colspan=2><div class='commentname'>{$pcomment['commentname']}&nbsp; <a style='font-size:12px; color:gray; a:hover {color:gray}'>({$pcomment['date']})</a></div></td></tr>
+            <tr>
+                <td style='vertical-align: bottom;' colspan=2>
+                    <div class='commentname'>
+                        {$pcomment['commentname']}&nbsp; 
+                        <a style='font-size:12px; color:gray; a:hover {color:gray}'>({$pcomment['date']})</a>
+                        <a href='contentmodifycomment.php?commentname={$pcomment['commentname']}&date={$pcomment['date']}&commentmessage={$pcomment['commentmessage']}&id=$id&board=$board' style='margin:0 6px 0 0; position:absolute; right:20px;'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='16px' viewBox='0 -960 960 960' width='16px' fill='#faebd7'><path class='icon' d='M363.35-600.48v-86.22h354.02v86.22H363.35Zm0 126.22v-86.22h354.02v86.22H363.35Zm115.22 311.39h-275.7 275.7Zm0 91h-235.7q-54.58 0-92.79-38.21-38.21-38.21-38.21-92.79v-130.52h120.48v-554.74h616.02v368.65q-22.87-3.43-46.24.43-23.37 3.85-44.76 15.25v-293.33H323.35v463.74h250.76l-91 91H202.87v39.52q0 17 11.5 28.5t28.5 11.5h235.7v91Zm80 0v-129.7L781-423q9.72-9.76 21.59-14.1 11.88-4.33 23.76-4.33 12.95 0 24.8 4.85Q863-431.72 872.7-422l37 37q8.67 9.72 13.55 21.59 4.88 11.88 4.88 23.76 0 12.19-4.36 24.41T909.7-293.3L688.26-71.87H558.57Zm304.78-267.78-37-37 37 37Zm-240 203h38L781.39-257.7l-18-19-19-18-121.04 120.05v38ZM763.39-276.7l-19-18 37 37-18-19Z'/></svg>
+                        </a>
+                        <a href='commentdelete.php?commentname={$pcomment['commentname']}&date={$pcomment['date']}&commentmessage={$pcomment['commentmessage']}&id=$id&board=$board' style='position:absolute; right:5px;'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='18px' viewBox='0 -960 960 960' width='18px' fill='#faebd7'><path class='icon' d='M277.37-111.87q-37.78 0-64.39-26.61t-26.61-64.39v-514.5h-45.5v-91H354.5v-45.5h250.52v45.5h214.11v91h-45.5v514.5q0 37.78-26.61 64.39t-64.39 26.61H277.37Zm405.26-605.5H277.37v514.5h405.26v-514.5ZM355.7-280.24h85.5v-360h-85.5v360Zm163.1 0h85.5v-360h-85.5v360ZM277.37-717.37v514.5-514.5Z'/></svg>
+                        </a>
+                    </div>
+                </td>
+                
+            </tr>
             <tr><td style=' vertical-align: top;' colspan=2><div class='commenttext'>{$pcomment['commentmessage']}</div></td></tr>");
         }
     } else {
@@ -210,28 +254,31 @@ echo("
 
     // 댓글 입력 폼 출력
     echo ("
-    <div class='commentbox'>
-    <table border=0 width=700 align='center' style='border-collapse:collapse;'>
-    <tr >
-    <td style='padding: 0; width:auto;'>
-    <table style='border-spacing: 0; margin: 0;'>
+<div class='commentbox'>
+    <table border='0' width='500' align='center' style='border-collapse: collapse;'>
         <tr>
-            <td align='right'> <input class='commentinput' type='text' name='commentwriter' placeholder='이름 입력'> </td>
-            
+            <td style='padding: 0; width: 410px;'>
+                <table border='0' style='border-spacing: 0; margin: 0; border-collapse: collapse; width: 100%;'>
+                    <tr>
+                        <td style='padding: 0;'><input class='commentinput' type='text' name='commentwriter' placeholder='이름 입력' style='width: 100%; box-sizing: border-box;'></td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 0;'><textarea class='commentinput co' name='commentmessage' rows='4' style='width: 100%; box-sizing: border-box;'></textarea></td>
+                    </tr>
+                </table>
+            </td>
+            <td style='padding: 0; vertical-align: top; width: 90px; height:110px'>
+                <table border='0' style='border-spacing: 0; margin: 0; border-collapse: collapse; height: 100%; width: 100%;'>
+                    <tr>
+                        <td style='padding: 0;'><input class='commentbutton' type='submit' value='등록' style='width: 100%; height: 100%; box-sizing: border-box;'></td>
+                    </tr>
+                </table>
+            </td>
         </tr>
-        <tr>
-            <td colspan=2 align='right'><textarea class='commentinput co' name='commentmessage' rows='4' cols='84'></textarea></td>
-        </tr>
-        </table>
-    </td>
-    <td style='padding: 0; vertical-align: top;'>
-        <table style='border-spacing: 0; margin: 0; height: 100%;'>
-            <td align='left' width=10> <input class='commentbutton' type=submit value=등록 ></td>
-        </table>
-    </td>
-    <tr>
     </table>
-    </div>
+</div>
+
+
     </form>
 
     

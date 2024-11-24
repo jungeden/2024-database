@@ -1,4 +1,4 @@
-<?php
+<? //input.php
 $board = isset($_POST['board']) ? $_POST['board'] : 'testboard';
 
 echo ("

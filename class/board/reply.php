@@ -1,4 +1,4 @@
-<?
+<? //reply.php
 $id = $_GET['id'];
 $board = $_GET['board'];
 

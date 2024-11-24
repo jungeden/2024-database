@@ -1,3 +1,4 @@
+/* style.css */
 body {
   height: 100%;
   width: 100%;
@@ -203,10 +204,12 @@ a svg:hover .icon {
 .commentbox {
   position: fixed;
   bottom: 30px;
-  left: 20%;
+  left: 50%;
+  transform: translate(-50%);
+
   display: flex;
   flex-direction: row;
-  justify-self: center;
+  /* justify-content: center; */
 }
 .commenttext {
   background-color: rgb(56, 56, 56);
@@ -230,18 +233,19 @@ a svg:hover .icon {
   flex-direction: row;
   align-items: center;
   padding-left: 10px;
+  position: relative;
 }
 .commentinput {
   background-color: rgb(37, 37, 37);
-  border: 0;
   border: 1px solid antiquewhite;
   border-radius: 15px 0 0 0;
   height: 40px;
-  width: 70%;
+  width: 410px;
   border-right: 0;
   padding-left: 10px;
   color: antiquewhite;
   font-size: 17px;
+  font-family: "Do Hyeon", sans-serif;
 }
 .commentinput::placeholder {
   color: rgb(211, 198, 182);
@@ -251,6 +255,40 @@ a svg:hover .icon {
   border-radius: 0 0 0 15px;
   height: 70px;
   border-top: 0;
+}
+.commentinput.comment {
+  border-radius: 0 0 0 15px;
+  height: 42px;
+  /* border-top: 0; */
+  width: 620px;
+  padding-top: 10px;
+  /* text-align: center; */
+  padding: 10px 0 10px 10px;
+  font-size: 16px;
+}
+.commentname.comment {
+  /* width: 500px; */
+  border-right: 0;
+  height: 30px;
+  border-radius: 15px 0 0 0;
+  background-color: rgb(37, 37, 37);
+}
+.commentbox.comment {
+  position: fixed;
+  bottom: 30px;
+  /* left: 30%; */
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.commentbutton.comment {
+  width: 88px;
+  height: 73px;
+  padding: 10px 0 10px 0;
+  /* background-color: rgb(56, 56, 56); */
+  margin-top: 10px;
 }
 .commentbutton {
   background-color: antiquewhite;
@@ -426,4 +464,22 @@ p {
 }
 .pagenum:hover {
   background-color: rgb(211, 198, 182);
+  cursor: pointer;
+}
+.photo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  object-fit: cover;
+  align-self: self-end;
+}
+.photobox {
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
 }

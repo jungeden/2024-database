@@ -1,4 +1,4 @@
-<?
+<? //modify.php
 $board = $_GET['board']; 
 $id = $_GET['id']; 
 
