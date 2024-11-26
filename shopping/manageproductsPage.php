@@ -46,6 +46,7 @@ echo("
         @import url(shop.css);
         @import url(manageproducts.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
       
     </style>
     <script>

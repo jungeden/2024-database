@@ -11,14 +11,21 @@ if (isset($_COOKIE['userid'])) {
 }
 echo("
 <head>
+<link href='https://cdn.quilljs.com/1.3.6/quill.snow.css' rel='stylesheet'>
+
 <title> </title>
 <style>
+        @import url(quill.css);
         @import url(shop.css);
         @import url(manageinput.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
       
     </style>
+    <script src='https://cdn.quilljs.com/1.3.6/quill.min.js'></script>
+
 <script>
+
     function previewImage(event) {
         const preview = document.getElementById('preview');
         preview.src = URL.createObjectURL(event.target.files[0]);
@@ -85,7 +92,8 @@ echo("
                         <input class='input' type='text' name='class' placeholder='상품분류'>
                         <input class='input' type='text' name='name' placeholder='상품이름'>
                         <input class='input' type='text' name='price1' placeholder='상품가격'>
-                        <textarea class='input content'name='content' rows='12' cols='50'></textarea>
+                        <div id='editor'></div>
+                        <textarea class='input content'name='content' rows='12' cols='50' hidden></textarea>
                         <input class='button' type='submit' value='등록'>
                     </div>
                 </div>
@@ -97,7 +105,34 @@ echo("
 
         </div>
     </div>
+<script>
+    // Quill 에디터 설정
+    var toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'], 
+        ['blockquote', 'code-block'],            
+        [{ 'header': 1 }, { 'header': 2 }],      
+        [{ 'color': [] }, { 'background': [] }],  
+        [{ 'align': [] }],                        
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{ 'font': [] }]                         
+    ];
 
+    var quill = new Quill('#editor', {
+        modules: { toolbar: toolbarOptions },
+        theme: 'snow'
+    });
+
+ 
+    const form = document.querySelector('form');
+    const textarea = document.querySelector('textarea[name=\"content\"]');
+
+    form.onsubmit = function () {
+     
+        textarea.value = quill.root.innerHTML;
+        console.log('전송될 내용:', textarea.value); // textarea 값 확인
+    return true;
+    };
+</script>
 </body>
 
 ");

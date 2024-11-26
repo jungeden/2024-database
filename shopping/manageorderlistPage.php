@@ -23,8 +23,11 @@ echo("
         @import url(shop.css);
         @import url(manageorderlist.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
 
     </style>
+<script src='scroll.js' defer></script>
+
 </head>
 <body>
     <div class='container'>
@@ -77,7 +80,7 @@ echo("
                 </div>");
             $getreceiver = mysqli_query($con, "SELECT * FROM receivers");
             while($row=mysqli_fetch_assoc($getreceiver)) {
-                $userid=$row['userid'];
+                $orderuserid=$row['userid'];
                 $receiver=$row['receiver'];
                 $phone=$row['phone'];
                 $address=$row['address'];
@@ -91,19 +94,19 @@ echo("
                 $num1=substr($phone,0,3);
                 $num2=substr($phone,3,4);
                 $num3=substr($phone,7,4);
-                
+                $newstatus=isset($_POST['status']) ? $_POST['status'] : $status;
                 
                 echo("
                 <div class='totalbox'>
                     <div class='usertextbutton'>
-                            <a class='button' href='managestatus.php?userid=$userid&status=$status&session=$session'>");
-                            if($status == 1) {
+                            <a class='button' href='managestatus.php?orderuserid=$orderuserid&status=$newstatus&session=$session'>");
+                            if($newstatus == 1) {
                                 $statustext='결제완료';
                                 echo("   <svg xmlns='http://www.w3.org/2000/svg' height='18px' viewBox='0 -960 960 960' width='18px' fill='#181818'><path d='M840-695.38v430.76q0 27.62-18.5 46.12Q803-200 775.38-200H184.62q-27.62 0-46.12-18.5Q120-237 120-264.62v-430.76q0-27.62 18.5-46.12Q157-760 184.62-760h590.76q27.62 0 46.12 18.5Q840-723 840-695.38Zm-680 87.69h640v-87.69q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H184.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v87.69Zm0 95.38v247.69q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h590.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-247.69H160ZM160-240v-480 480Z'/></svg>");
-                            } else if ($status == 2) {
+                            } else if ($newstatus == 2) {
                                 $statustext='배송중';
                                 echo("<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M227.51-227.38q-43.66 0-74.05-30.52-30.38-30.51-30.38-74.1H75.69v-363.38q0-24.32 16.15-40.47T132.31-752h521.23v128.62h92.31l138.46 194.15V-332h-56.62q0 43.59-30.56 74.1-30.57 30.52-74.23 30.52-43.67 0-74.05-30.52-30.39-30.51-30.39-74.1H332.31q0 43.85-30.57 74.23-30.56 30.39-74.23 30.39Zm.18-32q30.4 0 51.51-21.11T300.31-332q0-30.4-21.11-51.51t-51.51-21.11q-30.4 0-51.51 21.11-21.1 21.11-21.1 51.51t21.1 51.51q21.11 21.11 51.51 21.11ZM107.69-364h17.85q8.54-31.46 37.77-52.04 29.23-20.58 64.38-20.58 33.62 0 63.62 20.2 30 20.19 38.07 52.42h292.16v-356H132.31q-9.23 0-16.93 7.69-7.69 7.69-7.69 16.93V-364Zm615.39 104.62q30.4 0 51.5-21.11 21.11-21.11 21.11-51.51t-21.11-51.51q-21.1-21.11-51.5-21.11t-51.51 21.11Q650.46-362.4 650.46-332t21.11 51.51q21.11 21.11 51.51 21.11ZM653.54-436 840-437 727.31-591.38h-73.77V-436ZM366.62-539Z'/></svg>");
-                            } else if ($status == 3) {
+                            } else if ($newstatus == 3) {
                                 $statustext='배송완료';
                                 echo("<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M464-177.46v-293.08L216-614.08v279.23q0 6.16 3.08 11.54 3.07 5.39 9.23 9.23L464-177.46Zm32 0 235.69-135.62q6.16-3.84 9.23-9.23 3.08-5.38 3.08-11.54v-279.23L496-470.54v293.08Zm-44.31 30.92L212.31-285.69q-13.26-7.58-20.78-20.68-7.53-13.09-7.53-28.25v-290.76q0-15.16 7.53-28.25 7.52-13.1 20.78-20.68l239.38-139.15q13.29-7.69 28.38-7.69 15.08 0 28.24 7.69l239.38 139.15q13.26 7.58 20.78 20.68 7.53 13.09 7.53 28.25v290.76q0 15.16-7.53 28.25-7.52 13.1-20.78 20.68L508.31-146.54q-13.29 7.69-28.38 7.69-15.08 0-28.24-7.69ZM620.46-580 735-645.46 491.31-785.08q-6.16-3.84-12.31-3.84t-12.31 3.84l-97.69 57L620.46-580ZM480-498.92l112-64.7-257-145.53-110 63.69 255 146.54Z'/></svg>");
                             }
@@ -116,7 +119,7 @@ echo("
                                 <div class='usertextbox'>
                                     <a class='utext t'>$ordernum</a>
                                     &nbsp; &nbsp; &nbsp;
-                                    <a class='utext t'>$userid</a>
+                                    <a class='utext t'>$orderuserid</a>
                                 </div>
                                 <div class='usertextbox'>
                                     <a class='utext t'>$receiver</a>
@@ -141,7 +144,7 @@ echo("
                     </div>
                     <div class='line'></div> ");
 
-                    $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session'");
+                    $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$orderuserid' AND orderlist.session='$session'");
                     while($row=mysqli_fetch_assoc($getorderlist)) {
                         $quantity=$row['quantity'];
                         $userfile=$row['userfile'];

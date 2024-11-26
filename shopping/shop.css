@@ -12,6 +12,7 @@ body {
   background-color: whitesmoke;
   color: rgb(28, 28, 28);
   font-family: "Gowun Batang", serif;
+  /* font-family: "Do Hyeon", sans-serif; */
 }
 .top {
   width: 100%;
@@ -325,3 +326,6 @@ a svg:hover #review {
   background-color: rgb(200, 200, 200);
 }
 /* ------------------------------------ - ----------------------------------- */
+a svg:hover .icon {
+  fill: rgb(172, 155, 134);
+}

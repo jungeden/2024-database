@@ -53,5 +53,6 @@ if (isset($userfile['name'])) {
 $insertreview = mysqli_query($con,"INSERT INTO review(pcode, userid, wdate, star, content, userfile) VALUES ('$pcode', '$userid', '$wdate', '$star', '$content','$userfile_name')");
 
 mysqli_close($con);
+echo ("<meta http-equiv='Refresh' content='0; url=productdetailPage.php?code=$pcode'>");
 
 ?>

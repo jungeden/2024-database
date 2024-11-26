@@ -1,5 +1,13 @@
 <?
 session_start();
+
+if (isset($_COOKIE['userid'])) {
+    $userid = $_COOKIE['userid'];
+} else {
+    $page='my';
+    header("Location: loginPage.php?page=$page");
+    exit();
+} 
 include('top.php');
 
 
@@ -18,13 +26,7 @@ echo("
 //     echo ("<meta http-equiv='Refresh' content='0; url=loginPage.php?page=$my'>");
 // }
 
-if (isset($_COOKIE['userid'])) {
-    $userid = $_COOKIE['userid'];
-} else {
-    $page='my';
-    header("Location: loginPage.php?page=$page");
-    exit();
-} 
+
 
 $con = mysqli_connect("localhost","root","0000","shop");
 $getuserinfo=mysqli_query($con, "SELECT * from user WHERE userid='$userid'");
