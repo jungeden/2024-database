@@ -65,7 +65,9 @@ html {
   margin: 0px 15px 0px 0px;
   text-align: center;
 
-  font-family: "Gowun Batang", serif;
+  /* font-family: "Gowun Batang", serif; */
+  font-family: "Do Hyeon", sans-serif;
+
   position: relative;
 }
 
@@ -111,7 +113,8 @@ html {
   border: none;
   margin: 0px;
   cursor: pointer;
-  font-family: "Gowun Batang", serif;
+  /* font-family: "Gowun Batang", serif; */
+  font-family: "Do Hyeon", sans-serif;
 }
 
 .option:hover {

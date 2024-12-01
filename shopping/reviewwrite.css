@@ -3,7 +3,7 @@
   flex-direction: row;
   width: auto;
   margin: 30px 30px 30px 50px;
-  justify-content: start;
+  /* justify-content: start; */
   position: relative;
 }
 .product {
@@ -14,10 +14,36 @@
   height: auto;
   background-color: white;
 }
+.productphoto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: auto;
+  border: 0;
+}
 .photo {
   width: 100px;
   height: auto;
   border-radius: 12px;
+
+  /* background-color: rgb(230, 230, 230); */
+}
+
+.photopreview {
+  position: absolute;
+  /* background-color: rgb(230, 230, 230); */
+  background-color: whitesmoke;
+  /* border: 1px solid whitesmoke; */
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  object-fit: cover;
+  bottom: 90px;
+  /* left: 5px; */
+  right: 100px;
+  /* top: 10px; */
 }
 .productinfo {
   width: auto;
@@ -38,6 +64,11 @@
 }
 .ptext:hover {
   color: rgb(28, 28, 28);
+}
+.formstar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* .star {
   margin: 50px 0;
@@ -92,6 +123,7 @@
   width: 200px;
   display: flex;
   flex-direction: row;
+  justify-self: center;
 }
 .starbox {
   display: flex;
@@ -164,4 +196,18 @@
 }
 .star:hover {
   background-color: rgb(200, 200, 200);
+}
+.writebox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.input.content {
+  height: 200px;
+  margin: 10px 0 100px 0;
+}
+.file {
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
 }

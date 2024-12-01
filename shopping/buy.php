@@ -69,11 +69,13 @@ if ($payment == 'pay1') {
 
 $insertreceiver = mysqli_query($con, "INSERT INTO receivers (userid, session, receiver, phone, address, message, buydate, ordernum, status, payment) VALUES ('$userid','$Session', '$receiver', '$phone', '$address', '$message', '$buydate', '$ordernum', '$status', '$payment')");
 
-$getshoppingcart = mysqli_query($con, "SELECT pcode, quantity FROM shoppingcart WHERE userid ='$userid'");
+$getshoppingcart = mysqli_query($con, "SELECT * FROM shoppingcart WHERE userid ='$userid'");
 while($row=mysqli_fetch_assoc($getshoppingcart)) {
     $pcode=$row['pcode'];
     $quantity=$row['quantity'];
-    $insertorderlist=mysqli_query($con,"INSERT INTO orderlist (userid, session, pcode, quantity) VALUES ('$userid', '$Session', '$pcode', '$quantity')");
+    $color=$row['color'];
+    $size=$row['size'];
+    $insertorderlist=mysqli_query($con,"INSERT INTO orderlist (userid, session, pcode, quantity, size, color) VALUES ('$userid', '$Session', '$pcode', '$quantity', '$size', '$color')");
 }
 
 $deleteshoppingcart = mysqli_query($con, "DELETE FROM shoppingcart WHERE userid='$userid'");

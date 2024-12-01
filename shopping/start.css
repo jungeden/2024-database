@@ -1,18 +1,57 @@
 .container {
-}
-.middle.start {
   width: 100%;
-  height: 95%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.middle.start {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  position: sticky;
+  top: 0;
+  letter-spacing: 0.2em;
+  background-size: cover;
+  background-position: center;
+}
+.middle2.start {
+  width: 100%;
+  height: 100vh;
+  position: sticky;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(230, 230, 230);
+}
+.middle3.start {
+  width: 100%;
+  height: 100vh;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 }
 .left.middle {
 }
 .right.middle {
   /* width: 30%; */
   /* float: right; */
+}
+.line {
+  height: 0px;
+  width: 100%;
 }
 .logobox {
   width: 100%;
@@ -24,15 +63,87 @@
   align-items: center;
   transition: all;
   transition-duration: 1s;
-
+  /* position: relative; */
   text-align: center;
   /* background-color: rgb(230, 230, 230); */
 }
 .logotext.logo {
   font-size: 100px;
+  position: relative;
+  color: rgb(150, 150, 150);
+  /* height: 400px; */
 }
 .logotext {
   visibility: hidden;
+}
+.logotext.d {
+  position: absolute;
+  font-size: 100px;
+}
+.container:hover .logotext.d.d1 {
+  animation-name: d1;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  bottom: 0px;
+  /* left: 298px; */
+  left: 638px;
+}
+.container:hover .logotext.d.d2 {
+  animation-name: d2;
+  animation-duration: 2.5s;
+  animation-fill-mode: forwards;
+  bottom: 466px;
+  left: 0px;
+}
+.container:hover .logotext.d.d3 {
+  animation-name: d3;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  bottom: 10px;
+  /* left: 372px; */
+  left: 712px;
+}
+.container:hover .logotext.d.d4 {
+  animation-name: d4;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  top: 0;
+  left: 762px;
+  /* left: 422px; */
+}
+.container:hover .logotext.d.d5 {
+  animation-name: d5;
+  animation-duration: 3.5s;
+  animation-fill-mode: forwards;
+  right: 0;
+  bottom: 466px;
+}
+@keyframes d1 {
+  to {
+    margin-bottom: 466px;
+  }
+}
+@keyframes d2 {
+  to {
+    /* margin-left: 348px; */
+    margin-left: 688px;
+  }
+}
+@keyframes d3 {
+  to {
+    margin-bottom: 456px;
+  }
+}
+@keyframes d4 {
+  to {
+    margin-top: 232px;
+  }
+}
+@keyframes d5 {
+  to {
+    margin-right: 638px;
+    /* margin-right: 298px; */
+  }
 }
 /* .menubox {
   border: 1px solid rgb(28, 28, 28);
@@ -48,3 +159,13 @@
 .container:hover .logotext {
   visibility: visible;
 }
+/* .container2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: rgb(150, 150, 150);
+} */

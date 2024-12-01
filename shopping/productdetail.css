@@ -1,52 +1,83 @@
+body {
+}
+
+.container {
+  height: auto;
+  width: auto;
+}
 .middle.productdetail {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: row;
+  justify-content: center;
   position: relative;
 }
+.mi {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 800px;
+}
 .left.middle {
-  width: 70%;
+  /* width: 70%; */
   height: 100%;
   display: flex;
   flex-direction: column;
+  margin: 0 10px 0 0;
 }
 .right.middle {
-  width: 30%;
+  /* width: 30%; */
   height: 100%;
   display: flex;
   flex-direction: column;
+  margin: 30px 0 0 10px;
 }
-.photobox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.line.ph {
+  /* width: 90%; */
 }
+
 .reviewbox {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
+  padding-top: 200px;
 }
 .review {
-  width: 100%;
-  height: 300px;
+  /* width: 100%; */
+  width: auto;
+  /* border-radius: 8px; */
+
+  /* height: 130px; */
+
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  margin: 20px;
+  border-bottom: 1px solid rgb(200, 200, 200);
 }
 .reviewuser {
   height: 40%;
   display: flex;
   flex-direction: row;
+  margin: 5px;
 }
 .reviewuserinfo {
   display: flex;
   flex-direction: column;
 }
+.reviewstart {
+  margin: 10px;
+}
 .reviewstar {
   width: 200px;
   display: flex;
   flex-direction: row;
+  margin-left: 10px;
+}
+.reviewtext {
+  margin-left: 10px;
 }
 .stars {
   display: flex;
@@ -58,11 +89,28 @@
   width: 40px;
   height: 40px;
   position: relative;
+  /* margin: 5px; */
+}
+.refile {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin: 5px;
+}
+.rephoto {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin: 5px;
 }
 .star {
   width: 40px;
   height: 40px;
-  clip-path: polygon(
+  /* clip-path: polygon(
     30% 27%,
     50% 0%,
 
@@ -77,6 +125,18 @@
 
     20% 60%,
     0% 35%
+  ); */
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    100% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
   );
   background-color: rgb(230, 230, 230);
   /* background-color: rgb(28, 28, 28); */
@@ -102,6 +162,18 @@
     20% 60%,
     0% 35%
   );
+  /* clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    100% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  ); */
 }
 .star.right {
   clip-path: polygon(
@@ -121,7 +193,25 @@
     50% 35%
   );
 }
-
+.starbox.small {
+  width: 25px;
+  height: 25px;
+}
+.star.small {
+  width: 25px;
+  height: 25px;
+}
+.staraveragenum {
+  margin: 10px 10px 0 10px;
+}
+#starnum {
+  border: 0;
+  background-color: whitesmoke;
+  font-size: 30px;
+  width: 20px;
+  /* font-family: "Gowun Batang", serif; */
+  font-family: "Do Hyeon", sans-serif;
+}
 .productinfobox {
   display: flex;
   flex-direction: column;
@@ -130,28 +220,47 @@
   display: flex;
   flex-direction: column;
 }
+.productcontentbox.price {
+  margin-bottom: 50px;
+}
+.productoptionbox {
+  display: flex;
+  flex-direction: row;
+}
 .namelikebox {
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 .buttonbox {
   display: flex;
   flex-direction: column;
   /* margin: 10px; */
 }
+.photobox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin: 30px;
+  border-radius: 8px;
+  /* border: 1px solid rgb(28, 28, 28); */
+}
 .photo {
-  width: 500px;
+  width: 400px;
   height: auto;
   max-width: 500px;
   max-height: 500px;
   transition-property: all;
   transition-duration: 1s;
+  border-radius: 8px;
 }
 .photobox:hover .photo {
-  width: auto;
+  /* width: auto;
   height: auto;
   max-width: 550px;
-  max-height: 550px;
+  max-height: 550px; */
 }
 .productname {
   font-size: 24px;
@@ -180,18 +289,22 @@
   border: 1px solid rgb(28, 28, 28);
   border-radius: 12px;
   text-align: center;
-  font-family: "Gowun Batang", serif;
+  /* font-family: "Gowun Batang", serif; */
+  font-family: "Do Hyeon", sans-serif;
+
   font-size: 15px;
   margin: 10px 0 15px 0;
   background-color: rgb(230, 230, 230);
 }
 .button {
   margin: 0;
+  background-color: rgb(230, 230, 230);
+  border: 0;
 }
 .numbuttonbox {
   display: flex;
   flex-direction: row;
-  margin: 0 20px 0 0;
+  margin: 0 20px 20px 0;
 }
 
 .numbuttonupdown {
@@ -201,7 +314,7 @@
   height: 40px;
   border-radius: 0 12px 12px 0;
 }
-.numbutton.up {
+/* .numbutton.up {
   border-radius: 0 12px 0 0;
   border-left: 0;
   border-bottom: 0;
@@ -216,15 +329,36 @@
   height: 20px;
   background-color: rgb(230, 230, 230);
   border: 1px solid rgb(28, 28, 28);
+} */
+.numbutton {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(230, 230, 230);
+  /* border: 1px solid rgb(28, 28, 28); */
+  border: 0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .numbutton:hover {
   background-color: rgb(200, 200, 200);
 }
-.input.num {
+/* .input.num {
   width: 80px;
   height: 40px;
   border-radius: 12px 0 0 12px;
-  /* border: 1px solid rgb(200, 200, 200); */
+} */
+
+.input {
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+  padding: 0;
+  background-color: whitesmoke;
+  border: 0;
+  margin: 0;
 }
 .back {
   position: absolute;
@@ -255,4 +389,122 @@
   width: 300px;
   height: 30px;
   display: none;
+}
+.ql-editor.element.con {
+  overflow-y: visible;
+}
+.deletereview {
+  position: absolute;
+  right: 1%;
+  top: 15px;
+}
+/* ---------- */
+.heart1 {
+  width: 24px;
+  height: 24px;
+  background: rgb(230, 230, 230);
+  clip-path: path(
+    "M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"
+  );
+  /* transform: scale(5); */
+  /* position: absolute; */
+  /* right: 0px; */
+  border: 0;
+}
+
+.heart2 {
+  width: 24px;
+  height: 24px;
+  background: #ff5252;
+  clip-path: path(
+    "M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"
+  );
+  /* transform: scale(5); */
+  /* position: absolute; */
+  /* right: 0px; */
+}
+.heart1:hover {
+  /* background-color: #ff5252; */
+  background-color: rgb(28, 28, 28);
+}
+.likebutton {
+  height: auto;
+  position: absolute;
+  right: 50px;
+}
+
+.check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgb(200, 200, 200);
+  /* border: 1px solid rgb(28, 28, 28); */
+
+  transition: all 0.3s ease;
+  position: relative;
+  margin: 0 5px 10px 5px;
+}
+.check::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  /* background-color: rgb(200, 200, 200); */
+  /* background-color: rgb(28, 28, 28); */
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 0.3s ease;
+}
+.check.fixed::after {
+  opacity: 1;
+  /* top: 50%;
+  left: 50%; */
+  transform: translate(-50%, -50%) scale(1);
+}
+a:hover {
+  color: rgb(28, 28, 28);
+}
+.optiontextbox {
+  width: 50px;
+  height: 30px;
+  border-radius: 8px;
+  border: 2px solid rgb(200, 200, 200);
+  color: rgb(200, 200, 200);
+  /* background-color: rgb(230, 230, 230); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 5px 10px 5px;
+}
+.optiontextbox:hover {
+  background-color: rgb(230, 230, 230);
+}
+.productinfotext:hover {
+  color: rgb(28, 28, 28);
+}
+/* .optiontextbox.optioncolor {
+  border-radius: 50%;
+  opacity: 0;
+  width: 30px;
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+} */
+.optiontextbox.optioncolor:hover {
+  opacity: 1;
+}
+.check.fixed.color {
+  position: absolute;
+  bottom: 23px;
+  left: 7px;
+  opacity: 1;
+  width: 25px;
+  height: 25px;
+  margin: 0 2px 0 2px;
+}
+.optioncolorpo {
+  position: relative;
 }

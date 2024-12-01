@@ -181,11 +181,13 @@
 }
 .photo {
   border-radius: 12px;
-  border: 1px solid rgb(28, 28, 28);
+  /* border: 1px solid rgb(28, 28, 28); */
   width: 100px;
-  height: auto;
+  height: 100px;
   display: flex;
   flex-direction: row;
+  border: 0;
+  object-fit: cover;
 }
 .productinfotext {
   width: 100px;

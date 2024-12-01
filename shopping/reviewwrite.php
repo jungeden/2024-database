@@ -24,13 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 $pcode=$_GET['pcode'];
+$size=$_GET['size'];
+$color=$_GET['color'];
 date_default_timezone_set('Asia/Seoul'); 
 $wdate=date('Y년 m월 d일');
 $star = $_POST['star'];
 $content = $_POST['content'];
 $userfile = $_FILES['userfile'];
 var_dump($_POST);
-
+$getsession = mysqli_query($con, "SELECT session FROM orderlist WHERE userid='$userid' AND pcode='$pcode' AND size='$size' AND color='$color'");
+$row=mysqli_fetch_assoc($getsession);
+$session=$row['session'];
 
 if (isset($userfile['name'])) {
     $userfile_name = basename($userfile['name']);
@@ -50,7 +54,7 @@ if (isset($userfile['name'])) {
 }
 
 
-$insertreview = mysqli_query($con,"INSERT INTO review(pcode, userid, wdate, star, content, userfile) VALUES ('$pcode', '$userid', '$wdate', '$star', '$content','$userfile_name')");
+$insertreview = mysqli_query($con,"INSERT INTO review(pcode, userid, wdate, star, content, userfile, session, size, color) VALUES ('$pcode', '$userid', '$wdate', '$star', '$content','$userfile_name', '$session', '$size', '$color')");
 
 mysqli_close($con);
 echo ("<meta http-equiv='Refresh' content='0; url=productdetailPage.php?code=$pcode'>");

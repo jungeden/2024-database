@@ -107,6 +107,8 @@ echo("
                     $name=$row['name'];
                     $price1=$row['price1'];
                     $pcode=$row['pcode'];
+                    $color=$row['color'];
+                    $size=$row['size'];
 
                     $sumprice=number_format($quantity*$price1);
 
@@ -117,7 +119,7 @@ echo("
                     </div>
                     <div class='productinfo'>
                         <a>$name</a>
-                        <a>옵션</a>
+                        <a>$size / $color</a>
                     </div>
                     <div class='productinfo'>
                         <a>$quantity</a>
