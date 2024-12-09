@@ -26,8 +26,11 @@ $price2=$row['price2'];
 $content=$row['content'];
 $hit=$row['hit'];
 $userfile=$row['userfile'];
+$class=$row['class'];
 
 $price1=number_format($price1);
+
+
 
 
 $hitupdate = mysqli_query($con, "UPDATE product SET hit=hit+1 WHERE code='$code'");
@@ -35,13 +38,11 @@ echo("
 <head>
 <link href='https://cdn.quilljs.com/1.3.6/quill.snow.css' rel='stylesheet'>
 <title> </title>
-<style>
+    <style>
         @import url(shop.css);
         @import url(productdetail.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
-
- 
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
     </style>
     <script src='scroll.js' defer></script>
     <script src='https://cdn.quilljs.com/1.3.6/quill.min.js'></script>
@@ -51,7 +52,7 @@ echo("
         <div class='top start'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>
@@ -113,193 +114,10 @@ echo("
                         </div>
                     </div>
                     
-                    <div class='line ph'></div>");
-                    $getproductfile=mysqli_query($con, "SELECT * from product WHERE code='$code'");
-
-                    while ($file = mysqli_fetch_assoc($getproductfile)) {
-                        // detailfile 필드가 여러 파일을 저장한 경우, 콤마로 구분된 파일 이름을 배열로 나눔
-                        $detailfiles = explode(',', $file['detailfile']); 
-                        
-                        foreach ($detailfiles as $detailfile) {
-                            // $detailfile = trim($detailfile); // 공백 제거 (필요시)
-                            echo("
-                            <div class='photobox'>
-                                <div class='photo'>
-                                    <a href='#' onclick=\"window.open('./uploads/$detailfile','_new')\">
-                                        <img class='photo' src='./uploads/$detailfile' alt='Product Image'>
-                                    </a>
-                                </div>
-                            </div>
-                            ");
-                        }
-                    }
-
-
-                    echo("
-                    <div class='ql-editor element con'>$content</div>");
-                    $totalstar=0;
-                    $getreview = mysqli_query($con,"SELECT * FROM review WHERE pcode='$code'");
-                    $total=mysqli_num_rows($getreview);
-
-                    // while($rows=mysqli_fetch_assoc($getreview)) {
-                    //     $restar=$rows['star'];
-                        
-                    // }
-
-                    echo("
-                    <div class='reviewbox'>
-                        <div class='reviewstart'>
-                        <div class='staraveragenum'>
-                            <input id='starnum'>/<a>10</a>
-                            </div>
-                            <div class='reviewstar user'>
-                                <div class='starbox'>
-                                    <div data-value='1' id='star-1' class='star left'></div>
-                                    <div data-value='2' id='star-2' class='star right'></div>
-                                </div>
-                                <div class='starbox'>
-                                    <div data-value='3' id='star-3' class='star left'></div>
-                                    <div data-value='4' id='star-4' class='star right'></div>
-                                </div>
-                                <div class='starbox'>
-                                    <div data-value='5' id='star-5' class='star left'></div>
-                                    <div data-value='6' id='star-6' class='star right'></div>
-                                </div>
-                                <div class='starbox'>
-                                    <div data-value='7' id='star-7' class='star left'></div>
-                                    <div data-value='8' id='star-8' class='star right'></div>
-                                </div>
-                                <div class='starbox'>
-                                    <div data-value='9' id='star-9' class='star left'></div>
-                                    <div data-value='10' id='star-10' class='star right'></div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        
-                        ");
-
-                    
-
-                    $totalstar=0;
-
-                        if($total==0) {
-                            echo("<div class='reivew'>
-                            리뷰가 없습니다.</div>");
-                        } else {
-                            $i = 1;
-                            while($rows=mysqli_fetch_assoc($getreview)) {
-                            
-                            $reuserid=$rows['userid'];
-                            $rewdate=$rows['wdate'];
-                            $restar=$rows['star'];
-                            $recontent=$rows['content'];
-                            $reuserfile=$rows['userfile'];
-                            $resession=$rows['session'];
-                            $size=$rows['size'];
-                            $color=$rows['color'];
-
-                            $totalstar = $totalstar+$restar;
-                        
-                        echo("
-                        <div class='line'></div>
-
-                        <div class='review'>
-                            <div class='reviewuser'>
-                                <div >");
-                                 echo("   <svg xmlns='http://www.w3.org/2000/svg' height='45px' viewBox='0 -960 960 960' width='45px' fill='#181818'><path id='my'  d='M247.85-260.62q51-36.69 108.23-58.03Q413.31-340 480-340t123.92 21.35q57.23 21.34 108.23 58.03 39.62-41 63.73-96.84Q800-413.31 800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 66.69 24.12 122.54 24.11 55.84 63.73 96.84ZM480.02-460q-50.56 0-85.29-34.71Q360-529.42 360-579.98q0-50.56 34.71-85.29Q429.42-700 479.98-700q50.56 0 85.29 34.71Q600-630.58 600-580.02q0 50.56-34.71 85.29Q530.58-460 480.02-460ZM480-120q-75.31 0-141-28.04t-114.31-76.65Q176.08-273.31 148.04-339 120-404.69 120-480t28.04-141q28.04-65.69 76.65-114.31 48.62-48.61 114.31-76.65Q404.69-840 480-840t141 28.04q65.69 28.04 114.31 76.65 48.61 48.62 76.65 114.31Q840-555.31 840-480t-28.04 141q-28.04 65.69-76.65 114.31-48.62 48.61-114.31 76.65Q555.31-120 480-120Zm0-40q55.31 0 108.85-19.35 53.53-19.34 92.53-52.96-39-31.31-90.23-49.5Q539.92-300 480-300q-59.92 0-111.54 17.81-51.61 17.81-89.84 49.88 39 33.62 92.53 52.96Q424.69-160 480-160Zm0-340q33.69 0 56.85-23.15Q560-546.31 560-580t-23.15-56.85Q513.69-660 480-660t-56.85 23.15Q400-613.69 400-580t23.15 56.85Q446.31-500 480-500Zm0-80Zm0 350Z'/></svg>");
-                                echo("
-                                 </div>
-                                <div class='reviewuserinfo'>
-                                    <a>$reuserid</a>
-                                    <a>$rewdate</a>
-                                </div>
-                            </div>
-                            <div>
-                            <a>$size / $color</a>
-                            </div>
-                                
-                            <div class='reviewstar user'>
-                                <div class='stars' id='stars-$i'>
-                                    <div class='starbox small'>
-                                        <div data-value='1' id='star-$i-1' class='star left small'></div>
-                                        <div data-value='2' id='star-$i-2' class='star right small'></div>
-                                    </div>
-                                    <div class='starbox small'>
-                                        <div data-value='3' id='star-$i-3' class='star left small'></div>
-                                        <div data-value='4' id='star-$i-4' class='star right small'></div>
-                                    </div>
-                                    <div class='starbox small'>
-                                        <div data-value='5' id='star-$i-5' class='star left small'></div>
-                                        <div data-value='6' id='star-$i-6' class='star right small'></div>
-                                    </div>
-                                    <div class='starbox small'>
-                                        <div data-value='7' id='star-$i-7' class='star left small'></div>
-                                        <div data-value='8' id='star-$i-8' class='star right small'></div>
-                                    </div>
-                                    <div class='starbox small'>
-                                        <div data-value='9' id='star-$i-9' class='star left small'></div>
-                                        <div data-value='10' id='star-$i-10' class='star right small'></div>
-                                    </div>
-                                </div>
-                                <script>
-                                    for (let j = 1; j <= $restar; j++) {
-                                        const starElement = document.getElementById(`star-$i-\${j}`);
-                                        if (starElement) {
-                                            starElement.style.backgroundColor = 'rgb(28,28,28)';
-                                        }
-                                    }
-                                    
-                                </script>
-                            </div>
-                            <div class=' refile'>
-                                <a href='#' onclick=\"window.open('./photo/$reuserfile','_new')\"><img class='rephoto' src='./photo/$reuserfile'></a>
-                            </div>
-                            <div class='reviewtext'>
-                                <a>$recontent</a>
-                            </div>");
-                            if($reuserid==$userid) {
-                                echo(" 
-                                <div class='deletereview'>
-                                    <a href='deletereview.php?code=$code&session=$resession'>");
-                                    echo("<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path d='m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z'/></svg>");
-                                    // echo("<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path class='icon' d='M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z'/></svg>");
-                                    //    echo(" <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path d='m376-327.69 104-104 104 104L612.31-356l-104-104 104-104L584-592.31l-104 104-104-104L347.69-564l104 104-104 104L376-327.69ZM304.62-160q-27.62 0-46.12-18.5Q240-197 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720Zm-400 0v520-520Z'/></svg>");
-                                    echo("</a>
-                                 </div>
-                                 "); 
-                            }
-                          
-                           
-                        echo("
-                        </div>
-                        ");
-                        $i++;
-                    } 
-                  
-                    $averagestar=$totalstar/$total;
-                    $resultstar = round($averagestar, 0);
-                    // $resultstar = intval($averagestar);
-                    // echo("$totalstar, $averagestar, $resultstar");
-                    echo("
-                    <script>
-                        for(let k=1; k<=$resultstar; k++) {
-                        const startotal = document.getElementById(`star-\${k}`);
-                        if(startotal) {
-                            startotal.style.backgroundColor = 'rgb(28,28,28)';
-                        }
-                        document.getElementById('starnum').value = $averagestar;
-                    }
-                    
-                    </script>
-                    
                     ");
-                }
-            
-            
-
+                   
                         echo("
-                    </div>
+                    
 
                 </div>
                 <div class='right middle'>
@@ -342,14 +160,30 @@ echo("
                                 // </script>");
                                 // }
                                 if($islike == 0) {
+
                                     echo("
-                                     <button class='heart1'id='heart' style='background-color:rgb(28,28,28);' onclick='window.location=\"like.php?islike=$islike&pcode=$code&page=productdetail\"'></button>
+
+                                     <button class='heart1' id='$code'  onclick='window.location=\"like.php?islike=$islike&pcode=$code&page=productdetail\"'></button>
                                    ");
+                                   echo("<script>document.getElementById('$code').classList.add('select');</script>");
+
                                     } else {
+
                                         echo("
-                                    <button class='heart1' id='heart' style='background-color:rgb(230,230,230);'onclick='window.location=\"like.php?islike=$islike&pcode=$code&page=productdetail\"'></button>
+                                        
+                                    <button class='heart1' id='$code' onclick='window.location=\"like.php?islike=$islike&pcode=$code&page=productdetail\"'></button>
                                     ");
+                                    echo("<script>document.getElementById('$code').classList.remove('select');</script>");
+
                                     }
+
+                                    $ch = mysqli_query($con,"SELECT pcode FROM likeit WHERE userid='$userid'");
+                                    while($chrow=mysqli_fetch_assoc($ch)) {
+                                        $chpcode=$chrow['pcode'];
+                                    
+                                    echo("<script>console.log('$chpcode');</script>");
+                                    }
+                                    
                                 echo("
                             </div>
                         </div>
@@ -380,7 +214,7 @@ echo("
                             foreach ($sizes as $size) {
                                 echo(" 
                                 <div class='optiontextbox optionsize' id='$size' style='margin-top:20px;' onclick=\"toggleFixed(this,'size')\" >
-                                    <a class='productinfotext ' style='color:rgb(200,200,200);'>$size</a>
+                                    <a class='productinfotext op '>$size</a>
                                 </div>");
                             }
                         }
@@ -401,7 +235,7 @@ echo("
 
                                 echo("  
                                 <div class='optiontextbox optioncolor' id='$color2' style='margin-bottom:20px;' onclick=\"toggleFixed(this,'color')\">
-                                    <a class='productinfotext ' style='color:rgb(200,200,200);'>$color2</a>
+                                    <a class='productinfotext op '>$color2</a>
                                 </div>");
                             }   
                         }
@@ -461,98 +295,340 @@ echo("
                 </div>
 
             </div>
-            <div id='messageBox' class='messagebox'></div>
+            <div class='messagerotation' id='messagerotation'>
+                <div class='messagebox' id='messageBox' ></div>
+            </div>
         </div>
         <div class='bottom start'>
+            <div class='line ph'></div>");
+            echo("
+            <div class='boxb'>");
+                $getproductfile=mysqli_query($con, "SELECT * from product WHERE code='$code'");
 
+                while ($file = mysqli_fetch_assoc($getproductfile)) {
+                    // detailfile 필드가 여러 파일을 저장한 경우, 콤마로 구분된 파일 이름을 배열로 나눔
+                    $detailfiles = explode(',', $file['detailfile']); 
+                    
+                    foreach ($detailfiles as $detailfile) {
+                        // $detailfile = trim($detailfile); // 공백 제거 (필요시)
+                        echo("
+                        <div class='photobox'>
+                            <div class='photo'>
+                                <a href='#' onclick=\"window.open('./uploads/$detailfile','_new')\">
+                                    <img class='photo' src='./uploads/$detailfile' alt='Product Image'>
+                                </a>
+                            </div>
+                        </div>
+                        ");
+                    }
+                }
+
+
+                echo("
+            <div class='ql-editor element con'>$content</div>");
+            $totalstar=0;
+            $getreview = mysqli_query($con,"SELECT * FROM review WHERE pcode='$code'");
+            $total=mysqli_num_rows($getreview);
+
+            // while($rows=mysqli_fetch_assoc($getreview)) {
+            //     $restar=$rows['star'];
+                
+            // }
+                echo("
+            </div>
+            <div class='line b'></div>
+            <div class='showdetailbox'>
+                <button id='showdetail' class='showdetail' onclick='showdetail()'>
+                    <a class='stext'>상세보기</a>
+                </button>
+            </div>");
+                echo("
+            <div class='reviewbox'>
+                <div class='reviewstart'>
+                    <div class='staraveragenum'>
+                        <input id='starnum'>/<a>10</a>
+                    </div>
+                    <div class='reviewstar'>
+                        <div class='starbox'>
+                            <div data-value='1' id='star-1' class='star left'></div>
+                            <div data-value='2' id='star-2' class='star right'></div>
+                        </div>
+                        <div class='starbox'>
+                            <div data-value='3' id='star-3' class='star left'></div>
+                            <div data-value='4' id='star-4' class='star right'></div>
+                        </div>
+                        <div class='starbox'>
+                            <div data-value='5' id='star-5' class='star left'></div>
+                            <div data-value='6' id='star-6' class='star right'></div>
+                        </div>
+                        <div class='starbox'>
+                            <div data-value='7' id='star-7' class='star left'></div>
+                            <div data-value='8' id='star-8' class='star right'></div>
+                        </div>
+                        <div class='starbox'>
+                            <div data-value='9' id='star-9' class='star left'></div>
+                            <div data-value='10' id='star-10' class='star right'></div>
+                        </div>
+                    </div>      
+                </div>
+                
+                ");
+
+            
+
+                $totalstar=0;
+
+                if($total==0) {
+                    echo("
+                    <div class='reivew'>
+                        <div class='notreview'>
+                            리뷰가 없습니다.
+                        </div>
+                    </div>");
+                } else {
+                    $i = 1;
+                    while($rows=mysqli_fetch_assoc($getreview)) {
+                    
+                        $reuserid=$rows['userid'];
+                        $rewdate=$rows['wdate'];
+                        $restar=$rows['star'];
+                        $recontent=$rows['content'];
+                        $reuserfile=$rows['userfile'];
+                        $resession=$rows['session'];
+                        $size=$rows['size'];
+                        $color=$rows['color'];
+
+                        $totalstar = $totalstar+$restar;
+                    
+                            echo("
+                        <div class='line'></div>
+
+                        <div class='review'>
+                            <div class='reviewuser'>
+                                <div>");
+                                    echo("   
+                                    <svg xmlns='http://www.w3.org/2000/svg' height='45px' viewBox='0 -960 960 960' width='45px' fill='#181818'><path id='my'  d='M247.85-260.62q51-36.69 108.23-58.03Q413.31-340 480-340t123.92 21.35q57.23 21.34 108.23 58.03 39.62-41 63.73-96.84Q800-413.31 800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 66.69 24.12 122.54 24.11 55.84 63.73 96.84ZM480.02-460q-50.56 0-85.29-34.71Q360-529.42 360-579.98q0-50.56 34.71-85.29Q429.42-700 479.98-700q50.56 0 85.29 34.71Q600-630.58 600-580.02q0 50.56-34.71 85.29Q530.58-460 480.02-460ZM480-120q-75.31 0-141-28.04t-114.31-76.65Q176.08-273.31 148.04-339 120-404.69 120-480t28.04-141q28.04-65.69 76.65-114.31 48.62-48.61 114.31-76.65Q404.69-840 480-840t141 28.04q65.69 28.04 114.31 76.65 48.61 48.62 76.65 114.31Q840-555.31 840-480t-28.04 141q-28.04 65.69-76.65 114.31-48.62 48.61-114.31 76.65Q555.31-120 480-120Zm0-40q55.31 0 108.85-19.35 53.53-19.34 92.53-52.96-39-31.31-90.23-49.5Q539.92-300 480-300q-59.92 0-111.54 17.81-51.61 17.81-89.84 49.88 39 33.62 92.53 52.96Q424.69-160 480-160Zm0-340q33.69 0 56.85-23.15Q560-546.31 560-580t-23.15-56.85Q513.69-660 480-660t-56.85 23.15Q400-613.69 400-580t23.15 56.85Q446.31-500 480-500Zm0-80Zm0 350Z'/></svg>");
+                                    echo("
+                                </div>
+                                <div class='reviewuserinfo'>
+                                    <a>$reuserid</a>
+                                    <a>$rewdate</a>
+                                </div>
+                            </div>
+                            <div style='margin-left:10px;'>
+                            <a>$size / $color</a>
+                            </div>
+                    
+                            <div class='reviewstar user'>
+                                <div class='stars' id='stars-$i'>
+                                    <div class='starbox small'>
+                                        <div data-value='1' id='star-$i-1' class='star left small'></div>
+                                        <div data-value='2' id='star-$i-2' class='star right small'></div>
+                                    </div>
+                                    <div class='starbox small'>
+                                        <div data-value='3' id='star-$i-3' class='star left small'></div>
+                                        <div data-value='4' id='star-$i-4' class='star right small'></div>
+                                    </div>
+                                    <div class='starbox small'>
+                                        <div data-value='5' id='star-$i-5' class='star left small'></div>
+                                        <div data-value='6' id='star-$i-6' class='star right small'></div>
+                                    </div>
+                                    <div class='starbox small'>
+                                        <div data-value='7' id='star-$i-7' class='star left small'></div>
+                                        <div data-value='8' id='star-$i-8' class='star right small'></div>
+                                    </div>
+                                    <div class='starbox small'>
+                                        <div data-value='9' id='star-$i-9' class='star left small'></div>
+                                        <div data-value='10' id='star-$i-10' class='star right small'></div>
+                                    </div>
+                                </div>
+                                <script>
+                                    for (let j = 1; j <= $restar; j++) {
+                                        const starElement = document.getElementById(`star-$i-\${j}`);
+                                        if (starElement) {
+                                            starElement.style.backgroundColor = 'rgb(255,197,90)';
+                                        }
+                                    }
+                                    
+                                </script>
+                            </div>
+                            <div class=' refile'>
+                                <a href='#' onclick=\"window.open('./photo/$reuserfile','_new')\"><img class='rephoto' src='./photo/$reuserfile'></a>
+                            </div>
+                            <div class='reviewtext'>
+                                <a>$recontent</a>
+                            </div>");
+                            if($reuserid==$userid) {
+                                    echo(" 
+                                <div class='deletereview'>
+                                    <a href='deletereview.php?code=$code&session=$resession'>");
+                                        echo("
+                                        <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path class='icon' d='m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z'/></svg>");
+                                    // echo("<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path class='icon' d='M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z'/></svg>");
+                                    //    echo(" <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path d='m376-327.69 104-104 104 104L612.31-356l-104-104 104-104L584-592.31l-104 104-104-104L347.69-564l104 104-104 104L376-327.69ZM304.62-160q-27.62 0-46.12-18.5Q240-197 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720Zm-400 0v520-520Z'/></svg>");
+                                        echo("
+                                    </a>
+                                </div>
+                                "); 
+                            }
+                        
+                        
+                            echo("
+                        </div>");
+                        $i++;
+                    } 
+            
+                    $averagestar=$totalstar/$total;
+                    $resultstar = round($averagestar, 0);
+                    // $resultstar = intval($averagestar);
+                    // echo("$totalstar, $averagestar, $resultstar");
+                    echo("
+                    <script>
+                        for(let k=1; k<=$resultstar; k++) {
+                            const startotal = document.getElementById(`star-\${k}`);
+                            if(startotal) {
+                                startotal.style.backgroundColor = 'rgb(255,197,90)';
+                            }
+                        document.getElementById('starnum').value = $averagestar;
+                        }
+                    </script>");
+                }
+                echo("
+            </div>");
+
+
+            echo(" 
+        
+        </div>
+        <div class='end'>");
+
+                echo("
+            <div class='products'>
+                ");
+                // echo("<div class='totalproducttext'><a style='font-size:20px; margin:10px 0 0 10px;'>인기 상품</a></div>");
+                $gettotalproduct = mysqli_query($con, "SELECT * FROM product WHERE class='$class' ORDER BY hit DESC");
+                while ($trow = mysqli_fetch_assoc($gettotalproduct)) {
+                    $tcode = $trow['code'];
+                    $tname = $trow['name'];
+                    $tprice1 = $trow['price1'];
+                    $tprice2 = $trow['price2'];
+                    $tuserfile = $trow['userfile'];  // 이미지 파일 경로
+                    $thit = $trow['hit'];
+                
+                    $price1=number_format($tprice1);
+                    if($tcode != $code) {
+                    echo ("
+                        <div class='product'>
+                            <div class='filebox'>
+                                <a href='productdetailPage.php?code=$tcode&userid=$userid&userfile=$tuserfile'>
+                                    <img class='tphoto' src='./photo/$tuserfile'>
+                                </a>sp
+                            </div>
+                            <div class='productinfobox'>
+                                <a class='productinfotext' href='productdetailPage.php?code=$tcode&userid=$userid&userfile=$userfile'>
+                                    $tname
+                                </a>
+                                <a class='productinfotext gray'>
+                                    $tprice1
+                                </a>
+                                <div class='producthit gray'>
+                                    <a > ");
+                                        // echo(" <svg class='hitimg' xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M480.18-345.85q55.97 0 94.97-39.18t39-95.15q0-55.97-39.18-94.97t-95.15-39q-55.97 0-94.97 39.18t-39 95.15q0 55.97 39.18 94.97t95.15 39ZM480-384q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm.11 152q-126.55 0-230.68-67.73Q145.31-367.46 91.08-480q54.23-112.54 158.24-180.27Q353.34-728 479.89-728t230.68 67.73Q814.69-592.54 868.92-480q-54.23 112.54-158.24 180.27Q606.66-232 480.11-232ZM480-480Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z'/></svg>"); 
+                                        echo("<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='rgb(150,150,150)'><path d='M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z'/></svg>");
+                                        echo(" </a>
+                                    <a style='font-size:13px; color:  rgb(150, 150, 150);'>$thit</a>
+                                </div>
+                            </div>
+                        </div>");
+                    }
+                }
+                             
+                echo("
+            </div>
         </div>
     </div>
 
         
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const messagebox = document.getElementById('messageBox');
-    const message = localStorage.getItem('cartMessage');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const messagebox = document.getElementById('messageBox');
+            const messagerotation =  document.getElementById('messagerotation');
+            const message = localStorage.getItem('cartMessage');
 
-    if (message) {
-        messagebox.style.display = 'block';
-      
-                    messagebox.innerHTML = message;
+            if (message) {
+            console.log('message 값:', message);
+                messagebox.innerHTML =  message;
+                messagebox.style.display = 'flex'; 
 
-      
+                setTimeout(() => {
+                    messagebox.style.display = 'none';
+                    localStorage.removeItem('cartMessage');
+                }, 3500);
 
-        setTimeout(() => {
-            messagebox.style.display = 'none';
-        }, 1300);
+            }
+        });
 
-        localStorage.removeItem('cartMessage');
-    }
-});
 
- 
-
-    document.getElementById('shoppingcartquantity').addEventListener('submit', function(event) {
     
-    const outsideValue = document.getElementById('choosequantity').value;
 
-   
-    const hiddenInput = document.createElement('input');
-    hiddenInput.type = 'hidden';
-    hiddenInput.name = 'quantity'; 
-    hiddenInput.value = outsideValue;
-
-   
-    this.appendChild(hiddenInput);
-  });
-
-
-   
-
-  function numchange(updown) {
-    const quantityInput = document.getElementById('choosequantity');
-    let num = parseInt(quantityInput.value); 
-    if (updown === 'up') {
-        quantityInput.value = num + 1;
-    } else {
-        if (num > 1) { 
-            quantityInput.value = num - 1;
-        }
-    }
-}
-
-function changecolor() {
+        document.getElementById('shoppingcartquantity').addEventListener('submit', function(event) {
         
-        document.getElementById('heart').style.backgroundColor='#ff5252';
+            const outsideValue = document.getElementById('choosequantity').value;
+
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'quantity'; 
+            hiddenInput.value = outsideValue;
+
+            this.appendChild(hiddenInput);
+        });
+
+
+    
+
+        function numchange(updown) {
+            const quantityInput = document.getElementById('choosequantity');
+            let num = parseInt(quantityInput.value); 
+            if (updown === 'up') {
+                quantityInput.value = num + 1;
+            } else {
+                if (num > 1) { 
+                    quantityInput.value = num - 1;
+                }
+            }
+        }
+
+        function changecolor() {
+            document.getElementById('heart').style.backgroundColor='#ff5252';
             }
 
 
-function toggleFixed(element, categories) {
-    // 모든 관련 옵션의 배경색을 초기화
-    const options = document.getElementsByClassName(`option\${categories}`);
-    for (let i = 0; i < options.length; i++) {
-        options[i].style.backgroundColor = 'whitesmoke';
-    }
-
-    // 클릭된 요소의 배경색 변경
-    element.style.backgroundColor = 'rgb(230,230,230)';
-
-    // 선택된 요소의 ID를 hidden input에 저장
-    document.getElementById(categories).value = element.id;
-}
-
-
+        function toggleFixed(element, categories) {
+            // 모든 관련 옵션의 배경색을 초기화
+            const options = document.getElementsByClassName(`option\${categories}`);
+            for (let i = 0; i < options.length; i++) {
+                options[i].classList.remove('selected');
+            }
+    
+            // 클릭된 요소의 배경색 변경
+            element.classList.add('selected');
+        
+            // 선택된 요소의 ID를 hidden input에 저장
+            document.getElementById(categories).value = element.id;
+        }
 
 
+        function showdetail () {
+            document.getElementsByClassName('boxb')[0].style.height = 'auto';
+            document.getElementById('showdetail').style.display = 'none';
+        }
 
+        
 
-</script>
+    </script>
 </body>
-
-
-");
-echo ("<script>
-    console.log('PHP 실행 확인: 장바구니 메시지 저장');
-    localStorage.setItem('cartMessage', '장바구니에 상품이 담겼습니다.'");
+    ");
+                
 
 mysqli_close($con);
 ?>

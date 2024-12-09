@@ -5,3 +5,23 @@
   /* justify-content: center; */
   align-items: center;
 }
+.productinfo {
+  margin-left: 5px;
+}
+.gray {
+  /* color: rgb(150, 150, 150); */
+  color: var(--button-bg-color3);
+  fill: var(--button-bg-color3);
+}
+.gray:hover {
+  color: var(--button-bg-color3);
+  /* color: rgb(150, 150, 150); */
+}
+.current {
+  color: var(--button-hover-color);
+}
+.producthit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

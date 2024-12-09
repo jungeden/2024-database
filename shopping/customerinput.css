@@ -1,0 +1,189 @@
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+}
+
+.qnalistbox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* .qnatextbox {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+.issecretbox {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  /* color: var(--button-bg-color); */
+}
+.ho:hover {
+  color: rgb(200, 200, 200);
+  /* color: rgb(28, 28, 28); */
+}
+.ho {
+  color: rgb(150, 150, 150);
+}
+.check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  /* border: 1px solid rgb(200, 200, 200); */
+  border: 1px solid var(--button-hover-color);
+  /* border: 1px solid rgb(28, 28, 28); */
+
+  transition: all 0.3s ease;
+  position: relative;
+  margin: 0 5px 0px 5px;
+}
+.check::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  /* background-color: rgb(200, 200, 200); */
+  background-color: var(--button-hover-color);
+  /* background-color: rgb(28, 28, 28); */
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 0.3s ease;
+}
+.check:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+.check.fixed::after {
+  opacity: 1;
+  /* top: 50%;
+    left: 50%; */
+  transform: translate(-50%, -50%) scale(1);
+}
+.productphoto {
+  width: 500px;
+  height: 300px;
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--hover2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  margin: 0 0 10px 0;
+  /* border: 1px solid rgb(200, 200, 200); */
+  border: 1px solid var(--button-hover-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all;
+  transition-duration: 1s;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.productphoto.de {
+  height: 100px;
+  margin-top: 20px;
+}
+.productphoto.de:hover {
+  width: 500px;
+  height: 150px;
+}
+.photo {
+  width: 250px;
+  height: 400px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 8px;
+}
+.phototext {
+  /* color: rgb(200, 200, 200); */
+  color: var(--button-hover-color);
+  position: absolute;
+}
+.file {
+  left: 35px;
+  font-size: 18px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  cursor: pointer;
+}
+.ql-toolbar.ql-snow {
+  border-radius: 8px 8px 0 0px;
+  /* border: 1px solid rgb(200, 200, 200); */
+  border: 1px solid var(--button-hover-color);
+  width: 500px;
+  height: 50px;
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--hover2);
+  /* color: rgb(172, 155, 134); */
+}
+.ql-container.ql-snow {
+  border-radius: 0 0 8px 8px;
+  height: 100px;
+  /* font-family: "Gowun Batang", serif; */
+  width: 500px;
+  /* background-color: rgb(230, 230, 230); */
+  border: 1px solid var(--button-hover-color);
+  font-family: "Do Hyeon", sans-serif;
+  font-size: 15px;
+}
+.button {
+  border: 0;
+  background-color: var(--button-bg-color);
+}
+.button:hover {
+  background-color: var(--button-hover-color);
+}
+.classoptionbox {
+  width: auto;
+  height: auto;
+  /* border-radius: 8px;
+    border: 1px solid rgb(28, 28, 28); */
+}
+.input.coption {
+  border: none;
+  background-color: white;
+  color: rgb(214, 157, 52);
+  margin: 0;
+  cursor: pointer;
+  border-radius: 0;
+  z-index: 2000;
+}
+.input.coption:hover {
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--button-bg-color);
+}
+.classinputoption {
+  list-style-type: none;
+  padding: 0;
+  /* visibility: hidden; */
+  opacity: 0.6;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  position: absolute;
+  height: 100px;
+  z-index: 1000;
+  width: auto;
+  overflow-y: auto;
+  border-radius: 8px;
+  /* border: 1px solid rgb(28, 28, 28); */
+  border: 1px solid rgb(214, 157, 52);
+  /* border: 1px solid var(--button-bg-color2); */
+  top: 300px;
+}
+.hide {
+  display: none;
+}

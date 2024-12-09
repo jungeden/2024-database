@@ -35,7 +35,7 @@ echo("
         <div class='top start'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>
@@ -110,7 +110,9 @@ echo("
                 <div class='productbox shoppingcart'>
                     <div class='product'>
                         <div class='photo'>
-                            <img class='photo' src='./photo/$userfile'>
+                            <a href='productdetailPage.php?code=$pcode&userid=$userid&userfile=$userfile'>
+                                <img class='photo' src='./photo/$userfile'>
+                            </a>
                         </div>
                     </div>
                     <div class='productinfo'>

@@ -24,7 +24,7 @@ echo("
         <div class='top start'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>
@@ -71,13 +71,20 @@ echo("
 
         <div class='middle start'>
             <div class='logobox'>
-                <a class='logotext logo'>TITLE</a>
-                <a class='logotext'>어쩌고 저쩌고</a>
-                <a class='logotext d d1'>T</a>
-                <a class='logotext d d2'>I</a>
-                <a class='logotext d d3'>T</a>
-                <a class='logotext d d4'>L</a>
-                <a class='logotext d d5'>E</a>
+                <a class='logotext logo'>ZAUM</a>
+                <a class='logotext'>어쩌고 저쩌고</a>");
+                echo("
+                <a class='logotext z z1'>Z</a>
+                <a class='logotext z z2'>A</a>
+                <a class='logotext z z3'>U</a>
+                <a class='logotext z z4'>M</a>");
+                // echo("
+                // <a class='logotext d d1'>T</a>
+                // <a class='logotext d d2'>I</a>
+                // <a class='logotext d d3'>T</a>
+                // <a class='logotext d d4'>L</a>
+                // <a class='logotext d d5'>E</a>");
+                echo("
             </div>
             <div class='productbox'>
                 <div class='left middle'>
@@ -88,10 +95,10 @@ echo("
                 </div>
             </div>
         </div>
-        <div class='middle start' style='background-color:rgb(230,230,230);' >
-
+        <div class='middle start n2'  >
+                
         </div>
-        <div class='middle start' style='background-color:white;' >
+        <div class='middle start n3'  >
 
         </div>
 

@@ -1,0 +1,182 @@
+.middle {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+.left.middle {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(230, 230, 230);
+}
+.right.middle {
+  width: 1000px;
+  display: flex;
+
+  flex-direction: row;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.usernamebox {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+}
+.username {
+  width: 150px;
+  height: 40px;
+  margin: 10px 0 0 20px;
+
+  transition: all;
+  transition-duration: 1s;
+  background-color: rgb(200, 200, 200);
+  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 100% 100%, 90% 50%, 100% 0%);
+}
+.username:hover {
+  clip-path: polygon(0% 0%, 0% 100%, 50% 80%, 100% 100%, 100% 0%);
+
+  width: 90px;
+  height: 150px;
+}
+.usernametext {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.logouttext {
+  margin: 50px 0 0 7px;
+  font-size: 15px;
+}
+.logouttext:hover {
+  color: whitesmoke;
+}
+.text.name {
+  font-size: 20px;
+  margin: 5px 0 0 10px;
+}
+.text.nim {
+  font-size: 15px;
+  margin: 8px 0 0 1px;
+
+  /* color: rgb(200, 200, 200); */
+}
+.text:hover {
+  color: rgb(28, 28, 28);
+}
+.menubox {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  height: 70%;
+}
+.menutext {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+.m:hover {
+  color: whitesmoke;
+}
+.m {
+  z-index: 2;
+  position: relative;
+  margin: 0 0 0 5px;
+}
+.mbox {
+  margin: 10px 0 10px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.mdiv {
+  width: 0px;
+  height: 30px;
+  transition-property: all;
+  transition-duration: 1s;
+  position: absolute;
+  background-color: rgb(200, 200, 200);
+  z-index: 1;
+}
+.mbox:hover .mdiv {
+  /* transition-property: width;
+  transition-duration: 1s; */
+  clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 100% 100%, 90% 50%, 100% 0%);
+  color: whitesmoke;
+  background-color: rgb(200, 200, 200);
+  width: 150px;
+}
+.userinfobox {
+  width: 280px;
+  height: 0px;
+  background-color: wheat;
+  /* background-color: rgb(200, 200, 200); */
+  clip-path: polygon(0% 0%, 0% 100%, 50% 90%, 100% 100%, 100% 0%);
+
+  color: rgb(28, 28, 28);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  transition-duration: 1s;
+  transition-property: all;
+  margin: 0 0 0 30px;
+}
+.container:hover .userinfobox {
+  height: 550px;
+}
+
+.infolabeltext {
+  font-size: 16px;
+  margin: 20px 0 0 30px;
+}
+.userinfotext {
+  font-size: 20px;
+  margin: 0 0 10px 30px;
+}
+.pointbox {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  clip-path: polygon(0% 0%, 0% 100%, 50% 90%, 100% 100%, 100% 0%);
+  width: 300px;
+  height: 0;
+  transition-property: all;
+  transition-duration: 2s;
+  overflow-y: auto;
+  justify-content: end;
+  position: relative;
+  margin: 0 0 0 30px;
+}
+.po {
+  position: absolute;
+  top: 0px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+}
+.container:hover .pointbox {
+  height: 600px;
+}
+.plist {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: end;
+  justify-content: end;
+  padding-bottom: 50px;
+}
+.ptext {
+  display: flex;
+  flex-direction: row;
+}
+.pol {
+  width: auto;
+  height: auto;
+  overflow: auto;
+  padding-top: 300px;
+  /* background-color: rgb(200, 200, 200); */
+}

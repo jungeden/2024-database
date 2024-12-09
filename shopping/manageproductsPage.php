@@ -76,7 +76,7 @@ echo("
         <div class='top manageproducts'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>

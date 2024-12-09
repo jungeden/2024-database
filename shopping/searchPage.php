@@ -74,7 +74,7 @@ echo("
         <div class='top start'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>
@@ -146,7 +146,7 @@ echo("
                         $cpage = (int)$_GET['cpage'];  // 전달된 값은 정수로 변환
                     }
                     
-                    $pageSize = 9;  // 한 페이지에 출력할 데이터 수
+                    $pageSize = 10;  // 한 페이지에 출력할 데이터 수
                     
                     // 전체 페이지 수 계산
                     $sqlTotal = "SELECT COUNT(*) FROM product";
@@ -191,9 +191,10 @@ echo("
                         $name = $row['name'];
                         $price1 = $row['price1'];
                         $price2 = $row['price2'];
-                        $userfile = $row['userfile'];  // 이미지 파일 경로
+                        $userfile = $row['userfile'];
+                        $hit = $row['hit'];  
                     
-                        echo "
+                        echo ("
                         <div class='products'>
                             <div class='product'>
                                 <a href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
@@ -202,13 +203,20 @@ echo("
                             </div>
                             <div class='productinfo'>
                                 <a class='productinfotext' href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
-                                    $name
-                                </a>
-                                <a class='productinfotext'>
-                                    $price1
-                                </a>
+                                $name
+                            </a>
+                            <a class='productinfotext gray'>
+                                $price1
+                            </a>
+                            <div class='producthit gray'>
+                                <a class='gray'> ");
+                                    // echo(" <svg class='hitimg' xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M480.18-345.85q55.97 0 94.97-39.18t39-95.15q0-55.97-39.18-94.97t-95.15-39q-55.97 0-94.97 39.18t-39 95.15q0 55.97 39.18 94.97t95.15 39ZM480-384q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm.11 152q-126.55 0-230.68-67.73Q145.31-367.46 91.08-480q54.23-112.54 158.24-180.27Q353.34-728 479.89-728t230.68 67.73Q814.69-592.54 868.92-480q-54.23 112.54-158.24 180.27Q606.66-232 480.11-232ZM480-480Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z'/></svg>"); 
+                                    echo("<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' ><path d='M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z'/></svg>");
+                                    echo(" </a>
+                                <a style='font-size:13px; ' class='gray'>$hit</a>
                             </div>
-                        </div>";
+                            </div>
+                        </div>");
                         $counter++;
                     } 
                     echo "
@@ -232,7 +240,7 @@ echo("
                 <div class='pagechange'>");
                     // 이전 블록 링크
                     if ($pblock > 0) {
-                        echo "<a href='manageproductsPage.php?cblock=$pblock&cpage=$pStartPage&userid=$userid'>
+                        echo "<a href='searchPage.php?cblock=$pblock&cpage=$pStartPage&userid=$userid'>
                             <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'>
                                 <path id='beforepage' d='M560-267.69 347.69-480 560-692.31 588.31-664l-184 184 184 184L560-267.69Z'/>
                             </svg>
@@ -242,13 +250,13 @@ echo("
                     // 페이지 번호 출력
                     for ($i = $startPage; $i < $nStartPage && $i <= $totalPage; $i++) {
                         $class = ($i == $cpage) ? 'class="current"' : '';  // 현재 페이지는 스타일링
-                        echo "<div class='pagenum'><a href='manageproductsPage.php?cblock=$cblock&cpage=$i' $class>$i </a></div>";
+                        echo "<div class='pagenum'><a href='searchPage.php?cblock=$cblock&cpage=$i' $class>$i </a></div>";
 
                     }
                 
                     // 다음 블록 링크
                     if ($nStartPage <= $totalPage) {
-                        echo "<a href='manageproductsPage.php?cblock=$nblock&cpage=$nStartPage&userid=$userid'>
+                        echo "<a href='searchPage.php?cblock=$nblock&cpage=$nStartPage&userid=$userid'>
                             <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'>
                                 <path id='afterpage' d='m531.69-480-184-184L376-692.31 588.31-480 376-267.69 347.69-296l184-184Z'/>
                             </svg>

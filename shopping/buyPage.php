@@ -14,7 +14,17 @@ if (isset($_COOKIE['userid'])) {
     header("Location: loginPage.php?page=$page&code=$code");
     exit();
 }
-$userid=$_GET['userid'];
+// $userid=$_GET['userid'];
+// $form_data = $_SESSION['form_data'] ?? [];
+
+// $receiver = $form_data['receiver'] ?? '';
+// $phone = $form_data['phone'] ?? '';
+// $zipcode = $form_data['zipcode'] ?? '';
+// $address1 = $form_data['address1'] ?? '';
+// $address2 = $form_data['address2'] ?? '';
+// $message = $form_data['message'] ?? '';
+// $userpoint = $form_data['userpoint'] ?? 0;
+
 
 $receiver = isset($_GET['receiver']) ? $_GET['receiver'] : '';
 $phone = isset($_GET['phone']) ? $_GET['phone'] : '';
@@ -35,6 +45,7 @@ if($zipcode=='') {
 }
 
 $username=$row['username'];
+$point=$row['point'];
 
 
 if ($page == 'productdetail') {
@@ -50,6 +61,7 @@ echo("
         @import url(shop.css);
         @import url(buy.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
 
     </style>
 </head>
@@ -58,7 +70,7 @@ echo("
         <div class='top buy'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>
@@ -118,28 +130,28 @@ echo("
                             <div>
                                 <a class='rtext'>받는 사람</a>
                             </div>
-                            <input class='input element' type='text' name='receiver' placeholder='받는 사람 입력' value='$receiver'>
+                            <input class='input element' type='text' name='receiver' id='receiver' placeholder='받는 사람 입력' value='" . htmlspecialchars($receiver) . "'>
                             <div>
                                 <a class='rtext'>전화번호</a>
                             </div>
-                            <input class='input element' type='text' name='phone' placeholder='전화 번호 입력' value='$phone'>
+                            <input class='input element' type='text' name='phone' id='phone' placeholder='전화 번호 입력' value='$phone'>
                             <div>
                                 <a class='rtext'>배송지</a>
                             </div>
                             <div class='inputaddress1'>
-                                <input class='input zip' type='text' name='zipcode' placeholder='우편번호 찾기' value='$zipcode'>
+                                <input class='input zip' type='text' name='zipcode'  id='zipcode' placeholder='우편번호 찾기' value='$zipcode'>
                                 <button class='button check zipcode' type='button' onclick=\"window.open('findzipcodePage.php?page=buy','findreceiverzipcode','width=400,height=400,location=no,status=no,scrollbars=yes');\">
                                     &nbsp;&nbsp;&nbsp;&nbsp;우편번호
                                 </button>
                             </div>
                             <div class='inputaddress'>
-                                <input class='input element addr' name='address1' placeholder='주소' value='$address1'>
-                                <input class='input element addr' name='address2' type='text' placeholder='상세주소' value='$address2'>
+                                <input class='input element addr' name='address1' id='address1' placeholder='주소' value='$address1'>
+                                <input class='input element addr' name='address2' id='address2' type='text' placeholder='상세주소' value='$address2'>
                             </div>
                             <div style='margin-top:10px;'>
                                 <a class='rtext'>배송 메세지</a>
                             </div>
-                            <input class='input element' type='text' name='message' placeholder='배송 메세지 (0~30자 입력)' value='$message'>
+                            <input class='input element' type='text' name='message' id='message' placeholder='배송 메세지 (0~30자 입력)' value='$message'>
                             <div>
                                 <a class='rtext'>결제 수단</a>
                             </div>
@@ -165,6 +177,8 @@ echo("
                                 </div>
                             </div>
                         </div>
+                        <input style='display:none;' id='point' name='point' >
+                        <input style='display:none;' id='totalprice' name='totalprice' >
                         <input class='button b' type='submit' value='구매 하기'>
                     </form>
                 </div>
@@ -214,10 +228,43 @@ echo("
                     $counter++;
                     }
                     $totalprice = isset($totalprice) ? $totalprice : $sumprice; 
-                    $totalprice = number_format($totalprice);
-                    
+                    $totalpriceformat = number_format($totalprice);
+                    $userpoint = isset($_GET['userpoint'])?$_GET['userpoint'] : 0;
+                    $userpointformat = number_format($userpoint);
+                    $pointformat=number_format($point-$userpoint);
 
                     echo("
+                    <div class='pointbox'>
+                        <div class='pointinputbox'>
+                            <form class='pointinputbox' method='post' action='point.php?code=$code&page=$page'>
+                               
+                                <input class='input p' id='userpoint' name='userpoint' value='$userpointformat' placeholder='포인트 사용'>");
+                                echo("<button class='button p' type='submit' >사용</button>");
+                                // echo("<button class='button p' onclick='usepoint()' >사용</button>");
+                                echo("
+                                
+                               
+                            </form>
+                             
+                        </div>
+                        <a style='font-size:13px; margin-bottom:30px'>사용가능 포인트 : $pointformat</a>
+                        <div class='pointresultbox'>
+                           <div class='m2'><a> $totalpriceformat</a></div>
+                           <div class='m' ><a>-</a><a>$userpointformat</a></div>
+                           
+                           <div class='line'></div>
+                           ");
+
+
+                    $totalprice = $totalprice - $userpoint;
+                    $totalpriceformat = number_format($totalprice);
+                    
+
+                    echo("<div class='m2'>
+                            <a>$totalpriceformat</a>
+                            </div>
+                        </div>
+                    </div>
                     <div class='total'>
                         <a style='font-size:13px; margin-top:10px;'>총 결제 금액 </a>
                         <a>$totalprice 원</a>
@@ -236,10 +283,80 @@ echo("
         element.classList.add('fixed');
 
         document.getElementById('payment').value = element.id;
+
+
     }
 
 
 
+   
+
+
+        ");
+//         echo("
+        
+//          document.addEventListener('DOMContentLoaded', () => {
+//     const form = document.getElementById('buyform');
+
+//     Array.from(form.elements).forEach(input => {
+//         if (localStorage.getItem(input.name)) {
+//             input.value = localStorage.getItem(input.name);
+//         }
+//     });
+
+//     form.addEventListener('input', (event) => {
+//         localStorage.setItem(event.target.name, event.target.value);
+//     });
+//     document.getElementById('point').value=$userpoint;
+//     document.getElementById('totalprice').value=$totalprice;
+
+// });
+        
+        
+//         ");
+    //     echo("
+    // function usepoint() {
+    //     const userpoint = document.getElementById('userpoint').value;
+    //     document.getElementById('point').value = userpoint;
+    // }
+
+
+
+    // function autoSave(event) {
+    //     const { id, value } = event.target; // 입력 필드의 ID와 값 가져오기
+    //     localStorage.setItem('buyform_\${id}', value); // 로컬스토리지에 저장
+    // }
+
+    // // 페이지 로드 시 데이터 복원
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     const receiver = document.getElementById('receiver');
+    //     const phone = document.getElementById('phone');
+    //     const zipcode = document.getElementById('zipcode');
+    //     const address1 = document.getElementById('address1');
+    //     const address2 = document.getElementById('address2');
+    //     const payment = document.getElementById('payment');
+    //     const message = document.getElementById('message');
+
+    //     receiver.value = localStorage.getItem('buyform_receiver') || '';
+    //     phone.value = localStorage.getItem('buyform_phone') || '';
+    //     zipcode.value = localStorage.getItem('buyform_zipcode') || $zipcode;
+    //     address1.value = localStorage.getItem('buyform_address1') || $address1;
+    //     address2.value = localStorage.getItem('buyform_address2') || $address2;
+    //     payment.value = localStorage.getItem('buyform_payment') || '';
+    //     message.value = localStorage.getItem('buyform_message') || '';
+
+    //     // 값 변경 시 자동 저장 이벤트 추가
+    //     receiver.addEventListener('receiver', autoSave);
+    //     phone.addEventListener('phone', autoSave);
+    //     zipcode.addEventListener('zipcode', autoSave);
+    //     address1.addEventListener('address1', autoSave);
+    //     address2.addEventListener('address2', autoSave);
+    //     payment.addEventListener('payment', autoSave);
+    //     message.addEventListener('message', autoSave);
+    // });
+    // ");
+
+    echo("
     </script>
 </body>
 ");

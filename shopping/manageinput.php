@@ -6,7 +6,8 @@ if (isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
   
 } else {
-    $userid='';
+    header("Location: loginPage.php");
+    exit();
 }
 $code=$_POST['code'];
 $class=$_POST['class'];

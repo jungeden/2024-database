@@ -3,7 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 10px;
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--button-bg-color);
   border-radius: 12px;
 
   width: 100%;
@@ -35,7 +36,7 @@
   align-items: end;
   width: 100px;
   height: 40px;
-  border-bottom: 1px solid rgb(200, 200, 200);
+  border-bottom: 1px solid var(--button-bg-color2);
 
   margin: 0 5px 0 5px;
 }
@@ -72,7 +73,7 @@
   justify-content: center;
   align-items: center;
   margin: 0 5px 5px 0;
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230); */
   border: 0;
 }
 .middle {
@@ -84,6 +85,7 @@
 .utext.t {
   font-size: 15px;
   /* color: rgb(200, 200, 200); */
+  color: var(--button-bg-color3);
 }
 .usertext.t {
   /* border-bottom: 1px solid rgb(28, 28, 28); */
@@ -106,18 +108,22 @@
   margin-bottom: 10px;
 }
 .utext.titlet:hover {
-  color: rgb(200, 200, 200);
+  /* color: rgb(200, 200, 200); */
+  color: var(--button-hover-color);
 }
 .utext.titlet {
   cursor: pointer;
 }
 .productphoto {
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230); */
+  background-color: white;
   border-radius: 12px;
 }
 .photo {
   width: 80px;
-  height: auto;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
 }
 .box {
   height: 100%;

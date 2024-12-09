@@ -26,26 +26,35 @@ $address1 = $_POST['address1'];
 $address2 = $_POST['address2'];
 $message = $_POST['message'];
 $payment = $_POST['payment'];
+$point = $_POST['point'];
+$totalprice = $_POST['totalprice'];
 
 // 유효성 검사
 if (empty($receiver)) {
     echo ("<script>
         window.alert('받는 사람을 입력해주세요.');
-        window.location.href = 'buyPage.php';
+        window.location.href = 'buyPage.php?page=shoppingcart';
     </script>");
     exit();
 }
 if (empty($phone)) {
     echo ("<script>
         window.alert('전화 번호를 입력해주세요.');
-        window.location.href = 'buyPage.php';
+        window.location.href = 'buyPage.php?page=shoppingcart';
     </script>");
     exit();
 }
 if (empty($zipcode)) {
     echo ("<script>
         window.alert('배송지를 입력해주세요.');
-        window.location.href = 'buyPage.php';
+        window.location.href = 'buyPage.php?page=shoppingcart';
+    </script>");
+    exit();
+}
+if (empty($payment)) {
+    echo ("<script>
+        window.alert('결제수단을 입력해주세요.');
+        window.location.href = 'buyPage.php?page=shoppingcart';
     </script>");
     exit();
 }
@@ -54,6 +63,7 @@ if (empty($zipcode)) {
 $con = mysqli_connect("localhost", "root", "0000", "shop");
 date_default_timezone_set('Asia/Seoul'); 
 $buydate = date("Y.m.d H:i:s");
+
 $ordernum = substr($buydate, 5, 2) . substr($buydate, 8, 2) . " - " . strtoupper(substr($userid, 0, 2))
     . " - " . strtoupper(substr($Session, 0, 4)). " - " . rand(1000, 9999);
 $status = 1;
@@ -80,11 +90,32 @@ while($row=mysqli_fetch_assoc($getshoppingcart)) {
 
 $deleteshoppingcart = mysqli_query($con, "DELETE FROM shoppingcart WHERE userid='$userid'");
 
-mysqli_close($con);
 
+
+
+$usepoint = mysqli_query($con, "UPDATE user SET point=point-$point WHERE userid='$userid'");
+$getpoint = mysqli_query($con, "SELECT point FROM user WHERE userid='$userid'");
+$pointrow=mysqli_fetch_assoc($getpoint);
+$rpoint=$pointrow['point'];
+
+$insertusepoint = mysqli_query($con, "INSERT INTO pointlist (userid, pmpoint, pm, udate, resultpoint) VALUES ('$userid', '$point','-','$buydate','$rpoint') ");
+
+$pluspoint = $totalprice*0.01;
+$addpoint = mysqli_query($con,"UPDATE user SET point=point+$pluspoint WHERE userid='$userid'");
+$getpoint = mysqli_query($con, "SELECT point FROM user WHERE userid='$userid'");
+$pointrow=mysqli_fetch_assoc($getpoint);
+$rpoint=$pointrow['point'];
+
+$insertaddpoint = mysqli_query($con, "INSERT INTO pointlist (userid, pmpoint, pm, udate, resultpoint) VALUES ('$userid', '$pluspoint','+','$buydate','$rpoint') ");
+
+
+mysqli_close($con);
+// echo("<script>
+// ['receiver', 'phone', 'message' ,'address2','address1'].forEach(key => localStorage.removeItem(key));</script>");
 // 완료 메시지 출력
 echo ("<script>
-    window.alert('구매가 완료되었습니다. \\n 주문번호: $ordernum');
-    window.location.href = 'orderlistPage.php?userid=" . urlencode($userid) . "';
+    window.alert('구매가 완료되었습니다. \\n 주문번호: $ordernum \\n 포인트 적립: $pluspoint');");
+    echo("window.location.href = 'orderlistPage.php?userid=" . urlencode($userid) . "';");
+    echo("
 </script>");
 ?>

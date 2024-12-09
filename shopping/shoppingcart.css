@@ -5,6 +5,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background-color: var(--hover2);
 }
 .left.middle {
   width: 1000px;
@@ -68,6 +69,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-color: var(--button-bg-color);
 }
 .line.productline {
   width: 90%;
@@ -118,7 +120,8 @@
 } */
 /* ------------------------------------ - ----------------------------------- */
 .numbutton:hover {
-  background-color: rgb(200, 200, 200);
+  background-color: var(--button-hover-color);
+  /* background-color: rgb(200, 200, 200); */
 }
 
 /* ------------------------------------ v.2----------------------------------- */
@@ -154,7 +157,7 @@
   height: 40px;
   border-radius: 0;
   padding: 0;
-  background-color: whitesmoke;
+  background-color: var(--hover2);
   border: 0;
   margin: 0;
 }
@@ -162,7 +165,8 @@
 .numbutton {
   width: 40px;
   height: 40px;
-  background-color: rgb(230, 230, 230);
+  background-color: var(--button-bg-color);
+  /* background-color: rgb(230, 230, 230); */
   /* border: 1px solid rgb(28, 28, 28); */
   border-radius: 12px;
   display: flex;
@@ -179,7 +183,8 @@
 .sum {
   display: flex;
   flex-direction: row;
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--button-bg-color);
   width: 90%;
   height: 50px;
   border-radius: 12px;
@@ -199,7 +204,8 @@
   align-items: center;
   width: 400px;
   height: 0px;
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230); */
+  background-color: white;
   border-radius: 12px;
   margin: 10px 0 0 0;
   text-align: start;

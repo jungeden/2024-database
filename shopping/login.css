@@ -25,6 +25,10 @@
 .button.login {
   width: 110px;
   height: 110px;
+  color: var(--button-hover-color);
+}
+.button.login:hover {
+  color: rgb(28, 28, 28);
 }
 .logintext {
   margin: 0 5px 0 5px;

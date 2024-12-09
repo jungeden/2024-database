@@ -27,7 +27,7 @@ echo("
         <div class='top orderlist'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>
@@ -157,7 +157,8 @@ echo("
                 echo("
                 <div class='productinfo'>
                     <div class='productphoto'>
-                        <img class='photo' src='./photo/$userfile'>
+                            <img class='photo' src='./photo/$userfile'>
+                    
                     </div>
                     <div class='productinfotext'>
                         <a class='ptextt'>$name</a>

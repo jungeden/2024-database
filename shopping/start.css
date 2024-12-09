@@ -22,25 +22,10 @@
   background-size: cover;
   background-position: center;
 }
-.middle2.start {
-  width: 100%;
-  height: 100vh;
-  position: sticky;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(230, 230, 230);
+.middle.start.n2 {
+  background-color: var(--button-bg-color2);
 }
-.middle3.start {
-  width: 100%;
-  height: 100vh;
-  position: sticky;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.middle3.start.n3 {
   background-color: white;
 }
 .left.middle {
@@ -70,7 +55,8 @@
 .logotext.logo {
   font-size: 100px;
   position: relative;
-  color: rgb(150, 150, 150);
+  /* color: rgb(150, 150, 150); */
+  color: var(--button-bg-color2);
   /* height: 400px; */
 }
 .logotext {
@@ -80,6 +66,64 @@
   position: absolute;
   font-size: 100px;
 }
+.logotext.z {
+  position: absolute;
+  font-size: 100px;
+}
+.container:hover .logotext.z.z1 {
+  animation-name: z1;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  bottom: 0px;
+  /* left: 298px; */
+  left: 638px;
+}
+.container:hover .logotext.z.z2 {
+  animation-name: z2;
+  animation-duration: 2.5s;
+  animation-fill-mode: forwards;
+  bottom: 486px;
+  left: 0px;
+}
+.container:hover .logotext.z.z3 {
+  animation-name: z3;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  top: 0;
+  left: 750px;
+  /* left: 422px; */
+}
+.container:hover .logotext.z.z4 {
+  animation-name: z4;
+  animation-duration: 3.5s;
+  animation-fill-mode: forwards;
+  right: 0;
+  bottom: 486px;
+}
+@keyframes z1 {
+  to {
+    /* margin-bottom: 466px; */
+    margin-bottom: 486px;
+  }
+}
+@keyframes z2 {
+  to {
+    /* margin-left: 348px; */
+    margin-left: 694px;
+  }
+}
+@keyframes z3 {
+  to {
+    margin-top: 212px;
+  }
+}
+@keyframes z4 {
+  to {
+    margin-right: 638px;
+    /* margin-right: 298px; */
+  }
+}
+
 .container:hover .logotext.d.d1 {
   animation-name: d1;
   animation-duration: 2s;

@@ -34,7 +34,7 @@ echo("
         <div class='top start'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>
@@ -152,13 +152,15 @@ echo("
                     </div>
                     <div class='line'></div> ");
 
-                    $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$orderuserid' AND orderlist.session='$session'");
+                    $getorderlist=mysqli_query($con,"SELECT orderlist.*, product.name, product.price1, product.userfile FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$orderuserid' AND orderlist.session='$session'");
                     while($row=mysqli_fetch_assoc($getorderlist)) {
                         $quantity=$row['quantity'];
                         $userfile=$row['userfile'];
                         $name=$row['name'];
                         $price1=$row['price1'];
                         $pcode=$row['pcode'];
+                        $color=$row['color'];
+                        $size=$row['size'];
                         
 
                         $sumprice=number_format($quantity*$price1);
@@ -173,7 +175,7 @@ echo("
                         </div>
                         <div class='productinfo'>
                             <a class='utext '>$name</a>
-                            <a class='utext '>옵션</a>
+                            <a class='utext '>$size / $color</a>
                         </div>
                         <div class='usertext '>               
                             <a class='utext '>$price1</a>

@@ -130,3 +130,13 @@
   font-size: 30px;
   /* color: rgb(139, 164, 190); */
 }
+.plist {
+  display: flex;
+  flex-direction: column;
+  align-content: end;
+  width: 100%;
+}
+.ptext {
+  display: flex;
+  flex-direction: row;
+}

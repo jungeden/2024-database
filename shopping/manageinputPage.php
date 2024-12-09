@@ -9,6 +9,8 @@ if (isset($_COOKIE['userid'])) {
     header("Location: loginPage.php");
     exit();
 }
+$con = mysqli_connect("localhost", "root", "0000", "shop");
+
 echo("
 <head>
 <link href='https://cdn.quilljs.com/1.3.6/quill.snow.css' rel='stylesheet'>
@@ -49,14 +51,16 @@ function previewImage(event, isFirstInput) {
 
             reader.onload = function (e) {
                 console.log(\"미리보기 생성 중:\", file.name);
-
+                console.log(\"확인: \", isFirstInput);
                 const img = document.createElement('img');
                 img.src = e.target.result;
                 img.classList.add('preview');
                 img.style.margin = '5px';
-                img.style.width = '100px';
-                img.style.height = '100px';
                 
+                if(!isFirstInput){
+                    img.style.width = '100px';
+                    img.style.height = '100px';
+                }
 
                 previewContainer.appendChild(img);
             };
@@ -100,7 +104,7 @@ function toggleFixed(element, categories) {
         <div class='top start'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>
@@ -150,7 +154,7 @@ function toggleFixed(element, categories) {
                 <div class='left middle'>
                     <div class='productphoto'>
                         <a class='phototext' >
-                            <svg xmlns='http://www.w3.org/2000/svg' height='30px' viewBox='0 -960 960 960' width='30px' fill='#C8C8C8'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='30px' viewBox='0 -960 960 960' width='30px' fill='rgb(225,218,201)'>
                                 <path id='input' d='M460-460H240v-40h220v-220h40v220h220v40H500v220h-40v-220Z'/>
                             </svg>
                         </a>
@@ -161,7 +165,7 @@ function toggleFixed(element, categories) {
 
                     <div class='productphoto de'>
                         <a class='phototext' >
-                            <svg xmlns='http://www.w3.org/2000/svg' height='30px' viewBox='0 -960 960 960' width='30px' fill='#C8C8C8'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='30px' viewBox='0 -960 960 960' width='30px' fill='rgb(225,218,201)'>
                                 <path id='input' d='M460-460H240v-40h220v-220h40v220h220v40H500v220h-40v-220Z'/>
                             </svg>
                         </a>
@@ -169,14 +173,30 @@ function toggleFixed(element, categories) {
                         <input class='file' type='file' name=\"detailuserfile[]\" id='detailuserfile'  multiple accept='image/*'   onchange='previewImage(event, false)'>
 
                         <div class='preview-container'></div> <!-- 다중 이미지 미리보기를 위한 컨테이너 -->
-                    </div>
+                    </div>");
+                    $getproductcode = mysqli_query($con, "SELECT MAX(code) AS last_code FROM product");
+                    $prow=mysqli_fetch_assoc($getproductcode);
+                    $lastcode = $prow['last_code'] ?? 0; 
+                    $nextcode = $lastcode + 1; 
+                    $formatcode = sprintf("%03d", $nextcode); 
+                    
 
-
+echo("
                 </div>
                 <div class='center middle'>
                     <div class='productinfo'>
-                        <input class='input' type='text' name='code' placeholder='상품코드'>
-                        <input class='input' type='text' name='class' placeholder='상품분류'>
+                        <input class='input' type='text' name='code' placeholder='상품코드' value='$formatcode'>
+                        <input class='input' type='hidden' name='class' id='class'  placeholder='상품분류'>
+                        <div class='classoptionbox'>
+                            <button class='input' type='button' name='classoption' id='classoption' onclick='showOption(\"class\")'><a style='color:rgb(225,218,201); font-size:13px;'>상품분류</a></button>
+                            <ul class='classinputoption hide' id='classselect'>
+                                <li><button type='button' class='input coption' id='1' onclick='changeclass(this.id)' >겉옷</button></li>
+                                <li><button type='button' class='input coption' id='2' onclick='changeclass(this.id)' >상의</button></li>
+                                <li><button type='button' class='input coption' id='3' onclick='changeclass(this.id)' >치마</button></li>
+                                <li><button type='button' class='input coption' id='4' onclick='changeclass(this.id)' >바지</button></li>
+                                <li><button type='button' class='input coption' id='5' onclick='changeclass(this.id)' >기타</button></li>
+                            </ul>
+                        </div>
                         <input class='input' type='text' name='name' placeholder='상품이름'>
                         <input class='input' type='text' name='price1' placeholder='상품가격'>
                         
@@ -205,7 +225,7 @@ function toggleFixed(element, categories) {
                                 </div>
                             </div>
                             <input class='input options' id='color' type='text' name='color' style='display:none;'>
-                            <div class='input options'>
+                            <div class='input options' style='width:80px;'>
                                 <div class='filteroption'>
                                     <div class='check' id='white' onclick=\"toggleFixed(this,'color')\"></div>
                                     <a class='ho' >white</a>
@@ -219,12 +239,34 @@ function toggleFixed(element, categories) {
                                     <a class='ho'>gray</a>
                                 </div>
                                 <div class='filteroption'>
-                                    <div class='check' id='ivory' onclick=\"toggleFixed(this,'color')\"></div>
-                                    <a class='ho'>ivory</a>
+                                    <div class='check' id='brown' onclick=\"toggleFixed(this,'color')\"></div>
+                                    <a class='ho'>brown</a>
                                 </div>
                                 <div class='filteroption'>
                                     <div class='check' id='beige' onclick=\"toggleFixed(this,'color')\"></div>
                                     <a class='ho'>beige</a>
+                                </div>
+                            </div>
+                            <div class='input options' style='width:100px;'>
+                                <div class='filteroption'>
+                                    <div class='check' id='firebrick' onclick=\"toggleFixed(this,'color')\"></div>
+                                    <a class='ho' >firebrick</a>
+                                </div>
+                                <div class='filteroption'>
+                                    <div class='check' id='yellow' onclick=\"toggleFixed(this,'color')\"></div>
+                                    <a class='ho'>yellow</a>
+                                </div>
+                                <div class='filteroption'>
+                                    <div class='check' id='olivedrab' onclick=\"toggleFixed(this,'color')\"></div>
+                                    <a class='ho'>olivedrab</a>
+                                </div>
+                                <div class='filteroption'>
+                                    <div class='check' id='blue' onclick=\"toggleFixed(this,'color')\"></div>
+                                    <a class='ho'>blue</a>
+                                </div>
+                                <div class='filteroption'>
+                                    <div class='check' id='pink' onclick=\"toggleFixed(this,'color')\"></div>
+                                    <a class='ho'>pink</a>
                                 </div>
                             </div>
                         </div>
@@ -277,7 +319,7 @@ function toggleFixed(element, categories) {
 
 
 
-    let fileInput = document.querySelector('#detailuserfile');
+let fileInput = document.querySelector('#detailuserfile');
 let files = fileInput.files;
 console.log(files);
 if (files.length > 1) {
@@ -285,6 +327,54 @@ if (files.length > 1) {
 } else {
     console.log('One file selected:', files);
 }
+
+function changeclass(value) {
+    let classButton = document.getElementById('classoption');
+    let classname='';
+    switch(Number(value)) {
+            case 1:
+                classname='겉옷';
+                break;
+            case 2:
+                classname='상의';
+                break;
+            case 3:
+                classname='치마';
+                break;
+            case 4:
+                classname='바지';
+                break;
+            case 5:
+                classname='기타';
+                break;
+    }
+                console.log(classname);
+    classButton.textContent = classname;
+    classButton.style.color = 'rgb(28, 28, 28)'; 
+    document.getElementById('classoption').value = value;
+
+    let elements = document.getElementsByClassName('classinputoption');
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'none';
+    }
+    document.getElementById('class').value = value;
+}
+
+function showOption(type) {
+    const ids = {
+        class: 'classselect'
+    };
+    
+    const element = document.getElementById(ids.class);
+    if (element) {
+        if (type === 'class') {
+            // 가시성을 토글
+            element.style.display = (element.style.display === 'none' || !element.style.display) ? 'block' : 'none';
+        }
+    }
+}
+
+
 
 </script>
 </body>

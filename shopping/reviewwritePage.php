@@ -42,7 +42,7 @@ echo("
         <div class='top'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>
@@ -170,11 +170,7 @@ echo("
             preview.style.display = 'block';  
         }
         
-        function previewImage(event) {
-        const preview = document.getElementById('preview');
-        preview.src = URL.createObjectURL(event.target.files[0]);
-        preview.style.display = 'block';  
-    }
+       
     </script>
 </body>
 ");

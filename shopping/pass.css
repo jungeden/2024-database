@@ -41,7 +41,7 @@
 
 .input {
   margin: 100px 0 10px 0;
-  background-color: whitesmoke;
+  background-color: var(--hover2);
 }
 .itext:hover {
   color: rgb(28, 28, 28);

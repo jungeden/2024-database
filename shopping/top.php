@@ -20,7 +20,7 @@ echo("
         <div class='top'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>

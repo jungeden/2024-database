@@ -193,7 +193,7 @@
   font-size: 15px;
 }
 .logouttext:hover {
-  color: whitesmoke;
+  color: var(--hover2);
 }
 .text.name {
   font-size: 20px;
@@ -220,7 +220,7 @@
   /* align-items: center; */
 }
 .m:hover {
-  color: whitesmoke;
+  color: var(--hover2);
 }
 .m {
   z-index: 2;
@@ -247,7 +247,7 @@
   /* transition-property: width;
   transition-duration: 1s; */
   clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 100% 100%, 90% 50%, 100% 0%);
-  color: whitesmoke;
+  color: var(--hover2);
   background-color: rgb(200, 200, 200);
   width: 150px;
 }

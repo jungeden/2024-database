@@ -34,7 +34,7 @@ echo("
         <div class='top start'>
             <div class='left top'>
                 <a class='title'>
-                    TITLE
+                    ZAUM
                 </a>
             </div>
             <div class='center top'>
@@ -93,6 +93,7 @@ echo("
                 $price1 = $productrow['price1'];
                 $userfile = $productrow['userfile'];
                 $hit=$productrow['hit'];
+                $code=$productrow['code'];
                 
                 $price = number_format($price1);
                 // $sumprice = number_format($price1 * $quantity);
@@ -102,12 +103,12 @@ echo("
                 <div class='box'>
                     <div class='product'>
                         <div class='photo'>
-                            <a href='productdetailPage.php?code=$pcode&userid=$userid&userfile=$userfile'>
+                            <a href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
                                 <img class='photo' src='./photo/$userfile'>
                             </a>
                         </div>
                         <div class='productinfo'>
-                            <a class='productinfotext' href='productdetailPage.php?code=$pcode&userid=$userid&userfile=$userfile'>
+                            <a class='productinfotext' href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
                                 $name
                             </a>
                             <a class='productinfotext gray'>
