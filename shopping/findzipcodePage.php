@@ -1,6 +1,7 @@
 <?
 $page=$_GET['page'];
-echo("
+?>
+
 <head>
     <style>
         @import url(shop.css);
@@ -25,9 +26,12 @@ echo("
     </div>
     </div>
 </body>
+<style>
+	html, body {overflow:hidden;}
+</style>
 
 
 
-");
 
-?>
+
+

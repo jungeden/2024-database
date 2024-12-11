@@ -61,7 +61,8 @@
   border-top: 0;
   min-height: 400px;
   height: auto;
-  /* width: 800px; */
+  width: 800px;
+  font-family: "Do Hyeon", sans;
 }
 .pagechangebox {
   margin-top: 20px;
@@ -79,4 +80,8 @@
 }
 .atext.h:hover {
   color: var(--button-bg-color3);
+}
+.ql-syntax {
+  font-family: "Do Hyeon", sans !important;
+  white-space: pre-line;
 }

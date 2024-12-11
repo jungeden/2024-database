@@ -100,12 +100,19 @@ echo("
                 $productrow = mysqli_fetch_assoc($getproduct);
                 $name = $productrow['name'];
                 $price1 = $productrow['price1'];
-                $userfile = $productrow['userfile'];
-             
-                $price = number_format($price1);
-                $sumprice = number_format($price1 * $quantity);
+                $price2 = $productrow['price2'];
                 
-
+                $userfile = $productrow['userfile'];
+                $per = ($price2/$price1)*100;
+                
+                if($price2!=0) {
+                    $sumprice = number_format($price2 * $quantity);
+                } else {
+                    $sumprice = number_format($price1 * $quantity);
+                }
+                
+                $price1=number_format($price1);
+                $price2=number_format($price2);
             echo("
                 <div class='productbox shoppingcart'>
                     <div class='product'>
@@ -118,7 +125,27 @@ echo("
                     <div class='productinfo'>
                         <div class='producttext'>
                             <a class='ptext n'>$name</a>
-                            <a class='ptext'>$price</a>
+                            <div class='pricebox'>");
+               
+                    
+                            if($price2!=0) {
+                                echo("
+                                <div style='color:rgb(255,197,90);'>$per% &nbsp;</div>
+                                <a class='productinfotext gray'>
+                                    <s>$price1</s>
+                                </a>
+
+                                &nbsp;&nbsp;</div>
+                                
+                                    $price2
+                            ");
+                            } else {
+                                echo("
+                                
+                                    $price1
+                                </div>");
+                            }
+                            echo("
                             <a class='ptext'>$size / $color</a>
 
                         </div>
@@ -148,7 +175,7 @@ echo("
             }
         }
 
-        $gettotalquantity = mysqli_query($con, "SELECT sc.pcode, sc.quantity, p.price1 
+        $gettotalquantity = mysqli_query($con, "SELECT sc.pcode, sc.quantity, p.price1, p.price2
                                                                 FROM shoppingcart sc
                                                                 JOIN product p ON sc.pcode = p.code
                                                                 WHERE sc.userid = '$userid'
@@ -160,7 +187,15 @@ echo("
 
         while ($row = mysqli_fetch_assoc($gettotalquantity)) {
             $quantity = $row['quantity'];
-            $price = $row['price1'];
+            $price1 = $row['price1'];
+            $price2 = $row['price2'];
+            
+            if($price2 == 0) {
+                $price = $price1;
+            } else {
+                $price = $price2;
+            }
+            
             
             $totalquantity += $quantity;
             $totalprice += ($price * $quantity);

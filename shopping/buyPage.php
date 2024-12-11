@@ -198,16 +198,31 @@ echo("
                             $getproduct = mysqli_query($con, "SELECT * FROM product WHERE code=$code");
                             $row=mysqli_fetch_assoc($getproduct);
                             $price1 = $row['price1'];
-                            $totalprice += ($price1 * $quantity);
+                            $price2 = $row['price2'];
+                            
+                            if($price2!=0) {
+                                $totalprice += ($price2 * $quantity);
+                            } else {
+                                $totalprice += ($price1 * $quantity);
+                            }
                         }
                         
                         $name = $row['name'];
                         $price1 = $row['price1'];
+                        $price2 = $row['price2'];
                         $userfile = $row['userfile'];
                         
                         $quantity = isset($quantity) ? $quantity : 1; 
-                        $sumprice = number_format($price1 * $quantity);
+
+                        if($price2!=0) {
+                            $sumprice = number_format($price2 * $quantity);
+                        } else {
+                            $sumprice = number_format($price1 * $quantity);
+                        }
+                        $per = ($price2/$price1)*100;
+
                         $price1 = number_format($price1);
+                        $price2 = number_format($price2);
 
                         
                     echo("
@@ -216,8 +231,14 @@ echo("
                             <img class='photo' src='./photo/$userfile'>
                         </div>
                         <div class='productinfotext'>
-                            <a >$name</a>
-                            <a class='ptext'>$price1 / $quantity 개</a>
+                            <a >$name</a>");
+                            if($price2!=0) {
+                                echo("<a class='ptext'>$price2 / $quantity 개</a>");
+                            } else {
+                                echo("<a class='ptext'>$price1 / $quantity 개</a>");
+                            }
+                            echo("
+                            
                             <a class='ptext'>$size / $color</a>
                             <a class='ptext'> 합계 : $sumprice</a>
                         </div>

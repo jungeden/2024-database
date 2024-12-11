@@ -152,19 +152,25 @@ echo("
                     </div>
                     <div class='line'></div> ");
 
-                    $getorderlist=mysqli_query($con,"SELECT orderlist.*, product.name, product.price1, product.userfile FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$orderuserid' AND orderlist.session='$session'");
+                    $getorderlist=mysqli_query($con,"SELECT orderlist.*, product.name, product.price1, product.price2, product.userfile FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$orderuserid' AND orderlist.session='$session'");
                     while($row=mysqli_fetch_assoc($getorderlist)) {
                         $quantity=$row['quantity'];
                         $userfile=$row['userfile'];
                         $name=$row['name'];
                         $price1=$row['price1'];
+                        $price2=$row['price2'];
                         $pcode=$row['pcode'];
                         $color=$row['color'];
                         $size=$row['size'];
                         
 
-                        $sumprice=number_format($quantity*$price1);
+                        if($price2!=0) {
+                            $sumprice = number_format($price2 * $quantity);
+                        } else {
+                            $sumprice = number_format($price1 * $quantity);
+                        }
                         $price1=number_format($price1);
+                        $price2=number_format($price2);
 
                         
                         
@@ -177,8 +183,14 @@ echo("
                             <a class='utext '>$name</a>
                             <a class='utext '>$size / $color</a>
                         </div>
-                        <div class='usertext '>               
-                            <a class='utext '>$price1</a>
+                        <div class='usertext '> ");    
+                        if($price2!=0) {
+                            echo("<a class='utext '>$price2</a>");
+                        } else {
+                            echo("<a class='utext '>$price1</a>");
+                        }
+                           
+                            echo("
                         </div>
                         <div class='usertext '>
                             <a class='utext '>$quantity</a>

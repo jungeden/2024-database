@@ -73,7 +73,7 @@ echo("
             </div>
         </div>
         <div class='line'></div>");
-        $getcustomerboard = mysqli_query($con, "SELECT * FROM customerboard WHERE id=$id");
+        $getcustomerboard = mysqli_query($con, "SELECT * FROM customerboard WHERE id='$id'");
         $row=mysqli_fetch_assoc($getcustomerboard);
         $num=$row['num'];
         $writer=$row['userid'];
@@ -84,13 +84,16 @@ echo("
         $wdate=$row['wdate'];
         $parentid=isset($row['parentid']) ? $row['parentid'] : '';
         $hit=$row['hit']+1;
+     
         
-        mysqli_query($con, "UPDATE customerboard SET hit = $hit WHERE id = $id");
+        mysqli_query($con, "UPDATE customerboard SET hit = $hit WHERE id = '$id'");
 
         if(!empty($parentid)) {
-            $parentfile = mysqli_query($con, "SELECT * FROM customerboard WHERE id = $parentid");
+            $parentfile = mysqli_query($con, "SELECT * FROM customerboard WHERE id = '$parentid'");
             $filerow = mysqli_fetch_assoc($parentfile);
-            $customerfile = htmlspecialchars($filerow['customerfile']);
+            if(!empty($filerow)){
+                $customerfile = htmlspecialchars($filerow['customerfile']);
+            }
         }
         
         
@@ -108,7 +111,7 @@ echo("
                         </a>
                         ");
                     }
-                    if($writer==$userid) {
+                    if($writer==$userid ) {
                         echo("
                     <a class='menuicon' href='customermodifyPage.php?id=$id'>
                         <svg xmlns='http://www.w3.org/2000/svg' height='19px' viewBox='0 -960 960 960' width='19px' ><path class='icon' d='M363.35-600.48v-86.22h354.02v86.22H363.35Zm0 126.22v-86.22h354.02v86.22H363.35Zm115.22 311.39h-275.7 275.7Zm0 91h-235.7q-54.58 0-92.79-38.21-38.21-38.21-38.21-92.79v-130.52h120.48v-554.74h616.02v368.65q-22.87-3.43-46.24.43-23.37 3.85-44.76 15.25v-293.33H323.35v463.74h250.76l-91 91H202.87v39.52q0 17 11.5 28.5t28.5 11.5h235.7v91Zm80 0v-129.7L781-423q9.72-9.76 21.59-14.1 11.88-4.33 23.76-4.33 12.95 0 24.8 4.85Q863-431.72 872.7-422l37 37q8.67 9.72 13.55 21.59 4.88 11.88 4.88 23.76 0 12.19-4.36 24.41T909.7-293.3L688.26-71.87H558.57Zm304.78-267.78-37-37 37 37Zm-240 203h38L781.39-257.7l-18-19-19-18-121.04 120.05v38ZM763.39-276.7l-19-18 37 37-18-19Z'/></svg>
@@ -125,13 +128,17 @@ echo("
                     </a>
                     
                     ");
-
+                    if($writer=='admin') {
+                        $writer='관리자';
+                    }
                     echo("    
                 </div>
                 <div class='infobox'>
                     <div class='info'>
-                        <div class='infotext' style='width:30%;'><div style='font-size:15px;'>문의 유형: &nbsp;</div> $class</div>
-                        <div class='infotext'  style='width:30%;'><div style='font-size:15px;'>작성자:&nbsp;</div> $userid</div>
+                        <div class='infotext' style='width:30%;'><div style='font-size:15px;'>문의 유형: &nbsp;</div> $class</div>");
+                        echo("
+                        <div class='infotext'  style='width:30%;'><div style='font-size:15px;'>작성자:&nbsp;</div> $writer</div>");
+                        echo("
                         <div class='infotext'  style='width:30%;'><div style='font-size:15px;'>날짜:&nbsp;</div> $wdate</div>
                         <div class='infotext'  style='width:10%; border:0;'><div style='font-size:15px;'>조회수:&nbsp;</div> $hit</div>
                     </div>
@@ -147,14 +154,53 @@ echo("
                             echo(" 
                           
                             <div class='ql-editor content'>$content1</div>
-                            <div>\n- - - - - - - - - - - - - - - - - - - - <원본글> - - - - - - - - - - - - - - - - - - - -\n\n\n\n</div>
-                            <div  class='photobox'><img class='photo' src='./customerfiles/$customerfile'></div>
+                            <div>\n- - - - - - - - - - - - - - - - - - - - <원본글> - - - - - - - - - - - - - - - - - - - -\n\n\n\n</div>");
+                            $getproductfile=mysqli_query($con, "SELECT customerfile from customerboard WHERE id='$parentid'");
+
+                            while ($file = mysqli_fetch_assoc($getproductfile)) {
+                                // detailfile 필드가 여러 파일을 저장한 경우, 콤마로 구분된 파일 이름을 배열로 나눔
+                                $customerfiles = explode(',', $file['customerfile']); 
+                                
+                                foreach ($customerfiles as $customerfile) {
+                                    // $detailfile = trim($detailfile); // 공백 제거 (필요시)
+                                    echo("
+                                    <div class='photobox'>
+                                        <div class='photo'>
+                                            <a href='#' onclick=\"window.open('./customerfiles/$customerfile','_new')\">
+                                                <img class='photo' src='./customerfiles/$customerfile' alt='Product Image'>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    ");
+                                }
+                            }
+                            echo("
                             <div class='ql-editor content'> $content2</div>
         
                             ");
                         } else {
                             echo(" 
-                            <div  class='photobox'><img class='photo' src='./customerfiles/$customerfile'></div>
+                            ");
+                            $getproductfile=mysqli_query($con, "SELECT customerfile from customerboard WHERE id='$id'");
+
+                            while ($file = mysqli_fetch_assoc($getproductfile)) {
+                                // detailfile 필드가 여러 파일을 저장한 경우, 콤마로 구분된 파일 이름을 배열로 나눔
+                                $customerfiles = explode(',', $file['customerfile']); 
+                                
+                                foreach ($customerfiles as $customerfile) {
+                                    // $detailfile = trim($detailfile); // 공백 제거 (필요시)
+                                    echo("
+                                    <div class='photobox'>
+                                        <div class='photo'>
+                                            <a href='#' onclick=\"window.open('./customerfiles/$customerfile','_new')\">
+                                                <img class='photo' src='./customerfiles/$customerfile' alt='Product Image'>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    ");
+                                }
+                            }
+                            echo("
                             <div class='ql-editor content'>$content</div>
         
                             ");
@@ -169,6 +215,7 @@ echo("
             $beforeQuery = "SELECT * FROM customerboard WHERE num < $num AND class='$class' ORDER BY num DESC LIMIT 1";
             $beforeResult = mysqli_query($con, $beforeQuery);
             $beforeRow = mysqli_fetch_assoc($beforeResult);
+            
 
             $afterQuery = "SELECT * FROM customerboard WHERE num > $num AND class='$class' ORDER BY num ASC LIMIT 1";
             $afterResult = mysqli_query($con, $afterQuery);
@@ -179,11 +226,15 @@ echo("
 
                 // 이전 게시글 출력
                 if ($beforeRow) {
+                    $bwriter=$beforeRow['userid'];
+                    if($bwriter=='admin') {
+                        $bwriter='관리자';
+                    }
                     echo "
                     <div class='tonext'>
-                        <div style=' width:110px' ><a class='atext h' >이전 게시글: </a></div>
-                        <div style=' width:110px'><a class='atext' href='customerboarddetailPage.php?id={$beforeRow['id']}'>{$beforeRow['topic']}</a></div>
-                        <div style=' width:100px'><a class='atext h' >{$beforeRow['userid']}</a></div>
+                        <div style=' width:90px; padding-left:10px;' ><a class='atext h' >이전 게시글: </a></div>
+                        <div style=' width:130px'><a class='atext' href='customerboarddetailPage.php?id={$beforeRow['id']}'>{$beforeRow['topic']}</a></div>
+                        <div style=' width:100px'><a class='atext h' >{$bwriter}</a></div>
                         <div style=' width:130px'><a class='atext h' >{$beforeRow['wdate']}</a></div>
                         <div style=' width:40px'><a class='atext h' >{$beforeRow['hit']}</a></div>
                     </div>
@@ -192,11 +243,15 @@ echo("
 
                 // 다음 게시글 출력
                 if ($afterRow) {
+                    $awriter=$afterRow['userid'];
+                    if($awriter=='admin') {
+                        $awriter='관리자';
+                    }
                     echo "
                     <div class='tonext'>
-                        <div style=' width:110px '><a class='atext h' >다음 게시글: </a></div>
-                        <div style=' width:110px'><a class='atext' href='customerboarddetailPage.php?id={$afterRow['id']}'>{$afterRow['topic']}</a></div>
-                        <div style=' width:100px'><a class='atext h' >{$afterRow['userid']}</a></div>
+                        <div style=' width:90px; padding-left:10px; '><a class='atext h' >다음 게시글: </a></div>
+                        <div style=' width:130px'><a class='atext' href='customerboarddetailPage.php?id={$afterRow['id']}'>{$afterRow['topic']}</a></div>
+                        <div style=' width:100px'><a class='atext h' >$awriter</a></div>
                         <div style=' width:130px'><a class='atext h' >{$afterRow['wdate']}</a></div>
                         <div style=' width:40px'><a class='atext h' >{$afterRow['hit']}</a></div>
                     </div>";

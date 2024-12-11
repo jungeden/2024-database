@@ -28,7 +28,11 @@ $hit=$row['hit'];
 $userfile=$row['userfile'];
 $class=$row['class'];
 
+$per = ($price2/$price1)*100;
+        
+    
 $price1=number_format($price1);
+$price2=number_format($price2);
 
 
 
@@ -188,7 +192,27 @@ echo("
                             </div>
                         </div>
                         <div class='productcontentbox price'>
-                            <a class='productinfotext ho'>$price1</a><br>
+                            <div class='pricebox'>");
+               
+                    
+                            if($price2!=0) {
+                                echo("
+                                <div style='color:rgb(255,197,90);'>$per% &nbsp;</div>
+                                <a class='productinfotext gray'>
+                                    <s>$price1</s>
+                                </a>
+
+                                </div>
+                                
+                                    $price2
+                            ");
+                            } else {
+                                echo("
+                                
+                                    $price1
+                                </div>");
+                            }
+                            echo("
                             <div class='productoptionbox'>");
                            $getoption=mysqli_query($con,"SELECT color FROM product WHERE code='$code'");
                            while($colorrow = mysqli_fetch_assoc($getoption)) {

@@ -13,10 +13,11 @@ $code=$_POST['code'];
 $class=$_POST['class'];
 $name=$_POST['name'];
 $price1=$_POST['price1'];
+$price2=isset($_POST['price2'])?$_POST['price2']:0;
 $content=$_POST['content'];
 $size = $_POST['size'];
 $color = $_POST['color'];
-$price2 = isset($_POST['price2']) && $_POST['price2'] !== '' ? str_replace(",", "", $_POST['price2']) : 0;
+// $price2 = isset($_POST['price2']) && $_POST['price2'] !== '' ? str_replace(",", "", $_POST['price2']) : 0;
 
 
 $userfile = $_FILES['userfile'];
@@ -102,8 +103,8 @@ if ($row[0] > 0) {
 $inputproducts  = mysqli_query($con, "INSERT INTO product(class, code, name, content, price1, price2, userfile, hit, detailfile, size, color) VALUES ($class, '$code', '$name', '$content', '$price1', '$price2', '$userfile_name', 1, '$detailfile', '$size', '$color')");
 var_dump($_FILES['detailuserfile']);
 
-
+mysqli_close($con);
 echo ("<meta http-equiv='Refresh' content='0; url=manageproductsPage.php?userid=" . urlencode($userid) . "'>");
 
-mysqli_close($con);
+
 ?>

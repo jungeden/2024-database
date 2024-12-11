@@ -191,7 +191,9 @@ echo <<<HTML
                     </div>
                     <div class='inputaddress1'>
                         <input class='input zip' type='text' name='zipcode' placeholder='우편번호 찾기' >
-                        <button class='button check zipcode' type='button' onclick="window.open('findzipcodePage.php?page=join','findzipcode','width=400,height=400,location=no,status=no,scrollbars=yes');">
+                        <!-- <button class='button check zipcode' type='button' onclick="javascript:window.open('findzipcodePage.php?page=join','findzipcode','width=500,height=150')"> -->
+                        <button class='button check zipcode' type='button' onclick="openPopup()">
+                        <!-- <button class='button check zipcode' type='button' onclick="window.open('findzipcodePage.php?page=join', 'findzipcode', 'width=400,height=400,location=no,status=no,scrollbars=yes,resizable=no');"> -->
                             &nbsp;&nbsp;&nbsp;&nbsp;우편번호
                         </button>
                     </div>
@@ -237,6 +239,18 @@ echo <<<HTML
             };
             document.getElementById(ids.year).style.visibility = (type === 'year') ? "visible" : "hidden";
             document.getElementById(ids.month).style.visibility = (type === 'month') ? "visible" : "hidden";
+        }
+        function openPopup() {
+            const width = 400;
+            const height = 400;
+            const left = (window.screen.width - width) / 2;
+            const top = (window.screen.height - height) / 2;
+
+            window.open(
+            'findzipcodePage.php?page=join', 
+            'findzipcode', 
+            'width=400,height=400,left=100,top=100,resizable=no,scrollbars=yes'
+            );
         }
     </script>
 </body>

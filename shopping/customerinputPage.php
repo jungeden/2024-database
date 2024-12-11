@@ -7,7 +7,8 @@ if (isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
   
 } else {
-    $userid='';
+    header("Location: loginPage.php");
+    exit();
 }
 // if ($comment == '장바구니에 상품이 담겼습니다.') {
 //     echo "<script>showMessage('" . addslashes($comment) . "');</script>";
@@ -93,7 +94,7 @@ echo("
                     <input class='input' type='text' name='topic' placeholder='제목' >
                     <input class='input' type='hidden' name='class' id='class'>
                         <div class='classoptionbox'>
-                            <button class='input' type='button' name='classoption' id='classoption' onclick='showOption(\"class\")'><a style='color:rgb(225,218,201); font-size:13px;'>문의유형</a></button>
+                            <button class='input' type='button' name='classoption' id='classoption' onclick='showOption(\"class\")'><a style='color:rgb(255,197,90); font-size:13px;'>문의유형</a></button>
                             <ul class='classinputoption hide' id='classselect'>
                                 <li><button type='button' class='input coption' id='상품' onclick='changeclass(this.id)' >상품</button></li>
                                 <li><button type='button' class='input coption' id='주문' onclick='changeclass(this.id)' >주문</button></li>
@@ -118,7 +119,7 @@ echo("
                 </div>
                 
                 <div class='issecretbox'>
-                <input type='hidden' name='issecret' id='issecret'>
+                <input type='hidden' name='issecret' id='issecret' value='n'>
                     <div class='check' id='y' onclick=\"toggleFixed(this, 'issecret')\"></div>
                     <a class='ho' style='color:rgb(255,197,90);'>비밀글</a>
                 </div>

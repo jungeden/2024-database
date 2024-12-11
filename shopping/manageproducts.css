@@ -37,3 +37,13 @@
 .current {
   color: var(--button-hover-color);
 }
+.pricebox {
+  display: flex;
+  flex-direction: row;
+}
+.gray {
+  color: var(--button-bg-color3);
+}
+.gray:hover {
+  color: var(--button-bg-color3);
+}

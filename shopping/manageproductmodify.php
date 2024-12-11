@@ -9,6 +9,8 @@ if (isset($_COOKIE['userid'])) {
     header("Location: loginPage.php");
     exit();
 }
+
+$con=mysqli_connect("localhost",'root','0000','shop');
 $code=$_GET['code'];
 $getproduct = mysqli_query($con, "SELECT * FROM product WHERE code='$code'");
 $row=mysqli_fetch_assoc($getproduct);
@@ -16,7 +18,7 @@ $oname=$row['name'];
 $oclass=$row['class'];
 $ocontent=$row['content'];
 $oprice1=$row['price1'];
-$oprice2=isset($row['price2']) ? $row['price2'] : '';
+$oprice2=isset($row['price2']) ? $row['price2'] : 0;
 $ouserfile=$row['userfile'];
 $odetailfile=$row['detailfile'];
 $osize=$row['size'];

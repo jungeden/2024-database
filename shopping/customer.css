@@ -46,6 +46,9 @@
   height: 45px;
   overflow: hidden;
 }
+.listbox.search {
+  height: auto;
+}
 .changedown {
   transform: rotate(90deg);
 }

@@ -94,7 +94,8 @@
 }
 .logouttext:hover {
   /* color: whitesmoke; */
-  color: var(--button-bg-color2);
+  color: var(--button-hover-color);
+  /* color: var(--button-bg-color); */
 }
 .text.name {
   font-size: 30px;
@@ -257,6 +258,7 @@
   justify-content: end;
   position: relative;
   /* margin: 0 0 0 30px; */
+  overflow: auto;
 }
 .po {
   position: absolute;
@@ -293,4 +295,71 @@
   overflow: auto;
   /* padding-top: 300px; */
   /* background-color: rgb(200, 200, 200); */
+}
+.productphoto {
+  width: 500px;
+  height: auto;
+  min-height: 200px;
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--hover2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  margin: 0 0 10px 0;
+  border: 1px solid var(--button-hover-color);
+  /* color: var(--button-bg-color2); */
+  /* border: 1px solid rgb(200, 200, 200); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all;
+  transition-duration: 1s;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.productphoto.de {
+  /* height: 110px; */
+  margin-bottom: 0;
+}
+.productphoto.de:hover {
+  /* width: 350px;
+  height: 150px; */
+}
+.input.content {
+  width: 250px;
+  height: 200px;
+  border: 1px solid var(--button-hover-color);
+}
+.preview {
+  /* display: none; */
+  width: 600px;
+  height: auto;
+
+  margin-top: 10px;
+  /* position: absolute; */
+  object-fit: cover;
+  border-radius: 8px;
+}
+.su {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  margin: 0;
+  margin-top: 20px;
+}
+.file {
+  left: 35px;
+  font-size: 18px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  cursor: pointer;
+}
+.phototext {
+  /* color: rgb(200, 200, 200); */
+  color: var(--button-bg-color2);
+  position: absolute;
 }

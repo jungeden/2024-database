@@ -18,6 +18,7 @@ $row=mysqli_fetch_assoc($getproduct);
 $name = $row['name'];
 $class = $row['class'];
 $price1 = $row['price1'];
+$price2 = isset($row['price2'])?$row['price2']:0;
 $content = $row['content'];
 $userfile=$row['userfile'];
 $size=$row['size'];
@@ -221,7 +222,7 @@ function toggleFixed(element, categories) {
                  <div class='center middle'>
                     <div class='productinfo'>
                         <div class='input' style='display:flex; justify-content:center; align-items:center;'>$code</div>
-                        <input class='input' type='hidden' name='class' id='class'  placeholder='상품분류'>
+                        <input class='input i' type='hidden' name='class' id='class'  placeholder='상품분류'>
                         <div class='classoptionbox'>
                             <button class='input' type='button' name='classoption' id='classoption' onclick='showOption(\"class\")'>$classname</button>
                             <ul class='classinputoption hide' id='classselect'>
@@ -234,6 +235,7 @@ function toggleFixed(element, categories) {
                         </div>
                         <input class='input' type='text' name='name' placeholder='상품이름' value='$name'>
                         <input class='input' type='text' name='price1' placeholder='상품가격' value='$price1'>
+                        <input class='input' type='text' name='price2' placeholder='할인가격' value='$price2'>
                         
                         <div class='optionscheck'>");
                         

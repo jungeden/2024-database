@@ -232,3 +232,13 @@
 .container:hover .infobox {
   height: 450px;
 }
+.pricebox {
+  display: flex;
+  flex-direction: row;
+}
+.gray {
+  color: var(--button-bg-color3);
+}
+.gray:hover {
+  color: var(--button-bg-color3);
+}

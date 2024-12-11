@@ -131,33 +131,51 @@ echo("
                     </div>
                 </div>
             </div>
-            <div class='right middle' id='rightmiddle'>
+            <div class='right middle' id='rightmiddle'>");
+            $getnotice = mysqli_query($con,"SELECT * FROM managenotice WHERE num='1'");
+            $rown = mysqli_fetch_assoc($getnotice);
+            $an = $rown['an'];
+                if($userid == 'admin') {
+                    echo("
+                <div class='infotbox'>
+                    <div class='infot' onclick='window.location.href=\"myPage.php\"'>공지 사항</div>
+                    <div class='infot l'>&nbsp;|&nbsp;</div>
+                    <div class='infot' onclick='window.location.href=\"myPagead.php\"'>베너 광고</div>
+
+                </div>
+                <div class='userinfobox'>
+                    <form method='post' action='managenotice.php'>
+                        <div id='editor'>$an</div>
+                        <textarea class='input content' name='content' rows='12' cols='50' hidden></textarea>
+                        <input class='button su' type='submit' value='등록'>
+                    </form>
+
+                </div>");
+                } else {
+
+                
+                    echo("
                 <div class='infotbox'>
                     <div class='infot' onclick='window.location.href=\"myPage.php\"'>회원 정보</div>
                     <div class='infot l'>&nbsp;|&nbsp;</div>
                     <div class='infot' onclick='window.location.href=\"myPagepoint.php\"'>포인트</div>
 
                 </div>
-                    <div class='userinfobox'>
-                        <a class='text infolabeltext'>이름<a>
-                        <a class='text userinfotext'>$username<a>
-                        <a class='text infolabeltext'>전화번호<a>
-                        <a class='text userinfotext'>$num1-$num2-$num3<a>
-                        <a class='text infolabeltext'>이메일<a>
-                        <a class='text userinfotext'>$useremail<a>
-                        <a class='text infolabeltext'>생년월일<a>
-                        <a class='text userinfotext'>$year . $month . $date <a>
-                        <a class='text infolabeltext'>주소<a>
-                        <a class='text userinfotext' style='font-size:16px; margin-bottom:1px;'>($zipcode)<a>
-                        <a class='text userinfotext' style='font-size:19px;'>$address1 &nbsp; $address2<a>
-                        
-
-                    </div>
-                   
-                    
-                    ");
+                <div class='userinfobox'>
+                    <a class='text infolabeltext'>이름<a>
+                    <a class='text userinfotext'>$username<a>
+                    <a class='text infolabeltext'>전화번호<a>
+                    <a class='text userinfotext'>$num1-$num2-$num3<a>
+                    <a class='text infolabeltext'>이메일<a>
+                    <a class='text userinfotext'>$useremail<a>
+                    <a class='text infolabeltext'>생년월일<a>
+                    <a class='text userinfotext'>$year . $month . $date <a>
+                    <a class='text infolabeltext'>주소<a>
+                    <a class='text userinfotext' style='font-size:16px; margin-bottom:1px;'>($zipcode)<a>
+                    <a class='text userinfotext' style='font-size:19px;'>$address1 &nbsp; $address2<a>
+                </div>");
                 
-
+                }
 
                     
                 echo("
@@ -180,7 +198,31 @@ echo("
       }
     });
     
-    
+    var toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'], 
+        ['blockquote', 'code-block'],            
+        [{ 'header': 1 }, { 'header': 2 }],      
+        [{ 'color': [] }, { 'background': [] }],  
+        [{ 'align': [] }],                        
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{ 'font': [] }]                         
+    ];
+
+    var quill = new Quill('#editor', {
+        modules: { toolbar: toolbarOptions },
+        theme: 'snow'
+    });
+
+ 
+    const form = document.querySelector('form');
+    const textarea = document.querySelector('textarea[name=\"content\"]');
+
+    form.onsubmit = function () {
+     
+        textarea.value = quill.root.innerHTML;
+        console.log('전송될 내용:', textarea.value); // textarea 값 확인
+    return true;
+    };
     </script>
 <body>
 ");

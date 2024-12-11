@@ -210,9 +210,13 @@ echo("
                         $price1 = $row['price1'];
                         $price2 = $row['price2'];
                         $userfile = $row['userfile'];  // 이미지 파일 경로
+                        $per = ($price2/$price1)*100;
+        
+    
                         $price1=number_format($price1);
+                        $price2=number_format($price2);
                     
-                        echo "
+                        echo ("
                         <div class='products'>
                             <div class='product'>
                                 <a href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
@@ -224,9 +228,28 @@ echo("
                                     <a class='productinfotext' href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
                                         $name
                                     </a>
-                                    <a class='productinfotext'>
-                                        $price1
-                                    </a>
+                                    <div class='pricebox'>");
+               
+                    
+                                    if($price2!=0) {
+                                        echo("
+                                        <div style='color:rgb(255,197,90);'>$per% &nbsp;</div>
+                                        <a class='productinfotext gray'>
+                                            <s>$price1</s>
+                                        </a>
+
+                                        &nbsp;&nbsp;</div>
+                                        
+                                            $price2
+                                    ");
+                                    } else {
+                                        echo("
+                                        
+                                            $price1
+                                        </div>");
+                                    }
+                                    echo("
+                
                                     
                                 </div>
                                 <a class='button delete' href='manageproductmodifyPage.php?code=$code'>
@@ -237,7 +260,7 @@ echo("
                                 </a>
 
                             </div>
-                        </div>";
+                        </div>");
                         $counter++;
                     }    
                 echo "

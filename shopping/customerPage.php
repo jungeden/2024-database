@@ -6,8 +6,9 @@ session_start();
 if (isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
   
-} else {
-    $userid='';
+} else {  
+    header("Location: loginPage.php");
+    exit();
 }
 // if ($comment == '장바구니에 상품이 담겼습니다.') {
 //     echo "<script>showMessage('" . addslashes($comment) . "');</script>";
@@ -17,7 +18,7 @@ if (isset($_COOKIE['userid'])) {
 // $userfile=$_GET['userfile'];
 $con = mysqli_connect("localhost","root", "0000", "shop");
 
-$result = mysqli_query($con, "SELECT * FROM customerboard ORDER BY num DESC");
+$result = mysqli_query($con, "SELECT * FROM customerboard ");
 $total = mysqli_num_rows($result);
 echo("
 <head>
@@ -89,7 +90,7 @@ echo("
             <div class='searchbox'>
                     <div style='font-size:50px; color:whitesmoke; font-family:Black Han Sans,sans'>WHAT THE FAQS</div>
                      <form class='searchform' method='post' action='customersearchPage.php'>
-                         <input class='input search' type='text' name='name' placeholder='검색어 입력' >
+                         <input class='input search' type='text' name='searchname' placeholder='검색어 입력' >
                         <input class='button search' type='submit' value='검색'>
                     </form>
             </div>
@@ -118,7 +119,7 @@ echo("
                     </div> ");
                     } else {
                        
-                        $getboard = mysqli_query($con, "SELECT id, userid, topic, wdate, hit, parentid, issecret FROM customerboard WHERE class='$selectclassname'");
+                        $getboard = mysqli_query($con, "SELECT id, userid, topic, wdate, hit, parentid, issecret, space FROM customerboard WHERE class='$selectclassname' ORDER BY num DESC");
                         echo("
                     <div class='board'>");
                         while ($row = mysqli_fetch_assoc($getboard)){
@@ -129,21 +130,32 @@ echo("
                             $parentid=$row['parentid'];
                             $issecret=$row['issecret'];
                             $id=$row['id'];
+                            $space=$row['space'];
+
+                            $t = "";
+                            if ($space > 0) {
+                                for ($i = 0; $i <= $space; $i++) {
+                                    $t .= "&nbsp;";
+                                }
+                            }
+                            if($writer=='admin') {
+                                $writer='관리자';
+                            }
                             if ($issecret == 'n') {
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             
                         </div> 
                         ");
-                            } else if ($issecret == 'y' && $writer==$userid) {
+                            } else if (($issecret == 'y' && $writer==$userid) || $userid=='admin') {
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             <a class='sec'>
@@ -155,7 +167,7 @@ echo("
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a   style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a   style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             <a class='sec'>
@@ -195,7 +207,7 @@ echo("
                     </div> ");
                     } else {
                        
-                        $getboard = mysqli_query($con, "SELECT id, userid, topic, wdate, hit, parentid, issecret FROM customerboard WHERE class='$selectclassname'");
+                        $getboard = mysqli_query($con, "SELECT id, userid, topic, wdate, hit, parentid, issecret, space FROM customerboard WHERE class='$selectclassname' ORDER BY num DESC");
                         echo("
                     <div class='board'>");
                         while ($row = mysqli_fetch_assoc($getboard)){
@@ -206,21 +218,32 @@ echo("
                             $parentid=$row['parentid'];
                             $issecret=$row['issecret'];
                             $id=$row['id'];
+                            $space=$row['space'];
+
+                            $t = "";
+                            if ($space > 0) {
+                                for ($i = 0; $i <= $space; $i++) {
+                                    $t .= "&nbsp;";
+                                }
+                            }
+                            if($writer=='admin') {
+                                $writer='관리자';
+                            }
                             if ($issecret == 'n') {
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             
                         </div> 
                         ");
-                            } else if ($issecret == 'y' && $writer==$userid) {
+                            } else if (($issecret == 'y' && $writer==$userid) || $userid=='admin') {
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             <a class='sec'>
@@ -232,7 +255,7 @@ echo("
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a   style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a   style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             <a class='sec'>
@@ -272,7 +295,7 @@ echo("
                     </div> ");
                     } else {
                        
-                        $getboard = mysqli_query($con, "SELECT id, userid, topic, wdate, hit, parentid, issecret FROM customerboard WHERE class='$selectclassname'");
+                        $getboard = mysqli_query($con, "SELECT id, userid, topic, wdate, hit, parentid, issecret, space FROM customerboard WHERE class='$selectclassname' ORDER BY num DESC");
                         echo("
                     <div class='board'>");
                         while ($row = mysqli_fetch_assoc($getboard)){
@@ -283,21 +306,32 @@ echo("
                             $parentid=$row['parentid'];
                             $issecret=$row['issecret'];
                             $id=$row['id'];
+                            $space=$row['space'];
+
+                            $t = "";
+                            if ($space > 0) {
+                                for ($i = 0; $i <= $space; $i++) {
+                                    $t .= "&nbsp;";
+                                }
+                            }
+                            if($writer=='admin') {
+                                $writer='관리자';
+                            }
                             if ($issecret == 'n') {
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'> $t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             
                         </div> 
                         ");
-                            } else if ($issecret == 'y' && $writer==$userid) {
+                            } else if (($issecret == 'y' && $writer==$userid) || $userid=='admin') {
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             <a class='sec'>
@@ -309,7 +343,7 @@ echo("
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a   style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a   style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             <a class='sec'>
@@ -349,7 +383,7 @@ echo("
                     </div> ");
                     } else {
                        
-                        $getboard = mysqli_query($con, "SELECT id, userid, topic, wdate, hit, parentid, issecret FROM customerboard WHERE class='$selectclassname'");
+                        $getboard = mysqli_query($con, "SELECT id, userid, topic, wdate, hit, parentid, issecret, space FROM customerboard WHERE class='$selectclassname' ORDER BY num DESC");
                         echo("
                     <div class='board'>");
                         while ($row = mysqli_fetch_assoc($getboard)){
@@ -360,21 +394,32 @@ echo("
                             $parentid=$row['parentid'];
                             $issecret=$row['issecret'];
                             $id=$row['id'];
+                            $space=$row['space'];
+
+                            $t = "";
+                            if ($space > 0) {
+                                for ($i = 0; $i <= $space; $i++) {
+                                    $t .= "&nbsp;";
+                                }
+                            }
+                             if($writer=='admin') {
+                                $writer='관리자';
+                            }
                             if ($issecret == 'n') {
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             
                         </div> 
                         ");
-                            } else if ($issecret == 'y' && $writer==$userid) {
+                            } else if (($issecret == 'y' && $writer==$userid) || $userid=='admin') {
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a class='hov' href='customerboarddetailPage.php?id=$id' style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             <a class='sec'>
@@ -386,7 +431,7 @@ echo("
                                 echo("
                         <div class='boardlist'>
                             <div style='width:20%; color:rgb(125,118,101);'>$writer</div>
-                            <a   style='width:40%; color:rgb(125,118,101);'>$topic</a>
+                            <a   style='width:40%; color:rgb(125,118,101);'>$t $topic</a>
                             <div style='width:25%; color:rgb(125,118,101);'>$wdate</div>
                             <div style='width:5%; color:rgb(125,118,101); text-align:end;'>$hit</div>
                             <a class='sec'>

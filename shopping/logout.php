@@ -1,5 +1,5 @@
 <? //logoutPage.php
-
+session_start();
 setcookie('userid', '', time() - 3600, "/");
 setcookie('session_id', '', time() - 3600, "/");
 session_unset();

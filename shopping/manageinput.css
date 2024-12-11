@@ -53,7 +53,8 @@
   overflow-x: auto;
 }
 .productphoto.de {
-  height: 100px;
+  height: 110px;
+  margin-bottom: 0;
 }
 .productphoto:hover {
   width: 350px;
@@ -101,6 +102,9 @@
 .input.content {
   width: 250px;
   height: 200px;
+}
+.input.i::placeholder {
+  color: var(--button-bg-color2);
 }
 #preview {
   display: none;
@@ -258,7 +262,7 @@
   /* border: 1px solid rgb(28, 28, 28); */
   border: 1px solid rgb(214, 157, 52);
   /* border: 1px solid var(--button-bg-color2); */
-  top: 271px;
+  top: 247px;
 }
 .hide {
   display: none;

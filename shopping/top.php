@@ -6,14 +6,19 @@ if (isset($_COOKIE['userid'])) {
 }
 echo("
 <head>
+<link href='https://cdn.quilljs.com/1.3.6/quill.snow.css' rel='stylesheet'>
+
 <title> </title>
 <style>
         @import url(shop.css);
+        @import url(quill.css);
         
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
 
     </style>
+    <script src='https://cdn.quilljs.com/1.3.6/quill.min.js'></script>
+
 </head>
 <body>
     <div class='container'>

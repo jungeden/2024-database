@@ -133,17 +133,20 @@
 }
 .ql-container.ql-snow {
   border-radius: 0 0 8px 8px;
-  height: 100px;
+  height: 200px;
   /* font-family: "Gowun Batang", serif; */
   width: 500px;
   /* background-color: rgb(230, 230, 230); */
   border: 1px solid var(--button-hover-color);
-  font-family: "Do Hyeon", sans-serif;
+  font-family: "Do Hyeon", sans-serif !important;
   font-size: 15px;
 }
 .button {
   border: 0;
   background-color: var(--button-bg-color);
+}
+.button.re {
+  margin-top: 20px;
 }
 .button:hover {
   background-color: var(--button-hover-color);
@@ -182,7 +185,7 @@
   /* border: 1px solid rgb(28, 28, 28); */
   border: 1px solid rgb(214, 157, 52);
   /* border: 1px solid var(--button-bg-color2); */
-  top: 300px;
+  top: 245px;
 }
 .hide {
   display: none;

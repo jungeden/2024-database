@@ -145,6 +145,7 @@ echo("
                     $userfile=$row['userfile'];
                     $name=$row['name'];
                     $price1=$row['price1'];
+                    $price2=$row['price2'];
                     $pcode=$row['pcode'];
 
                     $getoption = mysqli_query($con,"SELECT * FROM orderlist WHERE userid='$userid' AND session='$session'");
@@ -152,7 +153,11 @@ echo("
                     $size=$optionrow['size'];
                     $color=$optionrow['color'];
 
-                    $sumprice=number_format($quantity*$price1);
+                    if($price2!=0) {
+                        $sumprice = number_format($price2 * $quantity);
+                    } else {
+                        $sumprice = number_format($price1 * $quantity);
+                    }
 
                 echo("
                 <div class='productinfo'>

@@ -95,10 +95,10 @@ echo("
                 </div>
             </div>
         </div>
-        <div class='middle start n2'  >
+        <div class='middle start n2'>
                 
         </div>
-        <div class='middle start n3'  >
+        <div class='middle start n3'>
 
         </div>
 

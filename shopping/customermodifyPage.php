@@ -7,7 +7,8 @@ if (isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
   
 } else {
-    $userid='';
+    header("Location: loginPage.php");
+    exit();
 }
 // if ($comment == '장바구니에 상품이 담겼습니다.') {
 //     echo "<script>showMessage('" . addslashes($comment) . "');</script>";

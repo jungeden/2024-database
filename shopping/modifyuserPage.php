@@ -90,45 +90,7 @@ echo("
 
 
         <div class='middle'>
-            <div class='left middle'>
-                <div class='usernamebox'>
-                    <div class=username>
-                        <div class='usernametext'>
-                            <a class='text name'>$userid</a>
-                            <a class='text nim'>님</a>
-                        </div>
-                        <div class='logouttext'>
-                            <a class='logouttext' href='logout.php' >LOGOUT<a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class='menubox'>
-                    <div class='menutext'>
-                        <div class='mbox'>
-                            <a class='m' href='passPage.php'>회원정보 수정</a>
-                            <div class='mdiv'></div>
-                        </div>
-                        <div class='mbox'>
-                            <a class='m' href='shoppingcartPage.php'>장바구니</a>
-                            <div class='mdiv'></div>
-                        </div>
-                        <div class='mbox'>
-                            <a class='m' href='likePage.php'>찜</a>
-                            <div class='mdiv'></div>
-                        </div>
-                        <div class='mbox'>
-                            <a class='m' href='orderlistPage.php'>주문목록</a>
-                            <div class='mdiv'></div>
-                        </div>
-                        <div class='mbox'>
-                            <a class='m' href='customersPage.php'>고객센터</a>
-                            <div class='mdiv'></div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div class='right middle'>
                 <form class='right middle' method='post' action='modifyuser.php' id='modifyForm' name='modifyform'>
 

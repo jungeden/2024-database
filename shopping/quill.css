@@ -34,7 +34,11 @@
   /* fill: rgb(200, 200, 200); */
   fill: var(--button-bg-color);
 }
-
+.ql-snow .ql-editor pre.ql-syntax {
+  background-color: var(--hover2);
+  color: var(--button-bg-color3);
+  font-family: "Do Hyeon", sans-serif;
+}
 .ql-snow .ql-stroke {
   /* stroke: rgb(200, 200, 200); */
   stroke: var(--button-bg-color);
@@ -44,7 +48,8 @@
   color: var(--button-bg-color);
 }
 ql-snow.ql-toolbar .ql-picker-label:hover {
-  color: rgb(28, 28, 28);
+  /* color: rgb(28, 28, 28); */
+  color: var(--button-bg-color3);
 }
 
 .ql-snow .ql-picker-label {
@@ -52,10 +57,12 @@ ql-snow.ql-toolbar .ql-picker-label:hover {
   color: var(--button-bg-color);
 }
 .ql-snow.ql-toolbar .ql-picker-label.ql-active {
-  color: rgb(28, 28, 28);
+  /* color: rgb(28, 28, 28); */
+  color: var(--button-bg-color3);
 }
 .ql-snow.ql-toolbar .ql-picker-label:hover {
-  color: rgb(28, 28, 28);
+  /* color: rgb(28, 28, 28); */
+  color: var(--button-bg-color3);
 }
 .ql-snow.ql-toolbar button:hover,
 .ql-snow .ql-toolbar button:hover,
@@ -71,7 +78,8 @@ ql-snow.ql-toolbar .ql-picker-label:hover {
 .ql-snow .ql-toolbar .ql-picker-item:hover,
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
-  color: rgb(28, 28, 28);
+  /* color: rgb(28, 28, 28); */
+  color: var(--button-bg-color3);
 }
 
 .ql-snow.ql-toolbar button:hover .ql-stroke,
@@ -102,7 +110,8 @@ ql-snow.ql-toolbar .ql-picker-label:hover {
 .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
-  stroke: rgb(28, 28, 28);
+  /* stroke: rgb(28, 28, 28); */
+  stroke: var(--button-bg-color3);
 }
 .ql-snow.ql-toolbar button:hover .ql-fill,
 .ql-snow .ql-toolbar button:hover .ql-fill,
@@ -132,5 +141,6 @@ ql-snow.ql-toolbar .ql-picker-label:hover {
 .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
 .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
 .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill {
-  fill: rgb(28, 28, 28);
+  /* fill: rgb(28, 28, 28); */
+  fill: var(--button-bg-color3);
 }

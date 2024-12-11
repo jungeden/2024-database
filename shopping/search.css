@@ -25,3 +25,7 @@
   flex-direction: row;
   align-items: center;
 }
+.pricebox {
+  display: flex;
+  flex-direction: row;
+}

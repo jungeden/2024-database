@@ -24,14 +24,24 @@ $class=$row['class'];
 $userfile=$row['userfile'];
 $hit=$row['hit'];
 
+
+$getnotice = mysqli_query($con, "SELECT * FROM managenotice");
+$nrow = mysqli_fetch_assoc($getnotice);
+$ad = $nrow['ad'];
+$an = $nrow['an'];
+
+
 echo("
 <head>
+<link href='https://cdn.quilljs.com/1.3.6/quill.snow.css' rel='stylesheet'>
+
 <title> </title>
 <style>
         @import url(shop.css);
+        @import url(quill.css);
         @import url(shopping.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
         
     </style>
 <script src='scroll.js' defer></script>
@@ -63,9 +73,8 @@ echo("
                         <a href='manageaccountsPage.php?userid=$userid'>");
                         echo("<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path class='icon' d='M400-492.31q-57.75 0-98.87-41.12Q260-574.56 260-632.31q0-57.75 41.13-98.87 41.12-41.13 98.87-41.13 57.75 0 98.87 41.13Q540-690.06 540-632.31q0 57.75-41.13 98.88-41.12 41.12-98.87 41.12ZM100-187.69v-88.93q0-30.3 15.46-54.88 15.46-24.58 43.16-38.04 49.84-24.84 107.69-41.5 57.84-16.65 133.69-16.65h11.69q4.85 0 10.46 1.23-6.07 14.15-10.03 28.84-3.97 14.7-6.58 29.93H400q-69.08 0-122.31 15.88-53.23 15.89-91.54 35.81-13.61 7.31-19.88 17.08t-6.27 22.3v28.93h252q4.46 15.23 11.58 30.92 7.11 15.69 15.65 29.08H100Zm544.23 29.61-8.92-53.08q-14.31-4.23-26.93-11.07-12.61-6.85-24-17.16l-50.69 17.62-28.46-48.39L546.62-304q-4.31-15.54-4.31-30.62 0-15.07 4.31-30.61l-41-34.62 28.46-48.38 50.3 18q11-10.31 23.81-16.96 12.81-6.66 27.12-10.89l8.92-53.07h56.92l8.54 53.07q14.31 4.23 27.12 11.2 12.8 6.96 23.8 17.88l50.31-19.23 28.46 49.61-41 34.62q4.31 14.43 4.31 30.06 0 15.63-4.31 29.94l41.39 33.84-28.46 48.39-50.7-17.62q-11.38 10.31-24 17.16-12.61 6.84-26.92 11.07l-8.54 53.08h-56.92Zm28.11-100.38q31.43 0 53.77-22.38 22.35-22.38 22.35-53.81 0-31.43-22.38-53.77-22.38-22.35-53.81-22.35-31.42 0-53.77 22.38t-22.35 53.81q0 31.42 22.38 53.77t53.81 22.35ZM400-552.31q33 0 56.5-23.5t23.5-56.5q0-33-23.5-56.5t-56.5-23.5q-33 0-56.5 23.5t-23.5 56.5q0 33 23.5 56.5t56.5 23.5Zm0-80Zm12 384.62Z'/></svg>");
                             //  echo("<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path id='manageaccounts' d='M400-504.62q-49.5 0-84.75-35.25T280-624.62q0-49.5 35.25-84.75T400-744.62q49.5 0 84.75 35.25T520-624.62q0 49.5-35.25 84.75T400-504.62ZM120-215.38v-65.85q0-27.62 13.92-47.77 13.93-20.15 39.31-32.08 48.69-23.69 100.39-39 51.69-15.3 126.38-15.3h9.38q3.7 0 8.93.46-4.16 10.3-6.58 20.19-2.42 9.88-4.65 19.35H400q-67.15 0-117.12 13.76-49.96 13.77-90.57 35.62-18.23 9.62-25.27 20.15-7.04 10.54-7.04 24.62v25.85h252q2.92 9.46 7.15 20.34 4.23 10.89 9.31 19.66H120Zm528.46 19.23-5.84-46.16q-16.62-3.46-31.35-11.65-14.73-8.19-26.5-20.81l-43.39 17.23-16.92-28.77L561.23-314q-6.61-17.08-6.61-35.23t6.61-35.23l-36-29.23 16.92-28.77 42.62 18q11-12.62 26.11-20.42 15.12-7.81 31.74-11.27l5.84-46.16h33.85l5.07 46.16q16.62 3.46 31.74 11.38 15.11 7.92 26.11 20.77l42.62-18.46 16.92 29.23-36 29.23q6.61 16.86 6.61 35.12 0 18.26-6.61 34.88l36.77 27.69-16.92 28.77-43.39-17.23q-11.77 12.62-26.5 20.81t-31.35 11.65l-5.07 46.16h-33.85Zm16.22-80.77q29.86 0 51.05-21.26 21.19-21.26 21.19-51.12 0-29.85-21.26-51.05-21.26-21.19-51.11-21.19-29.86 0-51.05 21.26-21.19 21.26-21.19 51.12 0 29.85 21.26 51.04 21.26 21.2 51.11 21.2ZM400-544.62q33 0 56.5-23.5t23.5-56.5q0-33-23.5-56.5t-56.5-23.5q-33 0-56.5 23.5t-23.5 56.5q0 33 23.5 56.5t56.5 23.5Zm0-80Zm12 369.24Z'/></svg>");
-                         echo("</a>");
-                        
-                    }
+                         echo("</a>");     
+                }
                     echo("
                         <a href='shoppingcartPage.php'>");
                         echo("<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'><path class='icon' d='M286.15-97.69q-29.15 0-49.57-20.43-20.42-20.42-20.42-49.57 0-29.16 20.42-49.58 20.42-20.42 49.57-20.42 29.16 0 49.58 20.42 20.42 20.42 20.42 49.58 0 29.15-20.42 49.57-20.42 20.43-49.58 20.43Zm387.7 0q-29.16 0-49.58-20.43-20.42-20.42-20.42-49.57 0-29.16 20.42-49.58 20.42-20.42 49.58-20.42 29.15 0 49.57 20.42t20.42 49.58q0 29.15-20.42 49.57Q703-97.69 673.85-97.69ZM240.61-730 342-517.69h272.69q3.46 0 6.16-1.73 2.69-1.73 4.61-4.81l107.31-195q2.31-4.23.38-7.5-1.92-3.27-6.54-3.27h-486Zm-28.76-60h555.38q24.54 0 37.11 20.89 12.58 20.88 1.2 42.65L677.38-494.31q-9.84 17.31-26.03 26.96-16.2 9.66-35.5 9.66H324l-46.31 84.61q-3.08 4.62-.19 10 2.88 5.39 8.65 5.39h457.69v60H286.15q-40 0-60.11-34.5-20.12-34.5-1.42-68.89l57.07-102.61L136.16-810H60v-60h113.85l38 80ZM342-517.69h280-280Z'/></svg>");
@@ -86,7 +95,7 @@ echo("
                     </div>");
             echo("</div>
         </div>
-            <div class='line'></div>
+        <div class='line'></div>
 
         <div class='middle shopping'>
             <div class='logomiddle'>
@@ -95,187 +104,212 @@ echo("
             <div class='left middle'> 
                 <div class='ad'>
                     <div class='slider'>
-                        <div class='images'>
+                        <div class='images'>");
+                        $adfiles = explode(',', $ad); 
+                        foreach ($adfiles as $adfile) {
+                            $adfile=trim($adfile);
+                            echo(" <script>console.log('$adfile')</script>
                             <div class='image'>
-                            <img src='./ad/ad1.jpg'/>
-                            </div>
-                            <div class='image'>
-                             <img src='./ad/ad2.jpg'/>
-                            </div>
-                            <div class='image'>
-                            <img
-                                src='https://via.placeholder.com/1050x400?text=Image+3'
-                                alt='Image 3'
-                            />
-                            </div>
-                            <div class='image'>
-                            <img
-                                src='https://via.placeholder.com/1050x400?text=Image+4'
-                                alt='Image 4'
-                            />
+                                <img src='./ad/$adfile'/>
+                            </div>");
+                        }
+                        
+                        // echo("
+                           
+                        //     <div class='image'>
+                        //      <img src='./ad/ad2.jpg'/>
+                        //     </div>
+                        //     <div class='image'>
+                        //     <img
+                        //         src='https://via.placeholder.com/1050x400?text=Image+3'
+                        //         alt='Image 3'
+                        //     />
+                        //     </div>
+                        //     <div class='image'>
+                        //     <img
+                        //         src='https://via.placeholder.com/1050x400?text=Image+4'
+                        //         alt='Image 4'
+                        //     />");
+                            echo("
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class='productbox'>
-
-                ");
-if ($total == 0) {
-    echo ("
+                <div class='productbox'>");
+                    if ($total == 0) {
+                    echo ("
                     <div class='products'>
                         <a>등록된 상품이 없습니다.</a>
                     </div>
-                </div>
-    ");
-} else {
+                </div>");
+                    } else {
+                        if (!isset($_GET['cpage']) || $_GET['cpage'] == '') {
+                            $cpage = 1;  // 기본값을 1로 설정
+                        } else {
+                            $cpage = (int)$_GET['cpage'];  // 전달된 값은 정수로 변환
+                        }
+                        
+                        $pageSize = 8;  // 한 페이지에 출력할 데이터 수
+                        
+                        // 전체 페이지 수 계산
+                        if($categories=='') {
+                            $sqlTotal = "SELECT COUNT(*) FROM product";
+                        } else {
+                            // $categories=intval($categories);
+                            $sqlTotal = "SELECT COUNT(*) FROM product WHERE class='$categories' ";
+                        }
+                        
+                        $resultTotal = mysqli_query($con, $sqlTotal);
+                        $rowTotal = mysqli_fetch_row($resultTotal);
+                        $total = $rowTotal[0];
+                        
+                        // 전체 페이지 수 계산
+                        $totalPage = ceil($total / $pageSize);
+                        // echo "Total pages: " . $totalPage . "<br>"; // 페이지 수 확인
+                        
+                        // 현재 페이지의 시작 위치 계산
+                        $start = ($cpage - 1) * $pageSize;
+                        // echo "Start position: $start<br>";  // 시작 위치 출력
+                        // 페이지네이션 쿼리 적용 (LIMIT 사용)
+                        if($categories=='') {
+                            $sql = "SELECT * FROM product ORDER BY hit DESC LIMIT $start, $pageSize";
+                        } else {
+                            // $categories=intval($categories);
+                            $sql = "SELECT * FROM product WHERE class='$categories' ORDER BY hit DESC LIMIT $start, $pageSize";
+                        }
+                        // echo "Executing query: $sql<br>";  // 쿼리 확인
+                        $result = mysqli_query($con, $sql);
+                        
+                        // 쿼리 결과 출력
+                        // var_dump($result);  // 쿼리 결과 확인
+                        
+                        // 상품 목록 출력
+                        $counter = 0;
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $code = $row['code'];
+                            $name = $row['name'];
+                            $price1 = $row['price1'];
+                            $price2 = $row['price2'];
+                            $userfile = $row['userfile'];  // 이미지 파일 경로
+                            $hit = $row['hit'];
 
-    if (!isset($_GET['cpage']) || $_GET['cpage'] == '') {
-        $cpage = 1;  // 기본값을 1로 설정
-    } else {
-        $cpage = (int)$_GET['cpage'];  // 전달된 값은 정수로 변환
-    }
+                            $per = ($price2/$price1)*100;
+                            
+                        
+                            $price1=number_format($price1);
+                            $price2=number_format($price2);
+
+                            echo ("
+                    <div class='products'>
+                        <div class='product'>
+                            <a href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
+                                <img class='photo' src='./photo/$userfile'>
+                            </a>
+                        </div>
+                        <div class='productinfo'>
+                            <a class='productinfotext' href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
+                                $name
+                            </a>
+                            <div class='pricebox'>");
+                        
+                                
+                                if($price2!=0) {
+                                    echo("
+                                    <div style='color:rgb(255,197,90);'>$per% &nbsp;</div>
+                                        <a class='productinfotext gray'>
+                                            <s>$price1</s>
+                                        </a>
+                                        &nbsp;&nbsp;
+                            </div>
+                                        $price2");
+                                } else {
+                                    echo("
+                                        $price1
+                            </div>");
+                                }
+                                echo("
+                            <div class='producthit gray'>
+                                <a class='gray'> ");
+                                    // echo(" <svg class='hitimg' xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M480.18-345.85q55.97 0 94.97-39.18t39-95.15q0-55.97-39.18-94.97t-95.15-39q-55.97 0-94.97 39.18t-39 95.15q0 55.97 39.18 94.97t95.15 39ZM480-384q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm.11 152q-126.55 0-230.68-67.73Q145.31-367.46 91.08-480q54.23-112.54 158.24-180.27Q353.34-728 479.89-728t230.68 67.73Q814.69-592.54 868.92-480q-54.23 112.54-158.24 180.27Q606.66-232 480.11-232ZM480-480Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z'/></svg>"); 
+                                    echo("<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' ><path d='M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z'/></svg>");
+                                    echo("
+                                 </a>
+                                <a style='font-size:13px; ' class='gray'>$hit</a>
+                            </div>
+                        </div>
+                        <div class='likebutton'>");             
+                            $getlike = mysqli_query($con, "SELECT * FROM likeit WHERE userid='$userid' AND pcode='$code'");
+                            $total = mysqli_num_rows($getlike);
+                            $likeStatus = ($total == 0) ? 1 : 0; // 좋아요 상태 설정 (1 = 안 눌림, 0 = 눌림)
+                            
+                            // 좋아요 상태에 따른 버튼 렌더링
+                            if ($likeStatus == 0) {
+                                echo "
+                                <button class='heart1'  id='$code'
+                                    onclick='window.location=\"like.php?islike=0&pcode=$code&page=shopping\"'>
+                                </button>";
+
+                                echo("<script>document.getElementById('$code').classList.add('select');</script>");
+
+                            } else {
+                                echo "
+                                <button class='heart1' id='$code'
+                                    onclick='window.location=\"like.php?islike=1&pcode=$code&page=shopping\"'>
+                                </button>";
+                                echo("<script>document.getElementById('$code').classList.remove('select');</script>");
+                            }
+                            echo("
+                        </div>
+                    </div>");
+                    $counter++;
+                        }
     
-    $pageSize = 8;  // 한 페이지에 출력할 데이터 수
-    
-    // 전체 페이지 수 계산
-    if($categories=='') {
-        $sqlTotal = "SELECT COUNT(*) FROM product";
-    } else {
-        // $categories=intval($categories);
-        $sqlTotal = "SELECT COUNT(*) FROM product WHERE class='$categories' ";
-    }
-    
-    $resultTotal = mysqli_query($con, $sqlTotal);
-    $rowTotal = mysqli_fetch_row($resultTotal);
-    $total = $rowTotal[0];
-    
-    // 전체 페이지 수 계산
-    $totalPage = ceil($total / $pageSize);
-    // echo "Total pages: " . $totalPage . "<br>"; // 페이지 수 확인
-    
-    // 현재 페이지의 시작 위치 계산
-    $start = ($cpage - 1) * $pageSize;
-    // echo "Start position: $start<br>";  // 시작 위치 출력
-    // 페이지네이션 쿼리 적용 (LIMIT 사용)
-    if($categories=='') {
-        $sql = "SELECT * FROM product ORDER BY hit DESC LIMIT $start, $pageSize";
-    } else {
-        // $categories=intval($categories);
-        $sql = "SELECT * FROM product WHERE class='$categories' ORDER BY hit DESC LIMIT $start, $pageSize";
-    }
-    // echo "Executing query: $sql<br>";  // 쿼리 확인
-    $result = mysqli_query($con, $sql);
-    
-    // 쿼리 결과 출력
-    // var_dump($result);  // 쿼리 결과 확인
-    
-    // 상품 목록 출력
-    $counter = 0;
-    while ($row = mysqli_fetch_assoc($result)) {
-        $code = $row['code'];
-        $name = $row['name'];
-        $price1 = $row['price1'];
-        $price2 = $row['price2'];
-        $userfile = $row['userfile'];  // 이미지 파일 경로
-        $hit = $row['hit'];
-    
-        $price1=number_format($price1);
-        echo ("
-        <div class='products'>
-            <div class='product'>
-                <a href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
-                    <img class='photo' src='./photo/$userfile'>
-                </a>
-            </div>
-            <div class='productinfo'>
-                <a class='productinfotext' href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
-                    $name
-                </a>
-                <a class='productinfotext gray'>
-                    $price1
-                </a>
-                  <div class='producthit gray'>
-                     <a class='gray'> ");
-                        // echo(" <svg class='hitimg' xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M480.18-345.85q55.97 0 94.97-39.18t39-95.15q0-55.97-39.18-94.97t-95.15-39q-55.97 0-94.97 39.18t-39 95.15q0 55.97 39.18 94.97t95.15 39ZM480-384q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm.11 152q-126.55 0-230.68-67.73Q145.31-367.46 91.08-480q54.23-112.54 158.24-180.27Q353.34-728 479.89-728t230.68 67.73Q814.69-592.54 868.92-480q-54.23 112.54-158.24 180.27Q606.66-232 480.11-232ZM480-480Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z'/></svg>"); 
-                        echo("<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' ><path d='M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z'/></svg>");
-                        echo(" </a>
-                    <a style='font-size:13px; ' class='gray'>$hit</a>
-                </div>
-            </div>
-            <div class='likebutton'>
-            ");             
-            $getlike = mysqli_query($con, "SELECT * FROM likeit WHERE userid='$userid' AND pcode='$code'");
-            $total = mysqli_num_rows($getlike);
-            $likeStatus = ($total == 0) ? 1 : 0; // 좋아요 상태 설정 (1 = 안 눌림, 0 = 눌림)
-            
-            // 좋아요 상태에 따른 버튼 렌더링
-            if ($likeStatus == 0) {
                 echo "
-                <button class='heart1'  id='$code'
-                    onclick='window.location=\"like.php?islike=0&pcode=$code&page=shopping\"'>
-                </button>";
+            </div>";
 
-                echo("<script>document.getElementById('$code').classList.add('select');</script>");
-
-            } else {
+       
                 echo "
-                <button class='heart1' id='$code'
-                    onclick='window.location=\"like.php?islike=1&pcode=$code&page=shopping\"'>
-                </button>";
-                echo("<script>document.getElementById('$code').classList.remove('select');</script>");
+            <div class='nextpage'>";
+                if (!isset($cblock) || $cblock == '') {
+                    $cblock = 1;
+                }
 
-            }
-            
-            echo("
-            </div>
-          
-        </div>");
-        $counter++;
-    }
-    
-    echo "</div>";
+                $blockSize = 5;  // 한 블록에 표시할 페이지 수
+                $pblock = $cblock - 1;
+                $nblock = $cblock + 1;
 
-    // 페이지네이션: 이전, 다음 페이지
-    echo "<div class='nextpage'>";
-    if (!isset($cblock) || $cblock == '') {
-        $cblock = 1;
-    }
+                $startPage = ($cblock - 1) * $blockSize + 1;
+                $pStartPage = $startPage - 1;
+                $nStartPage = $startPage + $blockSize;
+                echo("
+                <div class='pagechange'>");
+                // 이전 블록 링크
+                if ($pblock > 0) {
+                    echo "<a href='shoppingPage.php?cblock=$pblock&cpage=$pStartPage&userid=$userid&categories=$categories'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'>
+                                <path id='beforepage' d='M560-267.69 347.69-480 560-692.31 588.31-664l-184 184 184 184L560-267.69Z'/>
+                            </svg>
+                        </a>";
+                }
 
-    $blockSize = 5;  // 한 블록에 표시할 페이지 수
-    $pblock = $cblock - 1;
-    $nblock = $cblock + 1;
+                // 페이지 번호 출력
+                for ($i = $startPage; $i < $nStartPage && $i <= $totalPage; $i++) {
+                    $class = ($i == $cpage) ? 'class="current"' : '';  // 현재 페이지는 스타일링
+                    echo "<div class='pagenum'><a href='shoppingPage.php?cblock=$cblock&cpage=$i&categories=$categories' $class>$i</a></div>";
+                }
 
-    $startPage = ($cblock - 1) * $blockSize + 1;
-    $pStartPage = $startPage - 1;
-    $nStartPage = $startPage + $blockSize;
-    echo("
-    <div class='pagechange'>");
-    // 이전 블록 링크
-    if ($pblock > 0) {
-        echo "<a href='shoppingPage.php?cblock=$pblock&cpage=$pStartPage&userid=$userid&categories=$categories'>
-            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'>
-                <path id='beforepage' d='M560-267.69 347.69-480 560-692.31 588.31-664l-184 184 184 184L560-267.69Z'/>
-            </svg>
-        </a>";
-    }
-
-    // 페이지 번호 출력
-    for ($i = $startPage; $i < $nStartPage && $i <= $totalPage; $i++) {
-        $class = ($i == $cpage) ? 'class="current"' : '';  // 현재 페이지는 스타일링
-        echo "<div class='pagenum'><a href='shoppingPage.php?cblock=$cblock&cpage=$i&categories=$categories' $class>$i</a></div>";
-    }
-
-    // 다음 블록 링크
-    if ($nStartPage <= $totalPage) {
-        echo "<a href='shoppingPage.php?cblock=$nblock&cpage=$nStartPage&userid=$userid&categories=$categories'>
-            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'>
-                <path id='afterpage' d='m531.69-480-184-184L376-692.31 588.31-480 376-267.69 347.69-296l184-184Z'/>
-            </svg>
-        </a>";
-    }
-    echo "</div>
-    </div>";
-}
+                // 다음 블록 링크
+                if ($nStartPage <= $totalPage) {
+                    echo "<a href='shoppingPage.php?cblock=$nblock&cpage=$nStartPage&userid=$userid&categories=$categories'>
+                            <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='#181818'>
+                                <path id='afterpage' d='m531.69-480-184-184L376-692.31 588.31-480 376-267.69 347.69-296l184-184Z'/>
+                            </svg>
+                        </a>";
+                }
+                echo "
+                </div>
+            </div>";
+                    }
 
 
             // echo(" 
@@ -310,80 +344,81 @@ if ($total == 0) {
             // echo("<a class='filter ho'>categories</a>");
                     echo(" 
             
-                    <div class='filterbox'>
-    
-                        
-                        <input style='display:none;' id='categoriescheck' name='categoriescheck' >
-    
-                        <div class='filteroption'>
-                            <div class='options' id='outer' onclick=\"window.location.href='shoppingPage.php?categories=1'\">
-                                <a class='ho oo'>O</a>
-                                <a class='ho o'>OUTER</a>
-                            </div>
-                        </div>
-                        <div class='filteroption'>
-                            <div class='options' id='top' onclick=\"window.location.href='shoppingPage.php?categories=2'\">
-                            <a class='ho oo' >T</a>
-                            <a class='ho o'>TOP</a>
-                            </div>
-                        </div>
-                        <div class='filteroption'>
-                            <div class='options' id='skirt' onclick=\"window.location.href='shoppingPage.php?categories=3'\">
-                            <a class='ho oo' >S</a>
-                            <a class='ho o'>SKIRT</a>
-                            </div>
-                        </div>
-                        <div class='filteroption'>
-                            <div class='options' id='pants' onclick=\"window.location.href='shoppingPage.php?categories=4'\">
-                            <a class='ho oo' >P</a>
-                            <a class='ho o'>PANTS</a>
-                            </div>
-                        </div>
-                        <div class='filteroption'>
-                            <div class='options' id='other' onclick=\"window.location.href='shoppingPage.php?categories=5'\">
-                            <a class='ho oo' >O</a>
-                            <a class='ho o'>OTHER</a>
-                            </div>
-                        </div>
-                        ");
-                    
-                    // echo("<a class='filter ho'>price</a>");
-                    
-                    echo("
-                    
+            <div class='filterbox'>                
+                <input style='display:none;' id='categoriescheck' name='categoriescheck' >
 
+                <div class='filteroption'>
+                    <div class='options' id='outer' onclick=\"window.location.href='shoppingPage.php?categories=1'\">
+                        <a class='ho oo'>O</a>
+                        <a class='ho o'>OUTER</a>
+                    </div>
                 </div>
+                <div class='filteroption'>
+                    <div class='options' id='top' onclick=\"window.location.href='shoppingPage.php?categories=2'\">
+                    <a class='ho oo' >T</a>
+                    <a class='ho o'>TOP</a>
+                    </div>
+                </div>
+                <div class='filteroption'>
+                    <div class='options' id='skirt' onclick=\"window.location.href='shoppingPage.php?categories=3'\">
+                    <a class='ho oo' >S</a>
+                    <a class='ho o'>SKIRT</a>
+                    </div>
+                </div>
+                <div class='filteroption'>
+                    <div class='options' id='pants' onclick=\"window.location.href='shoppingPage.php?categories=4'\">
+                    <a class='ho oo' >P</a>
+                    <a class='ho o'>PANTS</a>
+                    </div>
+                </div>
+                <div class='filteroption'>
+                    <div class='options' id='other' onclick=\"window.location.href='shoppingPage.php?categories=5'\">
+                    <a class='ho oo' >O</a>
+                    <a class='ho o'>OTHER</a>
+                    </div>
+                </div>");
+                    
+                    // echo("<a class='filter ho'>price</a>"); 
+                    echo("
             </div>
-
+            <div class='modal' id='modal'>
+                <div class='modalbutton' onclick='modalclose()'>
+                    <svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' ><path class='icon' d='m256-236-20-20 224-224-224-224 20-20 224 224 224-224 20 20-224 224 224 224-20 20-224-224-224 224Z'/></svg>
+                </div>
+                <div class='ql-editor element con'>$an</div>
+            </div>
         </div>
+
+        
         <div class='bottom start'>
 
         </div>
 
-</div>
-<script>
-    function toggleFixed(element) {
-        document.getElementById('outer').classList.remove('fixed');
-        document.getElementById('shirt').classList.remove('fixed');
-        document.getElementById('skirt').classList.remove('fixed');
-        document.getElementById('pants').classList.remove('fixed');
-        document.getElementById('other').classList.remove('fixed');
-        
-        element.classList.add('fixed');
+    </div>
+    <script>
+        document.getElementById('modal').style.display='block';
+        function modalclose() {
+            document.getElementById('modal').style.display='none';
+        }
+         function toggleFixed(element) {
+            document.getElementById('outer').classList.remove('fixed');
+            document.getElementById('shirt').classList.remove('fixed');
+            document.getElementById('skirt').classList.remove('fixed');
+            document.getElementById('pants').classList.remove('fixed');
+            document.getElementById('other').classList.remove('fixed');
+            
+            element.classList.add('fixed');
 
-        document.getElementById('categoriescheck').value = element.id;
+            document.getElementById('categoriescheck').value = element.id;
 
-    }
+        }
 
- $(document).ready(function () {
-        $('.slider').imageSlider({
-          width: 1050,
-          height: 400,
- 
-
-        });
-      });
-
+        $(document).ready(function () {
+                $('.slider').imageSlider({
+                width: 1050,
+                height: 400,
+                });
+            });
     </script>
 </body>
 

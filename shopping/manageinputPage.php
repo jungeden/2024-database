@@ -197,8 +197,9 @@ echo("
                                 <li><button type='button' class='input coption' id='5' onclick='changeclass(this.id)' >기타</button></li>
                             </ul>
                         </div>
-                        <input class='input' type='text' name='name' placeholder='상품이름'>
-                        <input class='input' type='text' name='price1' placeholder='상품가격'>
+                        <input class='input i' type='text' name='name' placeholder='상품이름'>
+                        <input class='input i' type='text' name='price1' placeholder='상품가격'>
+                        <input class='input i' type='text' name='price2' placeholder='할인가격'>
                         
                         <div class='optionscheck'>
                             <input name='size' id='size' style='display:none;' >
