@@ -43,6 +43,7 @@ echo("
 <link href='https://cdn.quilljs.com/1.3.6/quill.snow.css' rel='stylesheet'>
 <title> </title>
     <style>
+        @import url(bottom.css);
         @import url(shop.css);
         @import url(productdetail.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
@@ -570,9 +571,17 @@ echo("
                 echo("
             </div>
         </div>
+         
     </div>
 
-        
+         <div class='bottom2' id='bottom' >");
+?>
+<?
+  include('bottom.php');
+?>
+<?
+    echo("
+  </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const messagebox = document.getElementById('messageBox');

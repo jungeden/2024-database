@@ -3,6 +3,8 @@
   flex-direction: row;
   width: 100%;
   height: 100%;
+  min-height: -webkit-fill-available;
+
   justify-content: center;
   flex-wrap: wrap;
   overflow-x: auto;
@@ -106,7 +108,8 @@
 .total {
   width: 300px;
   height: 150px;
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--button-bg-color);
   /* background-color: rgb(200, 200, 200); */
   clip-path: polygon(0% 0%, 0% 85%, 50% 100%, 100% 85%, 100% 0%);
   transition-duration: 2s;
@@ -275,7 +278,7 @@
   justify-content: center;
   clip-path: polygon(0% 0%, 0% 85%, 50% 100%, 100% 85%, 100% 0%);
 
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230); */
 
   position: absolute;
   top: 0px;
@@ -333,13 +336,22 @@
   flex-direction: column;
   justify-content: center;
   font-size: 12px;
-  background-color: rgb(239, 239, 239);
+  /* background-color: rgb(239, 239, 239); */
+  background-color: var(--button-bg-color);
   border-radius: 12px;
 }
 .reviewbuttonbox:hover {
-  color: rgb(200, 200, 200);
-  background-color: whitesmoke;
+  /* color: rgb(200, 200, 200); */
+  /* background-color: whitesmoke; */
+  background-color: var(--button-hover-color);
+}
+.icon {
+  fill: rgb(28, 28, 28);
 }
 .button:hover {
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--button-bg-color);
+}
+.nextpage {
+  align-items: center;
 }

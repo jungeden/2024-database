@@ -16,6 +16,7 @@ echo("
 <head>
 <title> </title>
 <style>
+      @import url(bottom.css);
         @import url(shop.css);
         @import url(login.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
@@ -62,7 +63,7 @@ echo("
         </div>
         <div class='line'></div>
 
-        <div class='middle'>
+        <div class='middle login'>
             <div class='label'>
                 <form method='post' action='login.php?page=$page&code=$code'>
                     <div class='inputbox'>
@@ -85,14 +86,20 @@ echo("
                         비밀번호 찾기
                     </a>
                     <a> | </a>
-                    <a class='logintext'  href='joinPage.php' > 
+                    <a class='logintext'  href='joincheckPage.php' > 
                         회원가입
                     </a>
                 </div>
             </div>
         </div>
         <div class='bottom'>
-
+");
+?>
+<?
+  include('bottom.php');
+?>
+<?
+    echo("
         </div>
 
 

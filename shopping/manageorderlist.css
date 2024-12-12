@@ -9,7 +9,9 @@
 
   width: 100%;
 }
-
+.bottom {
+  width: 100%;
+}
 .userbox {
   display: flex;
   flex-direction: row;

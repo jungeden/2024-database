@@ -1,6 +1,16 @@
 <?php
 session_start();
 
+$policy1 = $_POST['policy1'];
+$policy2 = $_POST['policy2'];
+
+if ($policy1=='n' || $policy2=='n') {
+    echo ("<script>
+        window.alert('약관에 동의해주세요.');
+        history.go(-1);
+    </script>");
+    exit;
+}
 
 $userid = isset($_GET['userid']) ? $_GET['userid'] : '';
 $comment = isset($_GET['comment']) ? $_GET['comment'] : '';
@@ -18,7 +28,8 @@ echo <<<HTML
 <html lang="en">
 <head>
     <style>
-        @import url(shop.css);
+      @import url(bottom.css);
+      @import url(shop.css);
         @import url(join.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');

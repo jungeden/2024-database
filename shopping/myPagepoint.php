@@ -17,6 +17,7 @@ include('top.php');
 <?
 echo("
 <style>
+        
         @import url(my.css);
     </style>");
 // $userid = isset($_GET['userid']) ? $_GET['userid'] : '';
@@ -175,6 +176,7 @@ echo("
                 </div>
             </div>
         </div>
+        
     </div>
     <script>
     const target = document.getElementById('leftmiddle');

@@ -17,6 +17,7 @@ echo("
 
 <title> </title>
 <style>
+      @import url(bottom.css);
         @import url(quill.css);
         @import url(shop.css);
         @import url(manageinput.css);
@@ -287,7 +288,13 @@ echo("
         </div>
 
         <div class='bottom start'>
-
+");
+?>
+<?
+  include('bottom.php');
+?>
+<?
+    echo("
         </div>
     </div>
 <script>

@@ -21,15 +21,23 @@ $name=$row['name'];
 $price1=$row['price1'];
 $price2=$row['price2'];
 $userfile=$row['userfile'];
+$per = ($price2/$price1)*100;
+                            
+                        
+if($price2!=0) {
+    $price=number_format($price2);
 
-$price=number_format($price1);
+} else {
+    $price=number_format($price1);
+
+}
 
 echo("
 <head>
 <title> </title>
 <style>
         @import url(shop.css);
-       
+       @import url(bottom.css);
         @import url(reviewwrite.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
@@ -105,6 +113,7 @@ echo("
                         </div>
                     </div>
                 </div>
+                <div class='line m'></div>
                 <div class='reviewstar'>
                     
                     <div class='starbox'>
@@ -132,7 +141,7 @@ echo("
                     <form class='formstar' method='post' action='reviewwrite.php?pcode=$pcode&size=$size&color=$color' id='reviewstar' enctype='multipart/form-data'>
                         <input type='hidden' id='star' name='star'>
                         <textarea class='input content' name='content' rows='12' cols='50'></textarea>
-                        <div class='productphoto'>
+                        <div class='productphoto de'>
                             <a class='phototext'>사진추가</a>
                             <input class='file' type='file' name='userfile' accept='image/*' onchange='previewImage(event)'>
                             <img class='photopreview' id='preview'>
@@ -142,6 +151,15 @@ echo("
                 </div>
             </div>
            
+        </div>
+                <div class='buttom'>
+                ");
+?>
+<?
+include('bottom.php');
+?>
+<?
+echo("
         </div>
     </div>
     <script>
@@ -154,9 +172,9 @@ echo("
                 console.log('Clicked star ID:', id); 
                 for(let i=1; i<=10; i++) {
                     if(i<=id) {
-                    document.getElementById(i).style.backgroundColor='rgb(28,28,28)';
+                    document.getElementById(i).style.backgroundColor='rgb(255,197,90)';
                     } else {
-                    document.getElementById(i).style.backgroundColor='rgb(230,230,230)';
+                    document.getElementById(i).style.backgroundColor='rgb(225, 218, 201)';
                     }
                 }
                 document.getElementById('star').value = id;

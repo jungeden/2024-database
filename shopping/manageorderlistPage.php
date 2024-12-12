@@ -20,6 +20,7 @@ echo("
 <head>
 <title> </title>
 <style>
+      @import url(bottom.css);
         @import url(shop.css);
         @import url(manageorderlist.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
@@ -210,6 +211,14 @@ echo("
             }
                 echo("
             </div>
+             <div class='bottom' id='bottom' >");
+?>
+<?
+  include('bottom.php');
+?>
+<?
+    echo("
+  </div>
         </div>
 
 ");

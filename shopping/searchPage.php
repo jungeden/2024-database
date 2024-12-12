@@ -42,6 +42,7 @@ echo("
 <head>
 <title> </title>
 <style>
+        @import url(bottom.css);
         @import url(shop.css);
         @import url(search.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
@@ -293,8 +294,14 @@ echo("
             echo("
             
         
-        <div class='bottom start'>
-
+                <div class='buttom'>
+                ");
+            ?>
+            <?
+            include('bottom.php');
+            ?>
+            <?
+            echo("
         </div>
     </body>
 

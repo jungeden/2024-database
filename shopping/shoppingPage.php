@@ -40,6 +40,7 @@ echo("
         @import url(shop.css);
         @import url(quill.css);
         @import url(shopping.css);
+        @import url(bottom.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
         
@@ -388,12 +389,15 @@ echo("
                 <div class='ql-editor element con'>$an</div>
             </div>
         </div>
-
-        
-        <div class='bottom start'>
-
+        <div class='bottom' id='bottom' >
+        ");
+?>
+<?
+include('bottom.php');
+?>
+<?
+echo("
         </div>
-
     </div>
     <script>
         document.getElementById('modal').style.display='block';
@@ -419,6 +423,8 @@ echo("
                 height: 400,
                 });
             });
+        
+       
     </script>
 </body>
 

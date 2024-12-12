@@ -5,6 +5,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* justify-self: end; */
+  min-height: -webkit-fill-available;
+  /* margin-top: 30px; */
 }
 .box {
   display: flex;

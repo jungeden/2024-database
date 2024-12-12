@@ -213,3 +213,236 @@
   position: relative;
   background-color: rgb(150, 150, 150);
 } */
+.bottom.start {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-size: cover;
+}
+.alp {
+  position: absolute;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  color: var(--button-bg-color3);
+  transition: all;
+  transition-duration: 2s;
+}
+.alp2 {
+  position: absolute;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  /* color: var(--button-hover-color); */
+  color: var(--button-bg-color2);
+
+  transition: all;
+  transition-duration: 2s;
+}
+.middle.start:hover .alp2 {
+  animation-duration: 3s;
+  animation-fill-mode: backwards;
+  animation-name: alp2;
+}
+.middle.start:hover .alp {
+  animation-duration: 2s;
+  animation-fill-mode: backwards;
+  animation-name: alp;
+}
+@keyframes alp {
+  from {
+    left: 0;
+  }
+}
+@keyframes alp2 {
+  from {
+    top: 0;
+  }
+}
+.alp:hover {
+  /* width: 300px;
+  height: 300px; */
+  font-size: 50px;
+}
+.alp2:hover {
+  /* width: 300px;
+  height: 300px; */
+  font-size: 50px;
+}
+
+.box1 {
+  position: absolute;
+  right: 0;
+  width: 0px;
+  height: 500px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--button-bg-color3);
+  transition: all;
+  transition-duration: 3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.middle.start.n2:hover .box1 {
+  animation-duration: 2s;
+  animation-name: box1;
+  animation-fill-mode: forwards;
+  width: 300px;
+}
+@keyframes box1 {
+  to {
+    right: 100px;
+  }
+}
+.box2 {
+  position: absolute;
+  right: 0;
+  width: 400px;
+  height: 0px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--hover2);
+  transition: all;
+  transition-duration: 3s;
+  left: 100px;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.middle.start.n2:hover .box2 {
+  animation-duration: 2s;
+  animation-name: box2;
+  animation-fill-mode: forwards;
+  height: 500px;
+}
+@keyframes box2 {
+  to {
+    top: 100px;
+  }
+}
+.box3 {
+  position: absolute;
+
+  width: 0px;
+  height: 100px;
+  opacity: 0.7;
+  border-radius: 8px;
+  /* background-color: var(--hover2); */
+  transition: all;
+  transition-duration: 3s;
+  left: 520px;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+.middle.start.n2:hover .box3 {
+  animation-duration: 2s;
+  animation-name: box3;
+  animation-fill-mode: forwards;
+  width: 600px;
+}
+@keyframes box3 {
+  to {
+    bottom: 500px;
+    /* right: 300px; */
+  }
+}
+.photo {
+  width: 300px;
+}
+
+.box4 {
+  position: absolute;
+  width: 0px;
+  height: 400px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--button-bg-color2);
+  transition: all;
+  transition-duration: 3s;
+  left: 0px;
+  top: 50px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.middle.start.n3:hover .box4 {
+  width: 790px;
+}
+.box5 {
+  position: absolute;
+  width: 0px;
+  height: 300px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--button-bg-color);
+  transition: all;
+  transition-duration: 2s;
+  right: 0px;
+  bottom: 50px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.middle.start.n3:hover .box5 {
+  width: 800px;
+}
+.box6 {
+  position: absolute;
+  width: 650px;
+  height: 0px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--button-bg-color3);
+  transition: all;
+  transition-duration: 2.5s;
+  right: 50px;
+  top: 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  /* text-align: center; */
+}
+.middle.start.n3:hover .box6 {
+  height: 450px;
+}
+.box7 {
+  position: absolute;
+  width: 640px;
+  height: 0px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--hover2);
+  transition: all;
+  transition-duration: 1s;
+  left: 50px;
+  bottom: 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.middle.start.n3:hover .box7 {
+  height: 350px;
+}

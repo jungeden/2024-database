@@ -4,6 +4,7 @@
   width: 100%;
   height: 100%;
   justify-content: center;
+  min-height: -webkit-fill-available;
 }
 .left.middle {
   width: 30%;

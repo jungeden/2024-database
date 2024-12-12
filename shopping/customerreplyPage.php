@@ -37,6 +37,7 @@ echo("
 <title> </title>
 <style>
  @import url(quill.css);
+      @import url(bottom.css);
         @import url(shop.css);
         @import url(customerinput.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
@@ -102,7 +103,7 @@ echo("
         <div class='middle'>
             <form class='middle' method='post' action='customerreply.php?parentid=$id&issecret=$issecret&class=$class' enctype=\"multipart/form-data\">
 
-                <div class='qnatextbox'>
+                <div class='qnatextbox' style='margin:100px 0 0 0;'>
                     <div style='color:rgb(255,197,90); font-size:25px; margin-left:5px;'>관리자</div>
                     <input class='input' type='text' name='topic' placeholder='제목' value='$topic'>
                         <div class='classoptionbox'>
@@ -122,6 +123,14 @@ echo("
 
             </form> 
         </div>
+         <div class='bottom' id='bottom' >");
+?>
+<?
+  include('bottom.php');
+?>
+<?
+    echo("
+  </div>
     </div>
     <script>
 var toolbarOptions = [

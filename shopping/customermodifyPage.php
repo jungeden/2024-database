@@ -29,6 +29,7 @@ echo("
 <link href='https://cdn.quilljs.com/1.3.6/quill.snow.css' rel='stylesheet'>
 <title> </title>
 <style>
+      @import url(bottom.css);
  @import url(quill.css);
         @import url(shop.css);
         @import url(customerinput.css);
@@ -95,7 +96,7 @@ echo("
         <div class='middle'>
             <form class='middle' method='post' action='customermodify.php?id=$id' enctype=\"multipart/form-data\">
 
-                <div class='qnatextbox'>
+                <div class='qnatextbox' style='margin-top:50px;'>
                     <div style='color:rgb(255,197,90); font-size:25px; margin-left:5px;'>$userid</div>
                     <input class='input' type='text' name='topic' placeholder='제목' value=$topic>
                     <input class='input' type='hidden' name='class' id='class'>
@@ -136,6 +137,14 @@ echo("
 
             </form> 
         </div>
+         <div class='bottom' id='bottom' >");
+?>
+<?
+  include('bottom.php');
+?>
+<?
+    echo("
+  </div>
     </div>
     <script>
 var toolbarOptions = [

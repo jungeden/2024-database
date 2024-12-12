@@ -97,6 +97,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: end;
+  min-height: -webkit-fill-available;
 }
 .bottom.login {
   height: 40%;

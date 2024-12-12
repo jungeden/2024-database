@@ -180,6 +180,7 @@ echo("
                 echo("
             
         </div>
+        
     </div>
     <script>
     const target = document.getElementById('leftmiddle');

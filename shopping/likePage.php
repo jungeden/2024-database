@@ -22,6 +22,7 @@ echo("
 <head>
 <title> </title>
 <style>
+      @import url(bottom.css);
         @import url(shop.css);
         @import url(like.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
@@ -79,56 +80,93 @@ echo("
             <div class='line'></div>
             <div class='middle'>");
             if ($total == 0) {
-                echo("<div class='productbox shoppingcart'>
-                        <a>장바구니가 비었습니다.</a>
+                echo("<div class='productbox'>
+                        <a>찜 목록이 비었습니다.</a>
                     </div>");
             } else {
-            $counter = 0;
-            while($row=mysqli_fetch_assoc($getlikeit)) {
-                $pcode=$row['pcode'];
                 
-                $getproduct = mysqli_query($con, "SELECT * from product WHERE code=$pcode");
-                $productrow = mysqli_fetch_assoc($getproduct);
-                $name = $productrow['name'];
-                $price1 = $productrow['price1'];
-                $userfile = $productrow['userfile'];
-                $hit=$productrow['hit'];
-                $code=$productrow['code'];
-                
-                $price = number_format($price1);
-                // $sumprice = number_format($price1 * $quantity);
                     
-            echo("
-            <div class='productbox'>
-                <div class='box'>
-                    <div class='product'>
-                        <div class='photo'>
-                            <a href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
-                                <img class='photo' src='./photo/$userfile'>
-                            </a>
+                while($row=mysqli_fetch_assoc($getlikeit)) {
+                    $pcode=$row['pcode'];
+                    
+                    $getproduct = mysqli_query($con, "SELECT * from product WHERE code=$pcode");
+                    $productrow = mysqli_fetch_assoc($getproduct);
+                    $name = $productrow['name'];
+                    $price1 = $productrow['price1'];
+                    $price2 = $productrow['price2'];
+                    $userfile = $productrow['userfile'];
+                    $hit=$productrow['hit'];
+                    $code=$productrow['code'];
+                    
+                    $per = ($price2/$price1)*100;
+                            
+                    if($price2!=0) {
+                        $price = number_format($price2);
+
+                    } else {
+                        $price = number_format($price1);
+
+                    }
+                   
+
+                    // $sumprice = number_format($price1 * $quantity);
+                        
+                    echo("
+                    <div class='productbox'>
+                        <div class='box'>
+                            <div class='product'>
+                                <div class='photo'>
+                                    <a href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
+                                        <img class='photo' src='./photo/$userfile'>
+                                    </a>
+                                </div>
+                                <div class='productinfo'>
+                                    <a class='productinfotext' href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
+                                        $name
+                                    </a>
+                                   <div class='pricebox'>");
+                        
+                                
+                                if($price2!=0) {
+                                    echo("
+                                    <div style='color:rgb(255,197,90);'>$per% &nbsp;</div>
+                                        <a class='productinfotext gray'>
+                                            <s>$price1</s>
+                                        </a>
+                                        &nbsp;&nbsp;
+                                    </div>
+                                        $price2");
+                                } else {
+                                    echo("
+                                        $price1
+                                    </div>");
+                                }
+                                echo("
+                                
+                                <div class='producthit gray'>
+                                    <a class='gray'> ");
+                                    // echo(" <svg class='hitimg' xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='#181818'><path d='M480.18-345.85q55.97 0 94.97-39.18t39-95.15q0-55.97-39.18-94.97t-95.15-39q-55.97 0-94.97 39.18t-39 95.15q0 55.97 39.18 94.97t95.15 39ZM480-384q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm.11 152q-126.55 0-230.68-67.73Q145.31-367.46 91.08-480q54.23-112.54 158.24-180.27Q353.34-728 479.89-728t230.68 67.73Q814.69-592.54 868.92-480q-54.23 112.54-158.24 180.27Q606.66-232 480.11-232ZM480-480Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z'/></svg>"); 
+                                    echo("<svg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' ><path d='M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z'/></svg>");
+                                    echo("
+                                 </a>
+                                    <a style='font-size:13px; ' class='gray'>$hit</a></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class='productinfo'>
-                            <a class='productinfotext' href='productdetailPage.php?code=$code&userid=$userid&userfile=$userfile'>
-                                $name
-                            </a>
-                            <a class='productinfotext gray'>
-                                $price1
-                            </a>
-                            <div class='producthit gray'>
-                            <a >
-                                <svg class='hitimg' xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill=' rgb(150, 150, 150)'><path d='M480.18-345.85q55.97 0 94.97-39.18t39-95.15q0-55.97-39.18-94.97t-95.15-39q-55.97 0-94.97 39.18t-39 95.15q0 55.97 39.18 94.97t95.15 39ZM480-384q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm.11 152q-126.55 0-230.68-67.73Q145.31-367.46 91.08-480q54.23-112.54 158.24-180.27Q353.34-728 479.89-728t230.68 67.73Q814.69-592.54 868.92-480q-54.23 112.54-158.24 180.27Q606.66-232 480.11-232ZM480-480Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z'/></svg>
-                            </a>
-                            <a style='font-size:13px; color:  rgb(150, 150, 150);'>$hit</a>  
-                    </div>
-                    </div>
-                    
-                </div>
-                
-            </div>");
-            }}
-        echo("
-        </div>
-    </div>
+                    </div>");
+                }
+            }
+                echo("
+            </div>
+            <div class='bottom' id='bottom' >");
+?>
+<?
+  include('bottom.php');
+?>
+<?
+    echo("
+  
+</div>
 </body>
 
 ");

@@ -14,6 +14,7 @@ echo("
 <style>
         @import url(shop.css);
         @import url(start.css);
+        @import url(bottom.css);
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gasoek+One&family=Gowun+Batang&display=swap');
 
@@ -94,21 +95,141 @@ echo("
                     </div>
                 </div>
             </div>
+            <div class='alp a1' id='l1'>Z</div>
+            <div class='alp a2 ' id='l2' >Z</div>
+            <div class='alp a3' id='l3' >Z</div>
+            <div class='alp a4' id='l4' >Z</div>
+            <div class='alp a1' id='l5' >A</div>
+            <div class='alp a2' id='l6' >A</div>
+            <div class='alp a3' id='l7' >A</div>
+            <div class='alp a4' id='l8' >A</div>
+             <div class='alp a1' id='l9' >U</div>
+            <div class='alp a2' id='l10' >U</div>
+            <div class='alp a3' id='l11' >U</div>
+            <div class='alp a4' id='l12' >U</div>
+             <div class='alp a1' id='l13' >M</div>
+            <div class='alp a2' id='l14' >M</div>
+            <div class='alp a3' id='l15' >M</div>
+            <div class='alp a4' id='l16' >M</div>
+            <div class='alp2' >M</div>
+            <div class='alp2' >M</div>
+            <div class='alp2' >M</div>
+            <div class='alp2' >M</div>
+            <div class='alp2' >Z</div>
+            <div class='alp2' >Z</div>
+            <div class='alp2' >Z</div>
+            <div class='alp2' >Z</div>
+            <div class='alp2' >A</div>
+            <div class='alp2' >A</div>
+            <div class='alp2' >A</div>
+            <div class='alp2' >A</div>
+            <div class='alp2' >U</div>
+            <div class='alp2' >U</div>
+            <div class='alp2' >U</div>
+            <div class='alp2' >U</div>
+             <div class='alp2' >M</div>
+            <div class='alp2' >M</div>
+            <div class='alp' >M</div>
+            <div class='alp' >M</div>
+            <div class='alp2' >Z</div>
+            <div class='alp2' >Z</div>
+            <div class='alp' >Z</div>
+            <div class='alp' >Z</div>
+            <div class='alp2' >A</div>
+            <div class='alp2' >A</div>
+            <div class='alp' >A</div>
+            <div class='alp' >A</div>
+            <div class='alp2' >U</div>
+            <div class='alp2' >U</div>
+            <div class='alp' >U</div>
+            <div class='alp' >U</div>
         </div>
         <div class='middle start n2'>
-                
+            <div class='box1'>
+                <img class='photo' src='./uploads/IMG_4148.PNG' >
+            </div>
+            <div class='box2'>
+                <img class='photo' src='./uploads/IMG_4121.PNG' >
+            </div>
+            <div class='box3'>
+                Style is a way to say who you are without having to speak.
+            </div>
         </div>
         <div class='middle start n3'>
+            <div class='box4'>
+            <pre style='font-size:18px;'>
+Style is something each of us already has,
+all we need to do is find it.
+            </pre>
 
+            </div>
+            <div class='box5'>
+            <pre style='font-size:18px;'>
+Elegance is not standing out.
+but being remembered.
+            </pre>
+
+            </div>
+            <div class='box6'>
+            <pre style='font-size:18px;'>
+Attitude is everything.
+            </pre>
+            </div>
+             <div class='box7'>
+             <pre style='font-size:18px;'>
+Fashion is instant language.
+            </pre>
+
+            </div>
         </div>
 
         <div class='bottom start'>
-
+        ");
+?>
+<?
+include('bottom.php');
+?>
+<?
+echo("
         </div>
+
     </div>
-    <div class='container2'>
-    
-    </div>
+  <script>
+            function randomizePositionsAndRotations() {
+    const elements = document.querySelectorAll('.alp');
+    const elements2 = document.querySelectorAll('.alp2');
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    // Helper function to apply random positions and rotations
+    const applyRandomStyles = (element) => {
+        // Random position
+        const randomTop = Math.random() * (screenHeight - 50); // Consider element height
+        const randomLeft = Math.random() * (screenWidth - 50); // Consider element width
+
+        // Random rotation angle (-180 to 180 degrees)
+        const randomRotation = Math.random() * 360 - 180;
+
+        // Apply styles
+        element.style.top = `\${randomTop}px`;
+        element.style.left = `\${randomLeft}px`;
+        element.style.transform = `rotate(\${randomRotation}deg)`;
+    };
+
+    // Apply to elements with class 'alp'
+    elements.forEach(applyRandomStyles);
+
+    // Apply to elements with class 'alp2'
+    elements2.forEach(applyRandomStyles);
+}
+
+// Initial setup
+randomizePositionsAndRotations();
+
+// Reapply on window resize
+window.addEventListener('resize', randomizePositionsAndRotations);
+
+    </script>
 
 </body>
 

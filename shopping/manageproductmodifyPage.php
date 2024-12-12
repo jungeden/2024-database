@@ -49,6 +49,7 @@ echo("
 
 <title> </title>
 <style>
+      @import url(bottom.css);
         @import url(quill.css);
         @import url(shop.css);
         @import url(manageinput.css);
@@ -347,7 +348,13 @@ function toggleFixed(element, categories) {
             </form>
         </div>
         <div class='bottom'>
-
+");
+?>
+<?
+  include('bottom.php');
+?>
+<?
+    echo("
         </div>
 </div>
 <script>
