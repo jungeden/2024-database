@@ -419,84 +419,106 @@ body {
   top: 10px;
   left: 10px;
 }
-.messagerotation {
-  width: 60px;
-  height: 700px;
+/* ------------------------------------ 1 ----------------------------------- */
+/* .messagerotation { 
   position: fixed;
   transition: all;
-
   transition-duration: 0.5s;
   transition-property: all;
   display: flex;
   flex-direction: row;
   justify-content: left;
-  align-items: center;
-  top: 0px;
-  right: 300px;
-  /* background-color: aquamarine; */
-  overflow: hidden;
-  z-index: -1;
-}
-.messagebox {
-  width: 700px;
-  height: 60px !important;
-  font-size: 40px;
-  /* background-color: rgb(200, 200, 200); */
-  background-color: rgb(255, 197, 90);
-  color: rgb(28, 28, 28);
-  position: inherit;
-  opacity: 0.7;
-  z-index: -2;
-  /* bottom: 60px; */
-  /* top: 0px; 
-  right: 0px; */
-  /* margin: 100px; */
-  /* border-radius: 12px; */
-  left: 832px;
-  /* right: 300px; */
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  clip-path: polygon(0% 0%, 5% 50%, 0% 100%, 100% 100%, 100% 100%, 100% 0%);
-  /* clip-path: polygon(0% 0%, 0% 100%, 50% 90%, 100% 100%, 100% 0%); */
-  transform: rotate(-90deg);
-  transition-duration: 0.5s;
-  transition-property: all;
-  /* padding-top: 5px; */
+  align-items: start;
+  right: -200px;
+  display: none;
   animation-name: label;
   bottom: 1300px;
   animation-duration: 3s;
   animation-fill-mode: forwards;
-  display: none;
+}
+.messagebox {
+  width: 900px;
+  height: 100%;
+  font-size: 40px;
+  background-color: var(--button-hover-color);
+  color: rgb(28, 28, 28);
+  opacity: 0.7;
+  text-align: left;
+  clip-path: polygon(0% 0%, 3% 50%, 0% 100%, 100% 100%, 100% 100%, 100% 0%);
+  transform: rotate(-90deg);
+  transition-duration: 0.5s;
+  transition-property: all;
 }
 @keyframes label {
   0% {
     bottom: 1300px;
   }
   60% {
-    /* top: 300px; */
-    bottom: 500px;
+    bottom: 750px;
   }
   100% {
     bottom: 1300px;
   }
+} */
+/* ------------------------------------ 2 ----------------------------------- */
+/* .messagebox {
+  width: 400px;
+  height: 30px;
+  font-size: 20px;
+  border-radius: 8px;
+  background-color: var(--button-bg-color);
+  border: 1px solid var(--button-hover-color);
+  color: var(--button-bg-color3);
+  opacity: 0;
+  text-align: center;
+  transition-duration: 0.5s;
+  transition-property: all;
+  position: fixed;
+  bottom: 150px;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+.container:hover .messagebox {
+  opacity: 0.7;
+} */
 
-.messagetext {
-  transform: translateX(-50%) rotate(-90deg);
-  display: inline-block;
+/* ------------------------------------ 3 ----------------------------------- */
+.messagerotation {
+  display: none;
 }
-/* .container:hover .messagerotation {
-  width: 60px;
-  height: 700px;
-  display: none;
-} */
-/* .container:hover .messagebox {
-  width: 700px;
-  height: 60px;
-  display: none;
-} */
+.messagebox {
+  width: 80px;
+  height: 80px;
+  font-size: 20px;
+  border-radius: 50%;
+  /* background-color: var(--hover2); */
+  /* background-color: var(--button-bg-color); */
+  background-color: var(--button-hover-color);
+  /* background-color: var(--button-bg-color2); */
+  /* border: 1px solid var(--button-bg-color3); */
+  /* fill: var(--button-hover-color); */
+  fill: rgb(28, 28, 28);
+  /* fill: var(--button-bg-color3); */
+  opacity: 0;
+  text-align: center;
+  transition-duration: 0.5s;
+  transition-property: all;
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container:hover .messagebox {
+  opacity: 0.7;
+}
+/* ------------------------------------ - ----------------------------------- */
 .ql-editor.element.con {
   overflow-y: visible;
 }

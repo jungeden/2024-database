@@ -72,8 +72,10 @@ echo("
 
         <div class='middle start'>
             <div class='logobox'>
-                <a class='logotext logo'>ZAUM</a>
-                <a class='logotext'>어쩌고 저쩌고</a>");
+                <a class='logotext logo'>ZAUM</a>");
+                // echo("<a class='logotext'>JAUM is the basis of everything</a>");
+                echo("<a class='logotext' style='font-size:15px;'>JAUM IS THE BASIS OF EVERYTHING</a>");
+                
                 echo("
                 <a class='logotext z z1'>Z</a>
                 <a class='logotext z z2'>A</a>
