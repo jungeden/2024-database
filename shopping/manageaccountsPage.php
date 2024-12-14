@@ -129,7 +129,7 @@ echo("
                     $zipcode=$row['zipcode'];
                     $address1=$row['address1'];
                     $address2=$row['address2'];
-                    $approved=$row['approved'];
+           
 
                     $address = $address1."&nbsp;".$address2;
                     echo("

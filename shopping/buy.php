@@ -26,9 +26,10 @@ $address1 = $_POST['address1'];
 $address2 = $_POST['address2'];
 $message = $_POST['message'];
 $payment = $_POST['payment'];
-$point = $_POST['point'];
+
 $totalprice = $_POST['totalprice'];
 
+$userpoint = $_POST['userpoint'] ?? 0;
 // 유효성 검사
 if (empty($receiver)) {
     echo ("<script>
@@ -58,7 +59,7 @@ if (empty($payment)) {
     </script>");
     exit();
 }
-
+$randomnum = rand(1000, 9999);
 // 데이터베이스 연결
 $con = mysqli_connect("localhost", "root", "0000", "shop");
 date_default_timezone_set('Asia/Seoul'); 
@@ -77,7 +78,7 @@ if ($payment == 'pay1') {
     $payment = '무통장입금';
 }
 
-$insertreceiver = mysqli_query($con, "INSERT INTO receivers (userid, session, receiver, phone, address, message, buydate, ordernum, status, payment) VALUES ('$userid','$Session', '$receiver', '$phone', '$address', '$message', '$buydate', '$ordernum', '$status', '$payment')");
+$insertreceiver = mysqli_query($con, "INSERT INTO receivers (userid, session, receiver, phone, address, message, buydate, ordernum, status, payment, randomnum, totalprice) VALUES ('$userid','$Session', '$receiver', '$phone', '$address', '$message', '$buydate', '$ordernum', '$status', '$payment','$randomnum', '$totalprice')");
 
 $getshoppingcart = mysqli_query($con, "SELECT * FROM shoppingcart WHERE userid ='$userid'");
 while($row=mysqli_fetch_assoc($getshoppingcart)) {
@@ -85,22 +86,32 @@ while($row=mysqli_fetch_assoc($getshoppingcart)) {
     $quantity=$row['quantity'];
     $color=$row['color'];
     $size=$row['size'];
-    $insertorderlist=mysqli_query($con,"INSERT INTO orderlist (userid, session, pcode, quantity, size, color) VALUES ('$userid', '$Session', '$pcode', '$quantity', '$size', '$color')");
+    $insertorderlist=mysqli_query($con,"INSERT INTO orderlist (userid, session, pcode, quantity, size, color, randomnum) VALUES ('$userid', '$Session', '$pcode', '$quantity', '$size', '$color','$randomnum')");
 }
 
 $deleteshoppingcart = mysqli_query($con, "DELETE FROM shoppingcart WHERE userid='$userid'");
 
 
+if($userpoint != 0) {
+    $usepoint = mysqli_query($con, "UPDATE user SET point=point-$userpoint WHERE userid='$userid'");
+    $getpoint = mysqli_query($con, "SELECT point FROM user WHERE userid='$userid'");
+    $pointrow=mysqli_fetch_assoc($getpoint);
+    $rpoint=$pointrow['point'];
+
+    $insertusepoint = mysqli_query($con, "INSERT INTO pointlist (userid, pmpoint, pm, udate, resultpoint) VALUES ('$userid', '$userpoint','-','$buydate','$rpoint') ");
+}
 
 
-$usepoint = mysqli_query($con, "UPDATE user SET point=point-$point WHERE userid='$userid'");
-$getpoint = mysqli_query($con, "SELECT point FROM user WHERE userid='$userid'");
-$pointrow=mysqli_fetch_assoc($getpoint);
-$rpoint=$pointrow['point'];
+// $pluspoint = (float)$pluspoint;
 
-$insertusepoint = mysqli_query($con, "INSERT INTO pointlist (userid, pmpoint, pm, udate, resultpoint) VALUES ('$userid', '$point','-','$buydate','$rpoint') ");
 
+// var_dump($totalprice, $pluspoint);
 $pluspoint = $totalprice*0.01;
+if($pluspoint > 5000) {
+    $pluspoint = 5000;
+}
+echo("<script>console.log('pluspoint: ', $pluspoint)</script>");
+echo("<script>console.log('totalprice: ', $totalprice)</script>");
 $addpoint = mysqli_query($con,"UPDATE user SET point=point+$pluspoint WHERE userid='$userid'");
 $getpoint = mysqli_query($con, "SELECT point FROM user WHERE userid='$userid'");
 $pointrow=mysqli_fetch_assoc($getpoint);

@@ -87,7 +87,7 @@ echo("
                     &nbsp;<a class='utext'>| </a>&nbsp;
                     <a class='utext titlet' href='manageorderlistPage.php'>주문 내역 관리</a>
                 </div>");
-            $getreceiver = mysqli_query($con, "SELECT * FROM receivers");
+            $getreceiver = mysqli_query($con, "SELECT * FROM receivers ORDER BY buydate DESC");
             while($row=mysqli_fetch_assoc($getreceiver)) {
                 $orderuserid=$row['userid'];
                 $receiver=$row['receiver'];
@@ -99,6 +99,8 @@ echo("
                 $status=$row['status'];
                 $payment=$row['payment'];
                 $session=$row['session'];
+                $randomnum=$row['randomnum'];
+                $totalprice=$row['totalprice'];
 
                 $num1=substr($phone,0,3);
                 $num2=substr($phone,3,4);
@@ -108,7 +110,7 @@ echo("
                 echo("
                 <div class='totalbox'>
                     <div class='usertextbutton'>
-                            <a class='button' href='managestatus.php?orderuserid=$orderuserid&status=$newstatus&session=$session'>");
+                            <a class='button' href='managestatus.php?orderuserid=$orderuserid&status=$newstatus&session=$session&randomnum=$randomnum'>");
                             if($newstatus == 1) {
                                 $statustext='결제완료';
                                 echo("   <svg xmlns='http://www.w3.org/2000/svg' height='18px' viewBox='0 -960 960 960' width='18px' fill='#181818'><path d='M840-695.38v430.76q0 27.62-18.5 46.12Q803-200 775.38-200H184.62q-27.62 0-46.12-18.5Q120-237 120-264.62v-430.76q0-27.62 18.5-46.12Q157-760 184.62-760h590.76q27.62 0 46.12 18.5Q840-723 840-695.38Zm-680 87.69h640v-87.69q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69H184.62q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v87.69Zm0 95.38v247.69q0 9.24 7.69 16.93 7.69 7.69 16.93 7.69h590.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-247.69H160ZM160-240v-480 480Z'/></svg>");
@@ -152,8 +154,11 @@ echo("
                         
                     </div>
                     <div class='line'></div> ");
-
-                    $getorderlist=mysqli_query($con,"SELECT orderlist.*, product.name, product.price1, product.price2, product.userfile FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$orderuserid' AND orderlist.session='$session'");
+                    if($randomnum) {
+                        $getorderlist=mysqli_query($con,"SELECT orderlist.*, product.name, product.price1, product.price2, product.userfile FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$orderuserid' AND orderlist.session='$session' AND orderlist.randomnum='$randomnum'");
+                     } else {
+                        $getorderlist=mysqli_query($con,"SELECT orderlist.*, product.name, product.price1, product.price2, product.userfile FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$orderuserid' AND orderlist.session='$session'"); }
+                    
                     while($row=mysqli_fetch_assoc($getorderlist)) {
                         $quantity=$row['quantity'];
                         $userfile=$row['userfile'];
@@ -163,12 +168,17 @@ echo("
                         $pcode=$row['pcode'];
                         $color=$row['color'];
                         $size=$row['size'];
+
                         
 
-                        if($price2!=0) {
-                            $sumprice = number_format($price2 * $quantity);
+                        if($totalprice) {
+                            $sumprice = $totalprice;
                         } else {
-                            $sumprice = number_format($price1 * $quantity);
+                            if($price2!=0) {
+                                $sumprice = number_format($price2 * $quantity);
+                            } else {
+                                $sumprice = number_format($price1 * $quantity);
+                            }
                         }
                         $price1=number_format($price1);
                         $price2=number_format($price2);

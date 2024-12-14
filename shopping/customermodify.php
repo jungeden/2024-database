@@ -60,7 +60,7 @@ if (isset($_FILES['customerfile']) && count($_FILES['customerfile']['name']) > 0
 } else {
     $detailfile = $ocustomerfile; // 파일이 업로드되지 않으면 기존 데이터 유지
 }
-$updatecustomerboard = mysqli_query($con, "UPDATE customerboard SET topic='$topic', class='$class', content='$content', issecret='$issecret', customerfile='$customerfile' WHERE id='$id'");
+$updatecustomerboard = mysqli_query($con, "UPDATE customerboard SET topic='$topic', class='$class', content='$content', issecret='$issecret', customerfile='$detailfile' WHERE id='$id'");
 mysqli_close($con);
 echo ("<meta http-equiv='Refresh' content='0; url=customerboarddetailPage.php?id=$id'>");
 ?>

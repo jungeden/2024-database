@@ -22,6 +22,7 @@ $price1=$row['price1'];
 $price2=$row['price2'];
 $userfile=$row['userfile'];
 $per = ($price2/$price1)*100;
+$per = 100 - round($per);
                             
                         
 if($price2!=0) {

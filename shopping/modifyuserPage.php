@@ -21,7 +21,7 @@ $userjoindate = $row['userjoindate'];
 $zipcode = $row['zipcode'];
 $address1 = $row['address1'];
 $address2 = $row['address2'];
-$approved = $row['approved'];
+
 
 $year = substr($userbirth, 0, 4);
 $month = substr($userbirth, 4, 2);

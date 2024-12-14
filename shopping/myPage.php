@@ -38,7 +38,7 @@ $userbirth=$row['userbirth'];
 $zipcode=$row['zipcode'];
 $address1=$row['address1'];
 $address2=$row['address2'];
-$point = $row['point'];
+$point = $row['point'] ?? 0;
 $userjoindate=$row['userjoindate'];
 $pointformat=number_format($point);
 

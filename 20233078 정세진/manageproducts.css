@@ -1,0 +1,49 @@
+.middle.manageproducts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+.button.delete {
+  width: 50px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--button-bg-color);
+  transition-duration: 0.5s;
+  transition-property: all;
+}
+.button.delete:hover {
+  /* background-color: rgb(200, 200, 200); */
+  background-color: var(--button-hover-color);
+}
+.infoelement {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 10px 0 5px;
+}
+.products {
+  justify-content: start;
+  height: 400px;
+}
+.productinfotext {
+  width: auto;
+}
+.current {
+  color: var(--button-hover-color);
+}
+.pricebox {
+  display: flex;
+  flex-direction: row;
+}
+.gray {
+  color: var(--button-bg-color3);
+}
+.gray:hover {
+  color: var(--button-bg-color3);
+}

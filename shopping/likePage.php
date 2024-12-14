@@ -99,6 +99,7 @@ echo("
                     $code=$productrow['code'];
                     
                     $per = ($price2/$price1)*100;
+                    $per = 100 - round($per);
                             
                     if($price2!=0) {
                         $price = number_format($price2);

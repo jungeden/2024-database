@@ -10,7 +10,9 @@ if (isset($_COOKIE['userid'])) {
     exit();
 }
 $con = mysqli_connect("localhost", "root", "0000", "shop");
+$isorderlist=mysqli_query($con,"SELECT * from orderlist WHERE userid='$userid'");
 
+$total = mysqli_num_rows($isorderlist);
 echo("
 <head>
 <title> </title>
@@ -75,7 +77,11 @@ echo("
 
         <div class='middle orderlist'>
             ");
-
+            if ($total == 0) {
+                echo("<div style='margin-top:200px;'>
+                        <a>주문 내역이 없습니다.</a>
+                    </div>");
+            } else {
             if (!isset($_GET['cpage']) || $_GET['cpage'] == '') {
                 $cpage = 1;  // 기본값을 1로 설정
             } else {
@@ -103,8 +109,15 @@ echo("
                 $ordernum=$row['ordernum'];
                 $status=$row['status'];
                 $session=$row['session'];
+                $randomnum=$row['randomnum'];
+                $totalprice=$row['totalprice'];
 
-                $getorderlist=mysqli_query($con,"SELECT pcode FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session'");
+                if($randomnum) {
+                    $getorderlist=mysqli_query($con,"SELECT pcode FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session' AND orderlist.randomnum='$randomnum'");
+                } else {
+                    $getorderlist=mysqli_query($con,"SELECT pcode FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session'");
+                }
+                
                 $rows=mysqli_fetch_assoc($getorderlist);
                 $pcode=$rows['pcode'];
             echo("
@@ -115,7 +128,7 @@ echo("
             if($status==1){
                 echo("
                 <div class='boxbutton'>
-                    <a class='button' href='ordercancel.php?session=$session'>구매 취소</a>
+                    <a class='button' href='ordercancel.php?session=$session&randomnum=$randomnum'>구매 취소</a>
                 </div>");
             } 
             // else if($status==3) {
@@ -137,7 +150,13 @@ echo("
                 <a>$ordernum</a>
                 </div>
                 ");
-                $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session'");
+               
+                if($randomnum) {
+                    $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session' AND orderlist.randomnum='$randomnum' ");
+                } else {
+                    $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code WHERE orderlist.userid='$userid' AND orderlist.session='$session' ");
+
+                }
                 // $getorderlist=mysqli_query($con,"SELECT * FROM orderlist INNER JOIN product ON orderlist.pcode=product.code INNER JOIN receivers ON orderlist.userid=receivers.userid WHERE orderlist.userid='$userid'");
                  while($row=mysqli_fetch_assoc($getorderlist)) {
                     // $getstatus = mysqli_query($con,"SELECT status FROM receivers WHERE userid='$userid'");
@@ -154,10 +173,14 @@ echo("
                     $size=$optionrow['size'];
                     $color=$optionrow['color'];
 
-                    if($price2!=0) {
-                        $sumprice = number_format($price2 * $quantity);
+                    if($totalprice) {
+                        $sumprice = $totalprice;
                     } else {
-                        $sumprice = number_format($price1 * $quantity);
+                        if($price2!=0) {
+                            $sumprice = number_format($price2 * $quantity);
+                        } else {
+                            $sumprice = number_format($price1 * $quantity);
+                        }
                     }
 
                 echo("
@@ -269,7 +292,7 @@ echo("
             }
             echo "</div>
             </div>";
-                    
+        }
             echo("
         </div>
          <div class='bottom' id='bottom' >");

@@ -105,6 +105,7 @@ echo("
                 
                 $userfile = $productrow['userfile'];
                 $per = ($price2/$price1)*100;
+                $per = 100 - round($per);
                 
                 if($price2!=0) {
                     $sumprice = number_format($price2 * $quantity);
@@ -169,7 +170,7 @@ echo("
                
                 <div class='line productline'></div>
                  <div class='sum'>
-                    <a style='margin: 13px 0 0 20px'>상품 금액 : $sumprice</a> <a style='margin: 13px 0 0 0'>원 / 총 수량 : $quantity</a>
+                    <a style='margin: 0px 0 0 20px'>상품 금액 : $sumprice</a> <a style='margin: 0 0 0 0'>원 / 총 수량 : $quantity</a>
                 </div>
             ");
             $counter++;

@@ -37,10 +37,10 @@ if($userpoint>$point) {
 }
 mysqli_close($con);
 
-// header("Location: buyPage.php?page=" . urlencode($page) . "&code=" . urlencode($pcode) . "&userpoint=" . urlencode($userpoint));
-echo("<script>
-history.go(-1)
-</script>");
+header("Location: buyPage.php?page=" . urlencode($page) . "&code=" . urlencode($pcode) . "&userpoint=" . urlencode($userpoint));
+// echo("<script>
+// history.go(-1)
+// </script>");
 
 
 

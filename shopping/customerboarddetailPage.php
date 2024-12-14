@@ -216,6 +216,7 @@ echo("
             $beforeQuery = "SELECT * FROM customerboard WHERE num < $num AND class='$class' ORDER BY num DESC LIMIT 1";
             $beforeResult = mysqli_query($con, $beforeQuery);
             $beforeRow = mysqli_fetch_assoc($beforeResult);
+
             
 
             $afterQuery = "SELECT * FROM customerboard WHERE num > $num AND class='$class' ORDER BY num ASC LIMIT 1";
@@ -231,7 +232,8 @@ echo("
                     if($bwriter=='admin') {
                         $bwriter='관리자';
                     }
-                    echo "
+                    if($beforeRow['issecret']=='n') {
+                        echo "
                     <div class='tonext'>
                         <div style=' width:90px; padding-left:10px;' ><a class='atext h' >이전 게시글: </a></div>
                         <div style=' width:130px'><a class='atext' href='customerboarddetailPage.php?id={$beforeRow['id']}'>{$beforeRow['topic']}</a></div>
@@ -240,6 +242,8 @@ echo("
                         <div style=' width:40px'><a class='atext h' >{$beforeRow['hit']}</a></div>
                     </div>
                     <div class='line2'></div>";
+                    }
+                    
                 }
 
                 // 다음 게시글 출력
@@ -248,14 +252,18 @@ echo("
                     if($awriter=='admin') {
                         $awriter='관리자';
                     }
-                    echo "
-                    <div class='tonext'>
-                        <div style=' width:90px; padding-left:10px; '><a class='atext h' >다음 게시글: </a></div>
-                        <div style=' width:130px'><a class='atext' href='customerboarddetailPage.php?id={$afterRow['id']}'>{$afterRow['topic']}</a></div>
-                        <div style=' width:100px'><a class='atext h' >$awriter</a></div>
-                        <div style=' width:130px'><a class='atext h' >{$afterRow['wdate']}</a></div>
-                        <div style=' width:40px'><a class='atext h' >{$afterRow['hit']}</a></div>
-                    </div>";
+                    if($afterRow['issecret']=='n') {
+                        echo "
+                        <div class='tonext'>
+                            <div style=' width:90px; padding-left:10px; '><a class='atext h' >다음 게시글: </a></div>
+                            <div style=' width:130px'><a class='atext' href='customerboarddetailPage.php?id={$afterRow['id']}'>{$afterRow['topic']}</a></div>
+                            <div style=' width:100px'><a class='atext h' >$awriter</a></div>
+                            <div style=' width:130px'><a class='atext h' >{$afterRow['wdate']}</a></div>
+                            <div style=' width:40px'><a class='atext h' >{$afterRow['hit']}</a></div>
+                        </div>";
+                    }
+
+                   
                 }
 
 

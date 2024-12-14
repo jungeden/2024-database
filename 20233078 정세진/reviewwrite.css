@@ -1,0 +1,282 @@
+.middle {
+  min-height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.productbox {
+  display: flex;
+  flex-direction: row;
+  width: 450px;
+  /* margin: 30px 30px 30px 50px; */
+  /* justify-content: start; */
+  position: relative;
+}
+.product {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  background-color: white;
+}
+.productphoto {
+  width: 400px;
+  height: 300px;
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--hover2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  margin: 0 0 10px 0;
+  /* border: 1px solid var(--button-hover-color); */
+  /* color: var(--button-bg-color2); */
+  border: 1px solid var(--button-bg-color3);
+  background-color: var(--button-bg-color2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all;
+  transition-duration: 1s;
+  border-radius: 8px;
+  overflow-x: auto;
+  align-self: center;
+}
+.productphoto.de {
+  height: 110px;
+  margin-bottom: 0;
+}
+.productphoto.de:hover {
+  width: 450px;
+  height: 150px;
+}
+.photo {
+  width: 200px;
+  /* background-color: rgb(230, 230, 230); */
+
+  border-radius: 8px;
+  padding: 10px 0 10px 0;
+}
+.phototext {
+  /* color: rgb(200, 200, 200); */
+  color: var(--button-bg-color3);
+  position: absolute;
+}
+.photopreview {
+  /* width: 100px; */
+  height: 100px;
+  object-fit: cover;
+  /* bottom: 90px; */
+  /* left: 5px; */
+  /* right: 100px; */
+  /* top: 10px; */
+  border: 0;
+  border-radius: 8px;
+}
+.productinfo {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 30px;
+}
+.producttext {
+  display: flex;
+  flex-direction: column;
+}
+.ptext.n {
+  font-size: 15px;
+}
+.ptext {
+  font-size: 13px;
+  margin: 10px 0 10px 0;
+  color: var(--button-bg-color3);
+}
+.ptext:hover {
+  color: var(--button-bg-color3);
+  /* color: rgb(28, 28, 28); */
+}
+.line.m {
+  border-color: var(--button-bg-color3);
+  margin: 20px;
+  width: 100%;
+}
+/* .star {
+  margin: 50px 0;
+  position: relative;
+  display: block;
+  color: pink;
+  width: 0px;
+  height: 0px;
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid pink;
+  border-left: 100px solid transparent;
+  transform: rotate(35deg);
+  border-radius: 12px;
+}
+.star:before {
+  border-bottom: 80px solid pink;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: -45px;
+  left: -65px;
+  display: block;
+  content: "";
+  transform: rotate(-35deg);
+}
+.star:after {
+  position: absolute;
+  display: block;
+  color: pink;
+  top: 3px;
+  left: -105px;
+  width: 0px;
+  height: 0px;
+  border-right: 100px solid transparent;
+  border-bottom: 70px solid pink;
+  border-left: 100px solid transparent;
+  transform: rotate(-70deg);
+  content: "";
+} */
+/* .star {
+  padding: 1px;
+}
+
+.star::after {
+  content: "☆";
+  color: rgb(28, 28, 28);
+  font-size: 50px;
+} */
+.reviewstar {
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-self: left;
+  margin: 0 200px 0 0;
+}
+.starbox {
+  display: flex;
+  flex-direction: row;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+.star {
+  width: 40px;
+  height: 40px;
+  clip-path: polygon(
+    30% 27%,
+    50% 0%,
+
+    70% 27%,
+    100% 35%,
+
+    80% 60%,
+    85% 95%,
+
+    50% 80%,
+    15% 95%,
+
+    20% 60%,
+    0% 35%
+  );
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--button-bg-color2);
+
+  /* background-color: rgb(28, 28, 28); */
+  position: absolute;
+  /* transition-property: all;
+  transition-duration: 0.5s; */
+  border: 0;
+}
+.star.left {
+  clip-path: polygon(
+    30% 27%,
+    50% 0%,
+
+    50% 27%,
+    50% 35%,
+
+    50% 60%,
+    50% 95%,
+
+    50% 80%,
+    15% 95%,
+
+    20% 60%,
+    0% 35%
+  );
+}
+.star.right {
+  clip-path: polygon(
+    50% 27%,
+    50% 0%,
+
+    70% 27%,
+    100% 35%,
+
+    80% 60%,
+    85% 95%,
+
+    50% 80%,
+    50% 95%,
+
+    50% 60%,
+    50% 35%
+  );
+}
+.star:hover {
+  /* background-color: rgb(200, 200, 200); */
+  background-color: var(--button-bg-color);
+}
+.writebox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+}
+.input.content {
+  height: 200px;
+  margin: 10px 0 10px 0;
+  width: 400px;
+
+  border: 1px solid var(--button-bg-color3);
+  background-color: var(--button-bg-color2);
+}
+.file {
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+.preview {
+  /* display: none; */
+  width: 300px;
+  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
+  margin-top: 10px;
+  /* position: absolute; */
+  object-fit: cover;
+  border-radius: 8px;
+}
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  margin: 20px 0 0 0;
+  color: var(--button-hover-color);
+}

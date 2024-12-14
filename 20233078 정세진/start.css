@@ -1,0 +1,448 @@
+.container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.middle.start {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  position: sticky;
+  top: 0;
+  letter-spacing: 0.2em;
+  background-size: cover;
+  background-position: center;
+}
+.middle.start.n2 {
+  background-color: var(--button-bg-color2);
+}
+.middle.start.n3 {
+  background-color: white;
+}
+.left.middle {
+}
+.right.middle {
+  /* width: 30%; */
+  /* float: right; */
+}
+.line {
+  height: 0px;
+  width: 100%;
+}
+.logobox {
+  width: 100%;
+  height: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  align-items: center;
+  transition: all;
+  transition-duration: 1s;
+  /* position: relative; */
+  text-align: center;
+  /* background-color: rgb(230, 230, 230); */
+}
+.logotext.logo {
+  font-size: 100px;
+  position: relative;
+  /* color: rgb(150, 150, 150); */
+  color: var(--button-bg-color2);
+  /* height: 400px; */
+}
+.logotext {
+  visibility: hidden;
+}
+.logotext.d {
+  position: absolute;
+  font-size: 100px;
+}
+.logotext.z {
+  position: absolute;
+  font-size: 100px;
+}
+.container:hover .logotext.z.z1 {
+  animation-name: z1;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  bottom: 0px;
+  /* left: 298px; */
+  left: 638px;
+}
+.container:hover .logotext.z.z2 {
+  animation-name: z2;
+  animation-duration: 2.5s;
+  animation-fill-mode: forwards;
+  bottom: 486px;
+  left: 0px;
+}
+.container:hover .logotext.z.z3 {
+  animation-name: z3;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  top: 0;
+  left: 750px;
+  /* left: 422px; */
+}
+.container:hover .logotext.z.z4 {
+  animation-name: z4;
+  animation-duration: 3.5s;
+  animation-fill-mode: forwards;
+  right: 0;
+  bottom: 486px;
+}
+@keyframes z1 {
+  to {
+    /* margin-bottom: 466px; */
+    margin-bottom: 486px;
+  }
+}
+@keyframes z2 {
+  to {
+    /* margin-left: 348px; */
+    margin-left: 694px;
+  }
+}
+@keyframes z3 {
+  to {
+    margin-top: 212px;
+  }
+}
+@keyframes z4 {
+  to {
+    margin-right: 638px;
+    /* margin-right: 298px; */
+  }
+}
+
+.container:hover .logotext.d.d1 {
+  animation-name: d1;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  bottom: 0px;
+  /* left: 298px; */
+  left: 638px;
+}
+.container:hover .logotext.d.d2 {
+  animation-name: d2;
+  animation-duration: 2.5s;
+  animation-fill-mode: forwards;
+  bottom: 466px;
+  left: 0px;
+}
+.container:hover .logotext.d.d3 {
+  animation-name: d3;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  bottom: 10px;
+  /* left: 372px; */
+  left: 712px;
+}
+.container:hover .logotext.d.d4 {
+  animation-name: d4;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  top: 0;
+  left: 762px;
+  /* left: 422px; */
+}
+.container:hover .logotext.d.d5 {
+  animation-name: d5;
+  animation-duration: 3.5s;
+  animation-fill-mode: forwards;
+  right: 0;
+  bottom: 466px;
+}
+@keyframes d1 {
+  to {
+    margin-bottom: 466px;
+  }
+}
+@keyframes d2 {
+  to {
+    /* margin-left: 348px; */
+    margin-left: 688px;
+  }
+}
+@keyframes d3 {
+  to {
+    margin-bottom: 456px;
+  }
+}
+@keyframes d4 {
+  to {
+    margin-top: 232px;
+  }
+}
+@keyframes d5 {
+  to {
+    margin-right: 638px;
+    /* margin-right: 298px; */
+  }
+}
+/* .menubox {
+  border: 1px solid rgb(28, 28, 28);
+  width: 200px;
+  height: 500px;
+  position: fixed;
+  top: 41px;
+  right: 0px;
+} */
+.container:hover .logobox {
+  height: 400px;
+}
+.container:hover .logotext {
+  visibility: visible;
+}
+/* .container2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: rgb(150, 150, 150);
+} */
+.bottom.start {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-size: cover;
+}
+.alp {
+  position: absolute;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  color: var(--button-bg-color3);
+  transition: all;
+  transition-duration: 2s;
+}
+.alp2 {
+  position: absolute;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  /* color: var(--button-hover-color); */
+  color: var(--button-bg-color2);
+
+  transition: all;
+  transition-duration: 2s;
+}
+.middle.start:hover .alp2 {
+  animation-duration: 3s;
+  animation-fill-mode: backwards;
+  animation-name: alp2;
+}
+.middle.start:hover .alp {
+  animation-duration: 2s;
+  animation-fill-mode: backwards;
+  animation-name: alp;
+}
+@keyframes alp {
+  from {
+    left: 0;
+  }
+}
+@keyframes alp2 {
+  from {
+    top: 0;
+  }
+}
+.alp:hover {
+  /* width: 300px;
+  height: 300px; */
+  font-size: 50px;
+}
+.alp2:hover {
+  /* width: 300px;
+  height: 300px; */
+  font-size: 50px;
+}
+
+.box1 {
+  position: absolute;
+  right: 0;
+  width: 0px;
+  height: 500px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--button-bg-color3);
+  transition: all;
+  transition-duration: 3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.middle.start.n2:hover .box1 {
+  animation-duration: 2s;
+  animation-name: box1;
+  animation-fill-mode: forwards;
+  width: 300px;
+}
+@keyframes box1 {
+  to {
+    right: 100px;
+  }
+}
+.box2 {
+  position: absolute;
+  right: 0;
+  width: 400px;
+  height: 0px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--hover2);
+  transition: all;
+  transition-duration: 3s;
+  left: 100px;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.middle.start.n2:hover .box2 {
+  animation-duration: 2s;
+  animation-name: box2;
+  animation-fill-mode: forwards;
+  height: 500px;
+}
+@keyframes box2 {
+  to {
+    top: 100px;
+  }
+}
+.box3 {
+  position: absolute;
+
+  width: 0px;
+  height: 100px;
+  opacity: 0.7;
+  border-radius: 8px;
+  /* background-color: var(--hover2); */
+  transition: all;
+  transition-duration: 3s;
+  left: 520px;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+.middle.start.n2:hover .box3 {
+  animation-duration: 2s;
+  animation-name: box3;
+  animation-fill-mode: forwards;
+  width: 600px;
+}
+@keyframes box3 {
+  to {
+    bottom: 500px;
+    /* right: 300px; */
+  }
+}
+.photo {
+  width: 300px;
+}
+
+.box4 {
+  position: absolute;
+  width: 0px;
+  height: 400px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--button-bg-color2);
+  transition: all;
+  transition-duration: 3s;
+  left: 0px;
+  top: 50px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.middle.start.n3:hover .box4 {
+  width: 790px;
+}
+.box5 {
+  position: absolute;
+  width: 0px;
+  height: 300px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--button-bg-color);
+  transition: all;
+  transition-duration: 2s;
+  right: 0px;
+  bottom: 50px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.middle.start.n3:hover .box5 {
+  width: 800px;
+}
+.box6 {
+  position: absolute;
+  width: 650px;
+  height: 0px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--button-bg-color3);
+  transition: all;
+  transition-duration: 2.5s;
+  right: 50px;
+  top: 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  /* text-align: center; */
+}
+.middle.start.n3:hover .box6 {
+  height: 450px;
+}
+.box7 {
+  position: absolute;
+  width: 640px;
+  height: 0px;
+  opacity: 0.7;
+  border-radius: 8px;
+  background-color: var(--hover2);
+  transition: all;
+  transition-duration: 1s;
+  left: 50px;
+  bottom: 0px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.middle.start.n3:hover .box7 {
+  height: 350px;
+}

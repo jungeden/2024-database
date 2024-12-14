@@ -5,6 +5,9 @@ session_start();
 $page=isset($_GET['page']) ? $_GET['page'] : '';
 $code=isset($_GET['code']) ? $_GET['code'] : '';
 
+$userpoint = isset($_GET['userpoint'])?$_GET['userpoint'] : 0;
+
+
 if (isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
   
@@ -45,7 +48,7 @@ if($zipcode=='') {
 }
 
 $username=$row['username'];
-$point=$row['point'];
+$originpoint=$row['point'];
 
 
 if ($page == 'productdetail') {
@@ -177,8 +180,13 @@ echo("
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <input style='display:none;' id='point' name='point' >
+                        </div>");
+                        if($userpoint != 0) {
+                            echo("<input style='display:none;' name='userpoint' value='$userpoint'>");
+                        }
+                        // echo("<input style='display:none;' id='point' name='point' value='$point'>");
+                        echo("
+                        
                         <input style='display:none;' id='totalprice' name='totalprice' >
                         <input class='button b' type='submit' value='구매 하기'>
                     </form>
@@ -221,6 +229,7 @@ echo("
                             $sumprice = number_format($price1 * $quantity);
                         }
                         $per = ($price2/$price1)*100;
+                        $per = 100 - round($per);
 
                         $price1 = number_format($price1);
                         $price2 = number_format($price2);
@@ -251,9 +260,8 @@ echo("
                     }
                     $totalprice = isset($totalprice) ? $totalprice : $sumprice; 
                     $totalpriceformat = number_format($totalprice);
-                    $userpoint = isset($_GET['userpoint'])?$_GET['userpoint'] : 0;
                     $userpointformat = number_format($userpoint);
-                    $pointformat=number_format($point-$userpoint);
+                    $pointformat=number_format($originpoint-$userpoint);
 
                     echo("
                     <div class='pointbox'>
@@ -313,10 +321,9 @@ echo("
         element.classList.add('fixed');
 
         document.getElementById('payment').value = element.id;
-
-
     }
-
+    
+    document.getElementById('totalprice').value = $totalprice;
 
 
    

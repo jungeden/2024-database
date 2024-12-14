@@ -96,7 +96,7 @@ echo("
                     <input class='input' type='hidden' name='class' id='class'>
                         <div class='classoptionbox'>
                             <button class='input' type='button' name='classoption' id='classoption' onclick='showOption(\"class\")'><a style='color:rgb(255,197,90); font-size:13px;'>문의유형</a></button>
-                            <ul class='classinputoption hide' id='classselect'>
+                            <ul class='classinputoption in hide' id='classselect'>
                                 <li><button type='button' class='input coption' id='상품' onclick='changeclass(this.id)' >상품</button></li>
                                 <li><button type='button' class='input coption' id='주문' onclick='changeclass(this.id)' >주문</button></li>
                                 <li><button type='button' class='input coption' id='배송' onclick='changeclass(this.id)' >배송</button></li>

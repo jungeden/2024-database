@@ -195,6 +195,7 @@ echo("
                             $hit = $row['hit'];
 
                             $per = ($price2/$price1)*100;
+                            $per = 100 - round($per);
                             
                         
                             $price1=number_format($price1);

@@ -1,0 +1,87 @@
+.middle {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+}
+.menuiconsbox {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: end;
+}
+.menuicon {
+  fill: var(--button-bg-color3);
+}
+.infobox {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid var(--button-bg-color3);
+  /* border: 2px solid var(--button-hover-color); */
+
+  background-color: var(--button-bg-color);
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.infotext {
+  color: var(--button-bg-color3);
+  font-size: 20px;
+  padding: 10px;
+
+  border-right: 1px solid var(--button-bg-color3);
+  /* border-right: 2px solid var(--button-hover-color); */
+  /* border-bottom: 2px solid var(--button-bg-color3); */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.infotext.to {
+  border: 0;
+  /* border-top: 2px solid var(--button-hover-color); */
+  border-top: 1px solid var(--button-bg-color3);
+}
+.contentsbox {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 8px 8px;
+  /* border: 2px solid var(--button-hover-color); */
+  border: 1px solid var(--button-bg-color3);
+  border-top: 0;
+  min-height: 400px;
+  height: auto;
+  width: 800px;
+  font-family: "Do Hyeon", sans;
+}
+.pagechangebox {
+  margin-top: 20px;
+}
+.tonext {
+  display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+  background-color: var(--button-bg-color2);
+  margin: 5px;
+}
+
+.atext {
+  color: var(--button-bg-color3);
+}
+.atext.h:hover {
+  color: var(--button-bg-color3);
+}
+.ql-syntax {
+  font-family: "Do Hyeon", sans !important;
+  white-space: pre-line;
+}

@@ -1,0 +1,140 @@
+.userboxbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  /* background-color: rgb(230, 230, 230); */
+  background-color: var(--button-bg-color);
+  border-radius: 12px;
+
+  width: 100%;
+}
+.bottom {
+  width: 100%;
+}
+.userbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+.userbox.tm {
+  /* background-color: rgb(230, 230, 230); */
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 5px 10px;
+}
+.userbox.tm.b {
+  /* background-color: rgb(230, 230, 230); */
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin: 0 10px 5px 0;
+}
+.usertext {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  width: 100px;
+  height: 40px;
+  border-bottom: 1px solid var(--button-bg-color2);
+
+  margin: 0 5px 0 5px;
+}
+.usertextbox {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0 0 0;
+}
+.utext:hover {
+  color: rgb(28, 28, 28);
+}
+.title.manage {
+  font-size: 20px;
+  margin: 135px 0 50px 10px;
+  width: 100%;
+  text-align: start;
+  display: flex;
+  flex-direction: row;
+}
+.usertext.s {
+  width: 50px;
+}
+.usertext.l {
+  width: 180px;
+}
+.usertext.xl {
+  width: 250px;
+}
+.button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px 5px 0;
+  /* background-color: rgb(230, 230, 230); */
+  border: 0;
+}
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.utext.t {
+  font-size: 15px;
+  /* color: rgb(200, 200, 200); */
+  color: var(--button-bg-color3);
+}
+.usertext.t {
+  /* border-bottom: 1px solid rgb(28, 28, 28); */
+  border: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.usertextbutton {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  /* margin: 10px; */
+  width: 100%;
+  /* height: 100%; */
+}
+.line {
+  margin-bottom: 10px;
+}
+.utext.titlet:hover {
+  /* color: rgb(200, 200, 200); */
+  color: var(--button-hover-color);
+}
+.utext.titlet {
+  cursor: pointer;
+}
+.productphoto {
+  /* background-color: rgb(230, 230, 230); */
+  background-color: white;
+  border-radius: 12px;
+}
+.photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.box {
+  height: 100%;
+  width: 90%;
+}
+.totalbox {
+  margin: 0 0 70px 0;
+}
+.totaluserbox {
+  display: flex;
+  flex-direction: row;
+}

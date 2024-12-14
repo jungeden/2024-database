@@ -212,6 +212,7 @@ echo("
                         $price2 = $row['price2'];
                         $userfile = $row['userfile'];  // 이미지 파일 경로
                         $per = ($price2/$price1)*100;
+                        $per = 100 - round($per);
         
     
                         $price1=number_format($price1);

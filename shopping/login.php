@@ -73,7 +73,7 @@ mysqli_query($con, "DELETE FROM shoppingcart WHERE userid='$userid'");
 
 switch($page) {
     case 'my':
-        echo ("<meta http-equiv='Refresh' content='0; url=shoppingPage.php?userid=" . urlencode($userid) . "'>");
+        echo ("<meta http-equiv='Refresh' content='0; url=startPage.php?userid=" . urlencode($userid) . "'>");
         break;
 
     case 'shopping':

@@ -29,6 +29,8 @@ $userfile=$row['userfile'];
 $class=$row['class'];
 
 $per = ($price2/$price1)*100;
+$per = 100 - round($per);
+
         
     
 $price1=number_format($price1);
@@ -560,7 +562,7 @@ echo("
                             <div class='filebox'>
                                 <a href='productdetailPage.php?code=$tcode&userid=$userid&userfile=$tuserfile'>
                                     <img class='tphoto' src='./photo/$tuserfile'>
-                                </a>sp
+                                </a>
                             </div>
                             <div class='productinfobox'>
                                 <a class='productinfotext' href='productdetailPage.php?code=$tcode&userid=$userid&userfile=$userfile'>
@@ -608,8 +610,8 @@ echo("
 
                 setTimeout(() => {
                     messagerotation.style.display = 'none';
-                    localStorage.removeItem('cartMessage');
                 }, 3500);
+                localStorage.removeItem('cartMessage');
 
             }
         });
