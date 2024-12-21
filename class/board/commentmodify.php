@@ -10,7 +10,6 @@ $commentmessage=$_POST['commentmessage'];
 
 $modifycomment=mysqli_query($con,"UPDATE comment SET message='$commentmessage' WHERE id='$id' AND name='$commentname' AND wdate='$date'");
 
-
 mysqli_close($con);
 echo ("<meta http-equiv='Refresh' content='0; url=content.php?board=$board&id=$id'>");
 
